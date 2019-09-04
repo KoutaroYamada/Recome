@@ -44,6 +44,12 @@ group :development, :test do
   #バグ駆除
   gem 'pry-byebug'
 
+  #モデルのテストのため
+  gem "factory_bot_rails"
+
+  #ダミーデータ作成のため
+  gem 'faker'
+
 end
 
 group :development do
