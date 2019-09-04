@@ -72,3 +72,9 @@ gem 'rails-i18n'
 #管理者画面の作成
 gem 'activeadmin'
 
+#Railsテストフレームワーク
+gem 'rspec-rails'
+
+#バグ駆除
+gem 'pry-byebug'
+
