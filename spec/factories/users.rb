@@ -12,7 +12,8 @@ FactoryBot.define do
   end
 
   trait :too_long_name do
-    user_name {Faker::Lorem.characters(31)}
+    # user_name {Faker::Lorem.characters(31)}
+    user_name {"aaaaaaaaaabbbbbbbbbbcccccccccc0"}
   end
 
   trait :too_short_name do
