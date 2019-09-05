@@ -1,34 +1,59 @@
-<h2>Sign up</h2>
+<div class="uk-container">
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :ユーザ名 %><br />
-    <%= f.text_field :user_name, autofocus: true, autocomplete: "user_name" %>
-  </div>
+    <div uk-grid>
+        <div class="uk-width-1-6">
+        </div>
+        <div class="uk-width-5-6">
+        <fieldset class="uk-fieldset uk-form-horizontal">
+          <h2 class="uk-margin-remove-bottom">ユーザ登録</h2>
+          <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+          <div class="field uk-section-xsmall uk-padding-remove-bottom">
+            <%= f.label :ユーザ名,class:"uk-form-label" %>
+            <div class="uk-form-controls">
+              <%= f.text_field :user_name, autofocus: true, autocomplete: "user_name",class:"uk-input uk-width-large" %>
+            </div>
+          </div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
+          <div class="field uk-section-xsmall uk-padding-remove-bottom">
+            <%= f.label :email,class:"uk-form-label" %>
+            <div class="uk-form-controls">
+              <%= f.email_field :email, autofocus: true, autocomplete: "email",class:"uk-input uk-width-large" %>
+            </div>
+          </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+          <div class="field uk-section-xsmall uk-padding-remove-bottom">
+            <%= f.label :password,class:"uk-form-label" do %>
+            <% :password %>
+            <div>パスワード</div>
+            <% if @minimum_password_length %>
+            <em>(<%= @minimum_password_length %> characters minimum)</em>
+            <% end %>
+            <% end %>
+            <div class="uk-form-controls">
+              <%= f.password_field :password, autocomplete: "new-password",class:"uk-input uk-width-large" %>
+            </div>
+          </div>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
+          <div class="field uk-section-xsmall uk-padding-remove-bottom">
+            <%= f.label :password_confirmation,class:"uk-form-label" %>
+            <div class="uk-form-controls">
+              <%= f.password_field :password_confirmation, autocomplete: "new-password",class:"uk-input uk-width-large" %>
+            </div>
+          </div>
+
+
+          <div class="actions uk-margin-large-top">
+            <div class="uk-form-controls">
+            <%= f.submit "登録する",class:"uk-button uk-button-primary uk-margin-large-right" %>
+            <%= render "users/shared/links" %>
+            </div>
+          </div>
+
+        </fieldset>
+        </div>
+    </div>    
+
 <% end %>
-
-<%= render "users/shared/links" %>
