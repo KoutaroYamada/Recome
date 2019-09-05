@@ -89,3 +89,6 @@ gem 'activeadmin'
 # #バグ駆除(記載位置を間違えたためコメントアウト)
 # gem 'pry-byebug'
 
+#CSSフレームワーク「Uikit」
+gem 'rails-uikit-sass'
+

@@ -168,6 +168,8 @@ GEM
     nio4r (2.5.1)
     nokogiri (1.10.4)
       mini_portile2 (~> 2.4.0)
+    non-stupid-digest-assets (1.0.9)
+      sprockets (>= 2.0)
     orm_adapter (0.5.0)
     polyamorous (2.3.0)
       activerecord (>= 5.0)
@@ -203,6 +205,9 @@ GEM
     rails-i18n (5.1.3)
       i18n (>= 0.7, < 2)
       railties (>= 5.0, < 6)
+    rails-uikit-sass (2.27.2)
+      non-stupid-digest-assets (~> 1.0)
+      sass-rails (~> 5.0)
     railties (5.2.3)
       actionpack (= 5.2.3)
       activesupport (= 5.2.3)
@@ -324,6 +329,7 @@ DEPENDENCIES
   puma (~> 3.11)
   rails (~> 5.2.3)
   rails-i18n
+  rails-uikit-sass
   rspec-rails
   sass-rails (~> 5.0)
   selenium-webdriver
