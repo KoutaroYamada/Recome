@@ -314,9 +314,9 @@ ActiveAdmin.setup do |config|
   # config.order_clause = MyOrderClause
 
   config.clear_stylesheets!
-  config.register_stylesheet '/vendor/stylesheets/active_admin.css'
+  config.register_stylesheet 'active_admin.css'
 
   config.clear_javascripts!
-  config.register_javascript '/vendor/javascripts/active_admin.js'
+  config.register_javascript 'active_admin.js'
 
 end
