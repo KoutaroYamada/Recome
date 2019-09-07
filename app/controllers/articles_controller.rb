@@ -7,15 +7,7 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    require 'open-uri'
-
-    @article = Article.new(article_params)
-    
-    #URLの取得
-    @html = open(@article.url){|f| f.read }
-
-    @title = Nokogiri::HTML.parse(@html).title
-    @image = Nokogiri::HTML.parse(@html).css('//meta[property="og:image"]/@content').to_s
+ 
     
 
     # @contents = Nokogiri::HTML(html,nil,'utf-8')
@@ -35,9 +27,26 @@ class ArticlesController < ApplicationController
   def destroy
   end
 
+  def get_url
+    require 'open-uri'
+
+    url = url_params[:keyword]
+    
+    #URLの取得
+    @html = open(url){|f| f.read }
+
+    @title = Nokogiri::HTML.parse(@html).title
+    @image = Nokogiri::HTML.parse(@html).css('//meta[property="og:image"]/@content').to_s
+
+  end
+
   private
   def article_params
     params.require(:article).permit(:url)
+  end
+
+  def url_params
+    params.permit(:keyword)
   end
 
 end

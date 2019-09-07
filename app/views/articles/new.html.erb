@@ -7,24 +7,27 @@
 
         <%= form_for(@article) do |f| %> 
 
-        <p class="uk-margin-small-bottom">投稿する記事のURLを入力</p>
+        <%#　入力したURLのタイトルと画像を表示(非同期) %>
+        <div id="url_title_and_image" class="uk-margin"></div>
 
-        <%# URLが登録済みの場合、URL先のページが無かった場合、アラートを表示する（できればURLを入力した瞬間に） %>
-        <div class="uk-section-xsmall uk-padding-remove-top">
-          <div class="uk-form-controls">
-            <%= f.text_field :url, class: "uk-input" %> 
-          </div>
-        </div>
+          <p class="uk-margin-small-bottom">投稿する記事のURLを入力</p>
 
-        <div class="uk-section-xsmall uk-padding-remove-top">
-          <div class="uk-form-controls">
-          <%= f.text_area :recommend_comment, class: "uk-textarea" ,placeholder:"コメントを記入"%> 
+          <%# URLが登録済みの場合、URL先のページが無かった場合、アラートを表示する（できればURLを入力した瞬間に） %>
+          <div class="uk-section-xsmall uk-padding-remove-top">
+            <div class="uk-form-controls">
+              <%= f.text_field :url, class: "uk-input",id:"input-url-area" %> 
+            </div>
           </div>
-        </div>
-        
-        <div class="uk-section-xsmall uk-padding-remove-bottom">
-          <%= f.submit '投稿する',  class: "uk-button uk-button-primary uk-align-right" %>
-        </div>
+
+          <div class="uk-section-xsmall uk-padding-remove-top">
+            <div class="uk-form-controls">
+            <%= f.text_area :recommend_comment, class: "uk-textarea" ,placeholder:"コメントを記入"%> 
+            </div>
+          </div>
+          
+          <div class="uk-section-xsmall uk-padding-remove-bottom">
+            <%= f.submit '投稿する',  class: "uk-button uk-button-primary uk-align-right" %>
+          </div>
       </div>
 
     <%# タグの紐付け機能もここに実装する %>

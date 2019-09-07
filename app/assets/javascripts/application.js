@@ -18,3 +18,28 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+
+// urlが入力されると非同期でurl先のタイトルとサムネイル画像を表示
+$(document).on('turbolinks:load',function(){
+  const inputForm = $('#input-url-area');
+
+  inputForm.on('keyup',function(){
+    const url = $(this).val();
+
+    $.ajax({
+      type:'GET',
+      url:'/articles/get_url',
+      data: {keyword: url},
+      datatype: 'json'
+    })
+    .done(function(){
+      inputForm.addClass("uk-animation-fade");
+    })
+    .fail(function(data){
+      console.log('非同期通信に失敗しました。');
+    })
+
+  });
+
+
+});
