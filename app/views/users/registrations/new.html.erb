@@ -2,13 +2,14 @@
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
 
-    <div uk-grid>
+    <div uk-grid class="uk-margin-large-top">
         <%# 新規登録フォームの左側に空白を作るため追加（uikit標準の機能でやる方法がわからず） %>
         <div class="uk-width-1-6">
         </div>
         <div class="uk-width-2-3">
         <fieldset class="uk-fieldset uk-form-horizontal">
-          <h2 class="uk-margin-remove-bottom">ユーザ登録</h2>
+          <h4 class="uk-margin-remove-bottom">ユーザ登録</h4>
+          <hr>
           <%= render "users/shared/error_messages", resource: resource %>
 
           <div class="field uk-section-xsmall uk-padding-remove-bottom">

@@ -2,13 +2,19 @@
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
-  <div uk-grid>
+  <div uk-grid class="uk-margin-large-top">
         <div class="uk-width-1-6">
         </div>
 
-        <div class="uk-width-5-6">
+        <div class="uk-width-2-3">
           <fieldset class="uk-fieldset uk-form-horizontal">
-            <h2 class="uk-margin-remove-bottom">ログイン</h2>
+            <h4 class="">ログイン</h4>
+            <hr>
+            
+            <% if alert %>
+              <p class="uk-alert-danger uk-text-small uk-padding-small"><%= alert %></p>
+            <% end %>
+
             <div class="field uk-section-xsmall uk-padding-remove-bottom">
               <%= f.label :email,class:"uk-form-label" %>
               <div class="uk-form-controls">
@@ -27,7 +33,7 @@
               <% if devise_mapping.rememberable? %>
                 <div class="field uk-section-xsmall uk-padding-remove-bottom">
                   <%= f.check_box :remember_me,class:"uk-checkbox" %>
-                  <%= f.label :remember_me %>
+                  <%= f.label :remember_me,class:"uk-text-small" %>
                 </div>
               <% end %>
             </div>  
@@ -35,13 +41,16 @@
             <div class="actions uk-margin-top">
                 <div class="uk-form-controls">
                   <%= f.submit "ログイン",class:"uk-button uk-button-primary uk-margin-large-right" %>
-                  <div class="uk-margin-large-top">
+                  <div class="uk-margin-top uk-flex uk-flex-between">
                     <%= render "users/shared/links" %>
                   </div>
                 </div>
             </div>
           </fieldset>  
-        </div>  
+        </div>
+
+        <div class="uk-width-1-6">
+        </div>          
   </div>
 
 <% end %>

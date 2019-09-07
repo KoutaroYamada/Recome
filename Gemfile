@@ -83,10 +83,10 @@ gem 'rails-i18n'
 #管理者画面の作成
 gem 'activeadmin'
 
-# #Railsテストフレームワーク(記載位置を間違えたためコメントアウト)
-# gem 'rspec-rails'
+#ネット上の記事情報を取得する
+gem 'nokogiri'
 
-# #バグ駆除(記載位置を間違えたためコメントアウト)
-# gem 'pry-byebug'
+#jquery導入
+gem 'jquery-rails'
 
 
