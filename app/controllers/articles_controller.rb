@@ -10,6 +10,7 @@ class ArticlesController < ApplicationController
 
   def create
     @article = Article.new(article_params)
+    binding.pry
     @article.user_id = current_user.id
     
     if @article.save
@@ -36,19 +37,19 @@ class ArticlesController < ApplicationController
   end
 
   def get_url
-    require 'open-uri'
-
+    # フォームに入力されたURLを非同期で取得
     url = url_params[:keyword]
 
-    #過去に同じURLを同じユーザが投稿していたら、エラーを非同期で表示
-    if Article.where(url: url, user_id: current_user.id).exists?
-
-    else
-    #URLの取得
-    @html = open(url){|f| f.read }
-    @title = Nokogiri::HTML.parse(@html).title
-    @image = Nokogiri::HTML.parse(@html).css('//meta[property="og:image"]/@content').to_s
-    @status = :success
+    #同じURLを同じユーザが過去に投稿したことがない場合
+    if !(Article.where(url: url, user_id: current_user.id).exists?)
+      #URLを読み込み
+      @html = open(url){|f| f.read }
+      #タイトルを抽出
+      @title = Nokogiri::HTML.parse(@html).title
+      #サムネイル画像のリンクを抽出
+      @image = Nokogiri::HTML.parse(@html).css('//meta[property="og:image"]/@content').to_s
+      # 投稿済でないことを示すフラグ。get_url.js.erbでrenderするhtml.erbの条件分岐に使う
+      @status = :success
 
     end  
 
