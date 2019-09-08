@@ -28,20 +28,30 @@
  }
 
  .articles{
-  #url_title_and_image{
-    height:40px;
-  }
+      #url_title_and_image{
+        height:40px;
+      }
 
-  .loading{
-    background-image: url("gif-load.gif");
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: 50px 50px;
-    opacity:0.3;
-  }
-  
-  // Tag-itのオートコンプリートのヘルプメッセージ'No search results.'を非表示
-  .ui-helper-hidden-accessible {
-    display: none;
-  }
+      .loading{
+        background-image: url("gif-load.gif");
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: 50px 50px;
+        opacity:0.3;
+      }
+      
+      // Tag-itのオートコンプリートのヘルプメッセージ'No search results.'を非表示
+      .ui-helper-hidden-accessible {
+        display: none;
+      }
+
+      li{
+        line-height:16px;
+      }
+
+      .tag-form{
+          .uk-input{
+            height:70px;
+          }
+      }
  }

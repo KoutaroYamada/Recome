@@ -31,7 +31,7 @@
             allowDuplicates   : false,
             caseSensitive     : true,
             fieldName         : 'tags',
-            placeholderText   : null,   // Sets `placeholder` attr on input field.
+            placeholderText   : 'タグ名を入力してEnter',   // Sets `placeholder` attr on input field.
             readOnly          : false,  // Disables editing.
             removeConfirmation: false,  // Require confirmation to remove tags.
             tagLimit          : null,   // Max number of tags allowed (null for unlimited).
@@ -123,8 +123,7 @@
             } else {
                 this.tagList = this.element.find('ul, ol').andSelf().last();
             }
-
-            this.tagInput = $('<input type="text" />').addClass('ui-widget-content');
+            this.tagInput = $('<input type="text" />').addClass('ui-widget-content uk-text-small');
 
             if (this.options.readOnly) this.tagInput.attr('disabled', 'disabled');
 
@@ -171,9 +170,10 @@
                 this.options.tagSource = $.proxy(this.options.tagSource, this);
             }
 
+            
             this.tagList
                 .addClass('tagit')
-                .addClass('ui-widget ui-widget-content ui-corner-all')
+                .addClass('ui-widget ui-widget-content ui-corner-all uk-input')
                 // Create the input field.
                 .append($('<li class="tagit-new"></li>').append(this.tagInput))
                 .click(function(e) {
@@ -471,7 +471,7 @@
 
             // Create tag.
             var tag = $('<li></li>')
-                .addClass('tagit-choice ui-widget-content ui-state-default ui-corner-all')
+                .addClass('tagit-choice ui-widget-content ui-state-default ui-corner-all uk-text-small')
                 .addClass(additionalClass)
                 .append(label);
 

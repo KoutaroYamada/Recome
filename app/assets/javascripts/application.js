@@ -24,7 +24,7 @@
 // urlが入力されると非同期でurl先のタイトルとサムネイル画像を表示
 $(document).on('turbolinks:load',function(){
   const inputForm = $('#input-url-area');
-
+  
   inputForm.on('keyup',function(){
     const url = $(this).val();
     $('#url_title_and_image').empty();
