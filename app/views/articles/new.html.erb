@@ -15,12 +15,11 @@
         </div>
         <% end %>
 
-        <%#　入力したURLのタイトルと画像を表示(非同期) %>
+        <%#　入力したURLのタイトルと画像を表示(非同期)　URLが既に投稿済だったらエラーを表示 %>
         <div id="url_title_and_image" class="uk-margin"></div>
 
           <p class="uk-margin-small-bottom">投稿する記事のURLを入力</p>
 
-          <%# URLが登録済みの場合、URL先のページが無かった場合、アラートを表示する（できればURLを入力した瞬間に） %>
           <div class="uk-section-xsmall uk-padding-remove-top">
             <div class="uk-form-controls">
               <%= f.text_field :url, class: "uk-input",id:"input-url-area" %> 

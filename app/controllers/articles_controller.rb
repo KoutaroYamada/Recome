@@ -39,12 +39,18 @@ class ArticlesController < ApplicationController
     require 'open-uri'
 
     url = url_params[:keyword]
-    
+
+    #過去に同じURLを同じユーザが投稿していたら、エラーを非同期で表示
+    if Article.where(url: url, user_id: current_user.id).exists?
+
+    else
     #URLの取得
     @html = open(url){|f| f.read }
-
     @title = Nokogiri::HTML.parse(@html).title
     @image = Nokogiri::HTML.parse(@html).css('//meta[property="og:image"]/@content').to_s
+    @status = :success
+
+    end  
 
   end
 

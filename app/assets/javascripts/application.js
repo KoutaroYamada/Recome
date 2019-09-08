@@ -32,10 +32,16 @@ $(document).on('turbolinks:load',function(){
       type:'GET',
       url:'/articles/get_url',
       data: {keyword: url},
-      datatype: 'json'
+      datatype: 'json',
+      beforeSend: function(){
+        $('#url_title_and_image').removeClass('uk-animation-fade uk-animation-fast');
+        // $('#url_title_and_image').addClass('loading');
+      }
+
     })
     .done(function(){
-      inputForm.addClass("uk-animation-fade");
+      $('#url_title_and_image').addClass("uk-animation-fade uk-animation-fast");
+      // $('#url_title_and_image').removeClass('loading');
     })
     .fail(function(data){
       console.log('非同期通信に失敗しました。');
