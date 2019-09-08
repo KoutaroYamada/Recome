@@ -89,4 +89,6 @@ gem 'nokogiri'
 #jquery導入
 gem 'jquery-rails'
 
-
+#タグ機能
+gem 'acts-as-taggable-on'
+gem 'jquery-ui-rails'

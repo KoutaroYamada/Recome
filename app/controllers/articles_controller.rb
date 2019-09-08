@@ -1,4 +1,6 @@
 class ArticlesController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy, :get_url ]
+
   def index
   end
 
@@ -7,11 +9,17 @@ class ArticlesController < ApplicationController
   end
 
   def create
- 
+    @article = Article.new(article_params)
+    @article.user_id = current_user.id
     
+    if @article.save
+      flash[:success] = "登録に成功しました。"
+      redirect_to articles_path
+    else
+      flash[:danger] = "登録に失敗しました。"
+      render :new
 
-    # @contents = Nokogiri::HTML(html,nil,'utf-8')
-    render 'index'
+    end
 
   end
 
@@ -42,7 +50,7 @@ class ArticlesController < ApplicationController
 
   private
   def article_params
-    params.require(:article).permit(:url)
+    params.require(:article).permit(:url, :recommend_comment, :tag_list)
   end
 
   def url_params

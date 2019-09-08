@@ -11,6 +11,8 @@
  * It is generally better to create a new file per style scope.
  *
  *= require_tree .
+ *= require jquery.tagit
+ *= require tagit.ui-zendesk
  *= require_self
  */
 
@@ -27,12 +29,11 @@
 
  .articles{
   #url_title_and_image{
-    height:80px;
-
-  .url-image{
-    display:inline-block;
-    height:80px;
-    // width:80px;
-  }  
+    height:40px;
+  }
+  
+  // Tag-itのオートコンプリートのヘルプメッセージ'No search results.'を非表示
+  .ui-helper-hidden-accessible {
+    display: none;
   }
  }

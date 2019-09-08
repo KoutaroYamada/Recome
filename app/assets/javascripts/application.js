@@ -17,6 +17,8 @@
 //= require uikit-icons.min
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui
+//= require tag-it
 //= require_tree .
 
 // urlが入力されると非同期でurl先のタイトルとサムネイル画像を表示
@@ -41,5 +43,6 @@ $(document).on('turbolinks:load',function(){
 
   });
 
+  $('#article-tags').tagit();
 
 });
