@@ -27,26 +27,33 @@ $(document).on('turbolinks:load',function(){
 
   inputForm.on('keyup',function(){
     const url = $(this).val();
+    $('#url_title_and_image').empty();
 
-    $.ajax({
-      type:'GET',
-      url:'/articles/get_url',
-      data: {keyword: url},
-      datatype: 'json',
-      beforeSend: function(){
-        $('#url_title_and_image').removeClass('uk-animation-fade uk-animation-fast');
-        // $('#url_title_and_image').addClass('loading');
-      }
+    if(url != ""){
+      $.ajax({
+        type:'GET',
+        url:'/articles/get_url',
+        data: {keyword: url},
+        datatype: 'json',
+        beforeSend: function(){
+          $('#url_title_and_image').removeClass('uk-animation-fade uk-animation-fast');
+          $('#url_title_and_image').addClass('loading');
+        }
 
-    })
-    .done(function(){
-      $('#url_title_and_image').addClass("uk-animation-fade uk-animation-fast");
-      // $('#url_title_and_image').removeClass('loading');
-    })
-    .fail(function(data){
-      console.log('非同期通信に失敗しました。');
-    })
-
+      })
+      .done(function(){
+        $('#url_title_and_image').addClass("uk-animation-fade uk-animation-fast");
+        $('#url_title_and_image').removeClass('loading');
+      })
+      .fail(function(data){
+        $('#url_title_and_image').empty();
+        $('#url_title_and_image').removeClass('loading');
+        $('#url_title_and_image').append('<div class="uk-alert-danger" uk-alert><p>このURLは存在しません。</p></div>');
+      })
+    } else{
+      $('#url_title_and_image').empty();
+      $('#url_title_and_image').removeClass('loading');
+    }
   });
 
   $('#article-tags').tagit();

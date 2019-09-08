@@ -32,9 +32,13 @@
     height:40px;
   }
 
-  // .loading{
-  //   background-image: url("gif-load.gif");
-  // }
+  .loading{
+    background-image: url("gif-load.gif");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 50px 50px;
+    opacity:0.3;
+  }
   
   // Tag-itのオートコンプリートのヘルプメッセージ'No search results.'を非表示
   .ui-helper-hidden-accessible {
