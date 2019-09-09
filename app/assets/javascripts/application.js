@@ -56,6 +56,13 @@ $(document).on('turbolinks:load',function(){
     }
   });
 
+  // タグ機能有効化
   $('#article-tags').tagit();
+
+  // クリックしたタグ名を自動でフォームに入力する
+  $('.used_tag').on('click',function(){
+    let clicked_tag = $(this).text();
+    $('.tagit-new').find("input").val(clicked_tag);
+  });
 
 });

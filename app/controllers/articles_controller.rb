@@ -8,6 +8,8 @@ class ArticlesController < ApplicationController
     @article = Article.new
     # タグ一覧を変数に格納  gonはrailsのデータをjsに渡せるようにするためのgem tag-it.jsで使用
     gon.available_tags = Article.tags_on(:tags).pluck(:name)
+    #過去自分が使ったタグ
+    @used_tags = Article.where(user_id: current_user.id).tags_on(:tags).pluck(:name)
 
   end
 
@@ -55,6 +57,10 @@ class ArticlesController < ApplicationController
 
     end  
 
+  end
+
+  def input_tag
+    
   end
 
   private

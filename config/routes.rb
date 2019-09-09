@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :articles do
     collection do
       get 'get_url'
+      post 'input_tag'
     end
   end
 
