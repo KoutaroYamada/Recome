@@ -92,3 +92,6 @@ gem 'jquery-rails'
 #タグ機能
 gem 'acts-as-taggable-on'
 gem 'jquery-ui-rails'
+
+#railsからjavascriptにデータを渡す
+gem 'gon'

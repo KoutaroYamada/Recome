@@ -37,7 +37,8 @@
             tagLimit          : null,   // Max number of tags allowed (null for unlimited).
 
             // Used for autocomplete, unless you override `autocomplete.source`.
-            availableTags     : [],
+            // gon.availableTagsはタグ一覧を格納した変数
+            availableTags     : gon.available_tags,
 
             // Use to override or add any options to the autocomplete widget.
             //

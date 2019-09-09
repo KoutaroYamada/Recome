@@ -6,6 +6,9 @@ class ArticlesController < ApplicationController
 
   def new
     @article = Article.new
+    # タグ一覧を変数に格納  gonはrailsのデータをjsに渡せるようにするためのgem tag-it.jsで使用
+    gon.available_tags = Article.tags_on(:tags).pluck(:name)
+
   end
 
   def create
