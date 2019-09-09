@@ -59,10 +59,10 @@ $(document).on('turbolinks:load',function(){
   // タグ機能有効化
   $('#article-tags').tagit();
 
-  // クリックしたタグ名を自動でフォームに入力する
+  // クリックしたタグ名でタグを自動登録
   $('.used_tag').on('click',function(){
     let clicked_tag = $(this).text();
-    $('.tagit-new').find("input").val(clicked_tag);
+    $('#article-tags').tagit("createTag", clicked_tag);
   });
 
 });

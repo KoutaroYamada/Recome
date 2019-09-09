@@ -17,6 +17,24 @@
  */
 
  @import "uikit.min";
+ 
+ .uk-navbar-container{
+  padding:0 20px;
+  position:　fixed;
+ }
+
+ .uk-navbar-item, .uk-navbar-nav > li > a, .uk-navbar-toggle{
+   min-height:50px;
+ }
+
+ .uk-logo{
+   background-image:url("recome-logo.png");
+   background-size:contain;
+   background-repeat: no-repeat;
+   background-position: center center;
+   width:50px;
+   height:50px;
+ }
 
  .uk-input{
    height:35px;

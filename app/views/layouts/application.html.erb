@@ -12,6 +12,49 @@
   </head>
 
   <body class="<%= controller.controller_name %>">
+
+    <nav class="uk-navbar-container" uk-navbar data-uk-sticky>
+
+      <div class="uk-navbar-left">
+
+        <%# ロゴ %>
+        <a href="" class="uk-navbar-item uk-logo"></a>
+
+         <div class="uk-navbar-item">
+                <form class="uk-search uk-search-default">
+                    <a href="" class="uk-search-icon-flip" uk-search-icon></a>
+                    <input class="uk-search-input" type="search" placeholder="記事タイトルで検索...">
+                </form>    
+        </div>
+
+          <ul class="uk-navbar-nav">              
+              <li><a href="#"><span uk-icon="icon: users; ratio: 1.2"></span>ユーザを探す</a></li>
+          </ul>
+
+      </div>
+
+      <div class="uk-navbar-right">
+
+          <ul class="uk-navbar-nav">
+              <li class="uk-active"><a href="#"><span uk-icon="icon: push; ratio: 1.2"></span>記事を投稿する</a></li>
+              <li>
+                  <a href="#"><span uk-icon="icon: user; ratio: 1.2"></span>マイページ</a>
+                  <%# <div class="uk-navbar-dropdown">
+                      <ul class="uk-nav uk-navbar-dropdown-nav">
+                          <li class="uk-active"><a href="#">Active</a></li>
+                          <li><a href="#">Item</a></li>
+                          <li><a href="#">Item</a></li>
+                      </ul>
+                  </div> %>
+              </li>
+              <li><a href="#"><span uk-icon="icon: bell; ratio: 1.2"></span></a></li>
+          </ul>
+
+      </div>
+
+    </nav>
+  
+
     <%= yield %>
   </body>
 </html>
