@@ -45,12 +45,16 @@ $(document).on('turbolinks:load',function(){
         $('#url_title_and_image').addClass("uk-animation-fade uk-animation-fast");
         $('#url_title_and_image').removeClass('loading');
 
+        // 記事のサムネ画像URL・タイトル・サイト名・概要を取得
         let preview_image_url = $('.article_thumbnail_image').attr('src');
         let preview_title = $('#article_title').val();
+        let preview_site_name = $('#article_site_name').val();
         let preview_description = $('#article_description').val();
 
+        // 上で取得した値をfidden_fieldに受け渡し
         $('#hidden_article_thumbnail_image_url').val(preview_image_url);
         $('#hidden_article_title').val(preview_title);
+        $('#hidden_article_site_name').val(preview_site_name);
         $('#hidden_article_description').val(preview_description);
       })
       .fail(function(data){

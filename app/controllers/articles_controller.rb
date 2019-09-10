@@ -54,6 +54,8 @@ class ArticlesController < ApplicationController
       @title = doc.title
       #サムネイル画像のリンクを抽出
       @image = doc.css('//meta[property="og:image"]/@content').to_s
+      #サイト名を抽出
+      @site_name = doc.css('//meta[property="og:site_name"]/@content').to_s      
       #記事の概要を抽出
       @description = doc.css('//meta[name="description"]/@content').to_s
       #name="description"にない場合
@@ -74,7 +76,7 @@ class ArticlesController < ApplicationController
 
   private
   def article_params
-    params.require(:article).permit(:url, :recommend_comment, :tag_list, :thumbnail_image_url, :title, :description)
+    params.require(:article).permit(:url, :recommend_comment, :tag_list, :thumbnail_image_url, :title, :description, :site_name)
   end
 
   def url_params

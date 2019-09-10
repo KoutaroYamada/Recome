@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 2019_09_10_050104) do
     t.text "thumbnail_image_url", default: "", null: false
     t.text "description", default: "", null: false
     t.string "title", default: "", null: false
+    t.string "site_name", default: "", null: false
     t.index ["description"], name: "index_articles_on_description"
     t.index ["title"], name: "index_articles_on_title"
     t.index ["user_id"], name: "index_articles_on_user_id"

@@ -1,6 +1,6 @@
 <%# 入力したURLが投稿済でない場合、記事のサムネイル画像とタイトルを表示する %>
 <% if @status == :success %>
-$('#url_title_and_image').html("<%= j(render partial: 'articles/title_and_image', locals: {title: @title, image: @image, description: @description }) %>");
+$('#url_title_and_image').html("<%= j(render partial: 'articles/title_and_image', locals: {title: @title, image: @image, description: @description,site_name: @site_name }) %>");
   
 <%# 投稿済の場合はエラー文を表示 %>
 <% else %>　
