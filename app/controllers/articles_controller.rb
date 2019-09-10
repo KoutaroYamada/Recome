@@ -2,6 +2,8 @@ class ArticlesController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy, :get_url ]
 
   def index
+    @articles = Article.all
+
   end
 
   def new
@@ -47,13 +49,20 @@ class ArticlesController < ApplicationController
     #同じURLを同じユーザが過去に投稿したことがない場合
     if !(Article.where(url: url, user_id: current_user.id).exists?)
       #URLを読み込み
-      html = open(url){|f| f.read }
+      doc = Nokogiri::HTML.parse(open(url){|f| f.read })
       #タイトルを抽出
-      @title = Nokogiri::HTML.parse(html).title
+      @title = doc.title
       #サムネイル画像のリンクを抽出
-      @image = Nokogiri::HTML.parse(html).css('//meta[property="og:image"]/@content').to_s
+      @image = doc.css('//meta[property="og:image"]/@content').to_s
+      #記事の概要を抽出
+      @description = doc.css('//meta[name="description"]/@content').to_s
+      #name="description"にない場合
+      if @description.empty?
+        @description = doc.css('//meta[property="og:description"]/@content').to_s
+      end
+
       # 投稿済でないことを示すフラグ。get_url.js.erbでrenderするhtml.erbの条件分岐に使う
-      @status = :success
+      @status = :success 
 
     end  
 

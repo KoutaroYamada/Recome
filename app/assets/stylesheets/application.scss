@@ -17,6 +17,10 @@
  */
 
  @import "uikit.min";
+
+ .font-size-12pt{
+   font-size:12px;
+ }
  
  .uk-navbar-container{
   padding:0 20px;
@@ -47,7 +51,7 @@
 
  .articles{
       #url_title_and_image{
-        height:40px;
+        height:50px;
       }
 
       .loading{

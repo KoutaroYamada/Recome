@@ -6,24 +6,26 @@
 <% end %>
 
 <h1>記事一覧ページ</h1>
+<div class="uk-container">
 
-<div class="uk-child-width-1-4@m uk-grid-small uk-grid-match" uk-grid>
-    <div>
-        <div class="uk-card uk-card-default uk-card-body">
-            <h3 class="uk-card-title">Default</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+  <div class="uk-child-width-1-2@m uk-grid-medium uk-grid-match" uk-grid>
+      <% @articles.each do |article| %>          
+        <div>
+            <div class="uk-card uk-card-default  uk-card-body">
+                  <div uk-grid>
+                      <div class="uk-width-auto url-image">
+                        <% if image.empty? %>
+                          <%= image_tag 'no-image.png',style:"height: 60px;" %>
+                        <% else %> 
+                          <img src=<%= image %> style="height: 60px;" />
+                        <% end %>
+                      </div>
+                      <div class="uk-width-expand">
+                        <p class=""><%= title %></p>
+                      </div>
+                  </div>  
+            </div>
         </div>
-    </div>
-    <div>
-        <div class="uk-card uk-card-primary uk-card-body">
-            <h3 class="uk-card-title">Primary</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-        </div>
-    </div>
-    <div>
-        <div class="uk-card uk-card-secondary uk-card-body">
-            <h3 class="uk-card-title">Secondary</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-        </div>
-    </div>
+      <% end %>
+  </div>
 </div>
