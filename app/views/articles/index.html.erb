@@ -8,13 +8,14 @@
 <h1>記事一覧ページ</h1>
 <div class="uk-container">
 
-  <div class="uk-child-width-1-2@m uk-grid-medium uk-grid-match" uk-grid>
-      <% @articles.each do |article| %>          
+  <%# <div class="uk-child-width-1-2@m uk-grid-medium uk-grid-match" uk-grid>
+      <% @articles.each do |article| %>
+          
         <div>
             <div class="uk-card uk-card-default  uk-card-body">
                   <div uk-grid>
                       <div class="uk-width-auto url-image">
-                        <% if image.empty? %>
+                        <% if @image.empty? %>
                           <%= image_tag 'no-image.png',style:"height: 60px;" %>
                         <% else %> 
                           <img src=<%= image %> style="height: 60px;" />
@@ -27,5 +28,5 @@
             </div>
         </div>
       <% end %>
-  </div>
+  </div> 
 </div>

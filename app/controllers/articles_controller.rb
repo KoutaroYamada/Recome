@@ -74,7 +74,7 @@ class ArticlesController < ApplicationController
 
   private
   def article_params
-    params.require(:article).permit(:url, :recommend_comment, :tag_list)
+    params.require(:article).permit(:url, :recommend_comment, :tag_list, :thumbnail_image_url, :title, :description)
   end
 
   def url_params

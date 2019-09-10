@@ -18,6 +18,12 @@
         <%#　入力したURLのタイトルと画像を表示(非同期)　URLが既に投稿済だったらエラーを表示 %>
         <div id="url_title_and_image" class="uk-margin"></div>
 
+        <%# form_forで記事のサムネイル画像URL・タイトル・概要を送信する用 %>
+        <%# ajax通信が完了したら、記事の情報を受け取っている %>
+        <%= f.hidden_field :thumbnail_image_url,id:"hidden_article_thumbnail_image_url" %>
+        <%= f.hidden_field :title,id:"hidden_article_title" %>
+        <%= f.hidden_field :description,id:"hidden_article_description" %>
+
           <p class="uk-margin-small-bottom">投稿する記事のURLを入力</p>
 
           <div class="uk-section-xsmall uk-padding-remove-top">

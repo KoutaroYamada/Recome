@@ -44,10 +44,19 @@ $(document).on('turbolinks:load',function(){
       .done(function(){
         $('#url_title_and_image').addClass("uk-animation-fade uk-animation-fast");
         $('#url_title_and_image').removeClass('loading');
+
+        let preview_image_url = $('.article_thumbnail_image').attr('src');
+        let preview_title = $('#article_title').val();
+        let preview_description = $('#article_description').val();
+
+        $('#hidden_article_thumbnail_image_url').val(preview_image_url);
+        $('#hidden_article_title').val(preview_title);
+        $('#hidden_article_description').val(preview_description);
       })
       .fail(function(data){
         $('#url_title_and_image').empty();
         $('#url_title_and_image').removeClass('loading');
+        // URL先が存在しない場合のエラーメッセージを表示
         $('#url_title_and_image').append('<div class="uk-alert-danger" uk-alert><p>このURLは存在しません。</p></div>');
       })
     } else{
@@ -66,3 +75,8 @@ $(document).on('turbolinks:load',function(){
   });
 
 });
+
+// form_forのurlにゅうりょくふぉーむに価がはいったら
+// title_and_image.htmlの各htmlタグ内部にテキストとしてでーたが格納されているはずなので
+// それをgetElement~~とかで取得、それをさらにarticles#new.html.erbのhidden_field(inputタグ、type=hidden)のvalueにだいにゅうしてあげる。
+// これをjsでかく
