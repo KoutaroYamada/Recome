@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
   def  article_search
     @article_search = Article.ransack(params[:q])
     @articles = @article_search.result(distinct: true).page(params[:page]).per(10)
+    @search_keyword = params[:q]["title_or_description_or_tags_name_cont"]
   end
 
 
