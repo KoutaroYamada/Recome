@@ -27,8 +27,13 @@
                 </form>    
         </div>
 
-          <ul class="uk-navbar-nav">              
-              <li><a href="#"><span uk-icon="icon: users; ratio: 1.2"></span>ユーザを探す</a></li>
+          <ul class="uk-navbar-nav">    
+              <li class="uk-active">
+                <%= link_to '' do %>
+                  <span uk-icon="icon: users; ratio: 1.2"></span>
+                  <span>ユーザを探す</span>
+                <% end %>
+              </li>
           </ul>
 
       </div>
@@ -36,17 +41,29 @@
       <div class="uk-navbar-right">
 
           <ul class="uk-navbar-nav">
-              <li class="uk-active"><a href="#"><span uk-icon="icon: push; ratio: 1.2"></span>記事を投稿する</a></li>
-              <li>
-                  <a href="#"><span uk-icon="icon: user; ratio: 1.2"></span>マイページ</a>
-                  <%# <div class="uk-navbar-dropdown">
-                      <ul class="uk-nav uk-navbar-dropdown-nav">
-                          <li class="uk-active"><a href="#">Active</a></li>
-                          <li><a href="#">Item</a></li>
-                          <li><a href="#">Item</a></li>
-                      </ul>
-                  </div> %>
+              <%# 「記事を投稿する」リンク %>
+              <li class="uk-active">
+                <%= link_to (new_article_path) do %>
+                  <span uk-icon="icon: push; ratio: 1.2"></span>
+                  <span>記事を投稿する</span>
+                <% end %>
               </li>
+
+              <li class="uk-active">
+                <%= link_to '' do %>
+                  <span uk-icon="icon: user; ratio: 1.2"></span>
+                  <span>マイページ</span>
+                <% end %>
+
+                  <%# <div class="uk-navbar-dropdown">
+                          <ul class="uk-nav uk-navbar-dropdown-nav">
+                              <li class="uk-active"><a href="#">Active</a></li>
+                              <li><a href="#">Item</a></li>
+                              <li><a href="#">Item</a></li>
+                          </ul>
+                      </div> %>
+              </li>
+
               <li><a href="#"><span uk-icon="icon: bell; ratio: 1.2"></span></a></li>
           </ul>
 

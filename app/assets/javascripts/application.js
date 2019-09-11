@@ -79,8 +79,3 @@ $(document).on('turbolinks:load',function(){
   });
 
 });
-
-// form_forのurlにゅうりょくふぉーむに価がはいったら
-// title_and_image.htmlの各htmlタグ内部にテキストとしてでーたが格納されているはずなので
-// それをgetElement~~とかで取得、それをさらにarticles#new.html.erbのhidden_field(inputタグ、type=hidden)のvalueにだいにゅうしてあげる。
-// これをjsでかく
