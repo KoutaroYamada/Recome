@@ -7,25 +7,27 @@
 
 <div class="uk-container">
 <h2>記事一覧ページ</h2>
-
-  <%# <div class="uk-child-width-1-2@m uk-grid-medium uk-grid-match" uk-grid> %>
-  <div class="uk-width-2-3@m uk-grid-medium uk-grid-match" uk-grid>
-      <% @articles.each do |article| %>
-          
-        <div>
-            <div class="uk-card uk-card-default uk-card-small uk-card-body">
-                  <div uk-grid>
-                      <div class="uk-width-auto url-image">
-                          <%= image_tag article.thumbnail_image_url, style:"height: 60px;" %>
-                      </div>
-                      <div class="uk-width-expand">
-                        <p class="uk-text-small uk-text-bold uk-margin-remove"><%= article.title %></p>
-                        <p class="font-size-12px uk-margin-remove"><%= article.site_name %></p>
-                        <p class="uk-margin-remove-top font-size-12px" ><%= article.description.truncate(120) %></p>
-                      </div>
-                  </div>  
+  <div uk-grid>
+    <div class="uk-width-expand">
+      <div class="uk-child-width uk-grid-medium uk-grid-match" uk-grid>
+          <% @articles.each do |article| %>        
+            <div>
+                <div class="uk-card uk-card-default uk-card-small uk-card-body">
+                      <div uk-grid>
+                          <div class="uk-width-auto url-image">
+                              <%= image_tag article.thumbnail_image_url, style:"height:80px;width:100px;object-fit:cover;" %>
+                          </div>
+                          <div class="uk-width-expand">
+                            <p class="uk-text-small uk-text-bold uk-margin-remove"><%= article.title.truncate(60) %></p>
+                            <p class="font-size-12px margin-top-and-bottom-5px"><%= article.site_name %></p>
+                            <p class="uk-margin-remove-top font-size-12px" ><%= article.description.truncate(120) %></p>
+                          </div>
+                      </div>  
+                </div>
             </div>
-        </div>
-      <% end %>
-  </div> 
+          <% end %>
+      </div> 
+    </div>
+    <div class="uk-width-1-4"></div>
+  </div>
 </div>
