@@ -98,3 +98,6 @@ gem 'gon'
 
 #検索機能
 gem 'ransack'
+
+#ページネーション
+gem 'kaminari'

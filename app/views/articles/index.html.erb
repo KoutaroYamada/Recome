@@ -7,6 +7,7 @@
 
 <div class="uk-container">
 <h2>記事一覧ページ</h2>
+<p>検索結果：<%= @articles.total_count %>件</p>
   <div uk-grid>
     <div class="uk-width-expand">
       <div class="uk-child-width uk-grid-medium uk-grid-match" uk-grid>
@@ -26,7 +27,10 @@
                 </div>
             </div>
           <% end %>
-      </div> 
+      </div>
+      <div class= "paginate">
+        <%= paginate @articles, class: "paginate" %>
+      </div>
     </div>
     <div class="uk-width-1-4"></div>
   </div>

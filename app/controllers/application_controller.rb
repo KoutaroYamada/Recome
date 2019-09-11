@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   # 投稿記事検索
   def  article_search
     @article_search = Article.ransack(params[:q])
-    @articles = @article_search.result(distinct: true)
+    @articles = @article_search.result(distinct: true).page(params[:page]).per(10)
   end
 
 
