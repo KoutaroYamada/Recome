@@ -11,7 +11,7 @@
       <%# サムネイル画像 %>
       <%= image_tag 'no-image.png',style:"height: 60px;" ,class:"article_thumbnail_image" %>
     <% else %> 
-      <img class="article_thumbnail_image" src=<%= image %> style="height: 60px;" />
+      <img class="article_thumbnail_image" src=<%= image %> style="height:60px;width:80px;object-fit:cover;" />
     <% end %>
   </div>
   <div class="uk-width-expand">
@@ -19,7 +19,7 @@
     <p class="font-size-13px uk-text-bold uk-margin-remove-bottom"><%= title.truncate(55) %></p>
     <input type="hidden" id="article_title" value="<%= title %>"><%# form_forのhidden_fieldに値を引き渡すため %>
     <%# サイト名 %>
-    <p class="font-size-12px margin-top-and-bottom-5px"><%= site_name %></p>
+    <p class="font-size-12px uk-margin-remove"><%= site_name %></p>
     <input type="hidden" id="article_site_name" value="<%= site_name %>">
     <%# 記事概要 %>
     <p class="uk-margin-remove font-size-12px" ><%= description.truncate(60) %></p>

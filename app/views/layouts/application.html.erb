@@ -17,14 +17,16 @@
 
       <div class="uk-navbar-left">
 
-        <%# ロゴ %>
-        <a href="" class="uk-navbar-item uk-logo"></a>
+        <%= link_to "",root_path,class:"uk-navbar-item uk-logo" %>
 
+        <%# 検索窓 %>
          <div class="uk-navbar-item">
-                <form class="uk-search uk-search-default">
-                    <a href="" class="uk-search-icon-flip" uk-search-icon></a>
-                    <input class="uk-search-input" type="search" placeholder="記事タイトルで検索...">
-                </form>    
+                <%= search_form_for @article_search, url: articles_path, html: {class: "uk-search uk-search-default search-nav-bar"} do |f| %>
+                  <%= f.search_field :title_or_description_or_tags_name_cont, class:"uk-search-input", placeholder:"記事タイトル・タグ名で検索" %>
+                  <%# 検索ボタンをuikitのアイコンにしたいがためにaタグでsubmit%>
+                  <a href='#' onclick="$('#article_search').submit()" class="uk-search-icon-flip" uk-search-icon ></a>
+                <% end %>
+
         </div>
 
           <ul class="uk-navbar-nav">    

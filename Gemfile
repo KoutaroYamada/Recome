@@ -95,3 +95,6 @@ gem 'jquery-ui-rails'
 
 #railsからjavascriptにデータを渡す
 gem 'gon'
+
+#検索機能
+gem 'ransack'

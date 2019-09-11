@@ -1,8 +1,15 @@
 class ApplicationController < ActionController::Base
-  # どのコントローラでも記事の読み込みができるように、ここに記述
+  # どのコントローラでも記事の読み込みができるように、ここでopen-uriを記述
   require 'open-uri'
-
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :article_search
+  
+  # 投稿記事検索
+  def  article_search
+    @article_search = Article.ransack(params[:q])
+    @articles = @article_search.result(distinct: true)
+  end
+
 
   protected
   def configure_permitted_parameters

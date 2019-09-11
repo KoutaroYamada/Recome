@@ -12,7 +12,7 @@
       <div class="uk-child-width uk-grid-medium uk-grid-match" uk-grid>
           <% @articles.each do |article| %>        
             <div>
-                <div class="uk-card uk-card-default uk-card-small uk-card-body">
+                <div class="uk-card uk-card-default uk-card-small uk-card-body uk-card-hover">
                       <div uk-grid>
                           <div class="uk-width-auto url-image">
                               <%= image_tag article.thumbnail_image_url, style:"height:80px;width:100px;object-fit:cover;" %>
