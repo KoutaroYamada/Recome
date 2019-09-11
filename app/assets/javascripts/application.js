@@ -12,7 +12,6 @@
 //
 //= require rails-ujs
 //= require activestorage
-//= require turbolinks
 //= require uikit.min
 //= require uikit-icons.min
 //= require jquery
@@ -22,7 +21,7 @@
 //= require_tree .
 
 // urlが入力されると非同期でurl先のタイトルとサムネイル画像を表示
-$(document).on('turbolinks:load',function(){
+$(function(){
   const inputForm = $('#input-url-area');
   
   inputForm.on('keyup',function(){
