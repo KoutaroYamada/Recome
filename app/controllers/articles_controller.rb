@@ -45,27 +45,26 @@ class ArticlesController < ApplicationController
   def get_url
     # フォームに入力されたURLを非同期で取得
     url = url_params[:keyword]
+    #URLを読み込み
+    doc = Nokogiri::HTML.parse(open(url){|f| f.read })
+    #タイトルを抽出
+    @title = doc.title
+    #サムネイル画像のリンクを抽出
+    @image = doc.css('//meta[property="og:image"]/@content').to_s
+    #サイト名を抽出
+    @site_name = doc.css('//meta[property="og:site_name"]/@content').to_s      
+    #記事の概要を抽出
+    @description = doc.css('//meta[name="description"]/@content').to_s
+    #記事概要がname="description"にない場合
+    if @description.empty?
+      # property="og:description"から取得
+      @description = doc.css('//meta[property="og:description"]/@content').to_s
+    end
 
-    #同じURLを同じユーザが過去に投稿したことがない場合
-    if !(Article.where(url: url, user_id: current_user.id).exists?)
-      #URLを読み込み
-      doc = Nokogiri::HTML.parse(open(url){|f| f.read })
-      #タイトルを抽出
-      @title = doc.title
-      #サムネイル画像のリンクを抽出
-      @image = doc.css('//meta[property="og:image"]/@content').to_s
-      #サイト名を抽出
-      @site_name = doc.css('//meta[property="og:site_name"]/@content').to_s      
-      #記事の概要を抽出
-      @description = doc.css('//meta[name="description"]/@content').to_s
-      #name="description"にない場合
-      if @description.empty?
-        @description = doc.css('//meta[property="og:description"]/@content').to_s
-      end
-
-      # 投稿済でないことを示すフラグ。get_url.js.erbでrenderするhtml.erbの条件分岐に使う
-      @status = :success 
-
+    #同じURLを同じユーザが過去に投稿したことがある場合
+    if (Article.where(url: url, user_id: current_user.id).exists?)
+      # 投稿済フラグ。_title_and_image.html.erbでwarningを出すかの分岐に使う
+      @status = :already_posted 
     end  
 
   end

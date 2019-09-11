@@ -1,25 +1,30 @@
-<% if title %>
-  <div uk-grid>
-    <div class="uk-width-auto url-image">
-      <%# サムネイル画像を抽出出来なかったら「No image」を表示 %>
-      <% if image.empty? %>
-        <%# サムネイル画像 %>
-        <%= image_tag 'no-image.png',style:"height: 60px;" ,class:"article_thumbnail_image" %>
-      <% else %> 
-        <img class="article_thumbnail_image" src=<%= image %> style="height: 60px;" />
-      <% end %>
-    </div>
-    <div class="uk-width-expand">
-      <%# 記事タイトル %>
-      <p class="font-size-13pt uk-text-bold uk-margin-remove-bottom"><%= title.truncate(55) %></p>
-      <input type="hidden" id="article_title" value="<%= title %>"><%# form_forのhidden_fieldに値を引き渡すため %>
-      <%# サイト名 %>
-      <p class="font-size-12pt uk-margin-remove"><%= site_name %></p>
-      <input type="hidden" id="article_site_name" value="<%= site_name %>">
-      <%# 記事概要 %>
-      <p class="uk-margin-remove-top font-size-12pt" ><%= description.truncate(120) %></p>
-      <input type="hidden" id="article_description" value="<%= description %>">
-    </div>
-  </div>  
+<% if status == :already_posted %>
+<div class="uk-alert-warning padding-top-and-bottom-5px margin-bottom-10px" uk-alert>
+    <p class="font-size-13px">このURLは過去に投稿したことがあります。</p>
+</div>
 <% end %>
+
+<div uk-grid>
+  <div class="uk-width-auto url-image">
+    <%# サムネイル画像を抽出出来なかったら「No image」を表示 %>
+    <% if image.empty? %>
+      <%# サムネイル画像 %>
+      <%= image_tag 'no-image.png',style:"height: 60px;" ,class:"article_thumbnail_image" %>
+    <% else %> 
+      <img class="article_thumbnail_image" src=<%= image %> style="height: 60px;" />
+    <% end %>
+  </div>
+  <div class="uk-width-expand">
+    <%# 記事タイトル %>
+    <p class="font-size-13px uk-text-bold uk-margin-remove-bottom"><%= title.truncate(55) %></p>
+    <input type="hidden" id="article_title" value="<%= title %>"><%# form_forのhidden_fieldに値を引き渡すため %>
+    <%# サイト名 %>
+    <p class="font-size-12px uk-margin-remove"><%= site_name %></p>
+    <input type="hidden" id="article_site_name" value="<%= site_name %>">
+    <%# 記事概要 %>
+    <p class="uk-margin-remove font-size-12px" ><%= description.truncate(60) %></p>
+    <input type="hidden" id="article_description" value="<%= description %>">
+  </div>
+</div>  
+
 
