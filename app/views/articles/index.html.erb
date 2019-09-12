@@ -7,7 +7,7 @@
 
 <div class="uk-container">
 <h2>記事一覧ページ</h2>
-<p>検索結果：<%= @articles.total_count %>件</p>
+<p>キーワード "<%= @search_keyword %>" での検索結果：<%= @articles.total_count %>件</p>
   <div uk-grid>
     <div class="uk-width-expand">
       <div class="uk-child-width uk-grid-medium uk-grid-match" uk-grid>
@@ -16,6 +16,7 @@
                 <div class="uk-card uk-card-default uk-card-small uk-card-body uk-card-hover">
                       <div uk-grid>
                           <div class="uk-width-auto url-image">
+                              <%# サムネイル画像 %>
                               <%= image_tag article.thumbnail_image_url, style:"height:80px;width:100px;object-fit:cover;" %>
                           </div>
                           <div class="uk-width-expand">
@@ -27,7 +28,12 @@
                             <%# タグの表示 %>
                               <% if article.tags.present? %>
                                 <% article.tags.pluck(:name).each do |tag| %>
-                                  <%= link_to tag, "", class:"tag font-size-11px" %>
+                                  <%# <%= link_to 'tags/:tag', class:"tag font-size-11px" do %>
+                                  <%# <%= link_to "/articles/#{tag}", class:"tag font-size-11px" do %>
+                                  <%= link_to articles_path(q: {"title_or_description_or_tags_name_cont"=> tag}), class: "tag font-size-11px" do %>
+                                    <span uk-icon="icon: tag; ratio: 0.7" class="uk-text-muted"></span>
+                                    <%= tag %>  
+                                  <% end %>
                                 <% end %>
                               <% end %>
                           </div>
@@ -40,6 +46,7 @@
         <%= paginate @articles, class: "paginate" %>
       </div>
     </div>
+    <%# 空divで無理やり画面右端に1/4分の余白を作成 %>
     <div class="uk-width-1-4"></div>
   </div>
 </div>
