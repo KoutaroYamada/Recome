@@ -77,4 +77,19 @@ $(function(){
     $('#article-tags').tagit("createTag", clicked_tag);
   });
 
+  // ↓お気に入りボタンがオンマウスになったらツールチップが一定時間後に表示される
+  // 機能を実装したかったが、時間の都合上あきらめ
+  　
+  // $('.fa-star').hover(function() {
+  //   $(this).parent().find('#favorite-button-text').addClass("visible");
+
+  //   var t = setTimeout(function() {
+  //     $(this).find('#favorite-button-text').addClass("visible");
+  //   }, 500);
+  //   $(this).data('timeout', t);
+  // }, function() {
+  //   $(this).find('#favorite-button-text').removeClass("visible");
+  //   clearTimeout($(this).data('timeout'));
+  // });
+
 });

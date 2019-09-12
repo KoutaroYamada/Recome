@@ -17,4 +17,9 @@ class User < ApplicationRecord
   has_many :articles, dependent: :destroy
   has_many :favorites, dependent: :destroy
 
+  # ユーザがいいね済かどうかを判断するロジック
+  def favorite?(article)
+    favorites.where(article_id: article.id).exists?
+  end
+
 end

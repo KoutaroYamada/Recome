@@ -101,3 +101,6 @@ gem 'ransack'
 
 #ページネーション
 gem 'kaminari'
+
+#font-awesome
+gem 'font-awesome-sass'

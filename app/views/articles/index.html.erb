@@ -20,20 +20,30 @@
                               <%= image_tag article.thumbnail_image_url, style:"height:80px;width:100px;object-fit:cover;" %>
                           </div>
                           <div class="uk-width-expand">
+
                             <%# #highlightは文中の検索キーワードをハイライトするため %>
                             <%# truncateは指定した文字数以上を「…」で端折ってくれる %>
                             <p class="uk-text-small uk-text-bold uk-margin-remove"><%= highlight(article.title.truncate(60),@search_keyword) %></p>
                             <p class="font-size-12px margin-top-and-bottom-5px"><%= article.site_name %></p>
                             <p class="uk-margin-remove-top font-size-12px margin-bottom-10px" ><%= highlight(article.description.truncate(120),@search_keyword) %></p>
+
+                            <%# お気に入りボタン %>
+                            <span id="favorite-button-<%= article.id %>" class="favorite-button">
+                              <%= render "favorites/favorite_button", article: article  %>
+                              <%# ツールチップの表示。一旦あきらめ %>
+                              <%# <span id="favorite-button-text" class="favorite-button-text">ほげほげ</span> %>
+                            </span>
+
                             <%# タグの表示 %>
                               <% if article.tags.present? %>
                                 <% article.tags.pluck(:name).each do |tag| %>
-                                  <%# <%= link_to 'tags/:tag', class:"tag font-size-11px" do %>
-                                  <%# <%= link_to "/articles/#{tag}", class:"tag font-size-11px" do %>
+
+                                  <%# タグをクリックしたら、そのタグ名で検索できるようリンクを設定 %>
                                   <%= link_to articles_path(q: {"title_or_description_or_tags_name_cont"=> tag}), class: "tag font-size-11px" do %>
                                     <span uk-icon="icon: tag; ratio: 0.7" class="uk-text-muted"></span>
                                     <%= tag %>  
                                   <% end %>
+
                                 <% end %>
                               <% end %>
                           </div>
@@ -49,4 +59,7 @@
     <%# 空divで無理やり画面右端に1/4分の余白を作成 %>
     <div class="uk-width-1-4"></div>
   </div>
+
+  <p  class="uk-margin" >
+    <button class="uk-button uk-button-default" type="button" onclick="UIkit.notification({message: 'Bottom Left...', pos: 'bottom-left'})">Bottom Left</button>  </p>
 </div>
