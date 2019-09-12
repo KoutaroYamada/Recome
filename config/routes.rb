@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get 'users/index'
+  get 'users/new'
+  get 'users/edit'
+  get 'users/show'
   root "home#top"
   devise_for :users
   devise_for :admin_users, ActiveAdmin::Devise.config
@@ -17,5 +21,6 @@ Rails.application.routes.draw do
     resource :favorites, only: [:create, :destroy]
   end
 
+  resources :users
 
 end
