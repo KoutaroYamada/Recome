@@ -15,5 +15,6 @@ class User < ApplicationRecord
   validates :profile, length: { maximum: 300 }
 
   has_many :articles, dependent: :destroy
+  has_many :favorites, dependent: :destroy
 
 end

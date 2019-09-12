@@ -8,9 +8,14 @@ Rails.application.routes.draw do
 
   resources :articles do
     collection do
+      #投稿フォームで入力されたURLを非同期で受け取り
       get 'get_url'
+      #タグの登録
       post 'input_tag'
     end
+    #いいね
+    resource :favorites, only: [:create, :destroy]
   end
+
 
 end
