@@ -28,24 +28,12 @@
                               <p class="uk-margin-remove-top font-size-12px margin-bottom-10px" ><%= highlight(article.description.truncate(120),@search_keyword) %></p>
 
                               <%# お気に入りボタン %>
-                              <span id="favorite-button-<%= article.id %>" class="favorite-button">
                                 <%= render "favorites/favorite_button", article: article  %>
-                                <%# ツールチップの表示。一旦あきらめ %>
-                                <%# <span id="favorite-button-text" class="favorite-button-text">ほげほげ</span> %>
-                              </span>
+
 
                               <%# タグの表示 %>
-                                <% if article.tags.present? %>
-                                  <% article.tags.pluck(:name).each do |tag| %>
+                              <%= render "layouts/tag", article: article  %>
 
-                                    <%# タグをクリックしたら、そのタグ名で検索できるようリンクを設定 %>
-                                    <%= link_to articles_path(q: {"title_or_description_or_tags_name_cont"=> tag}), class: "tag font-size-11px" do %>
-                                      <span uk-icon="icon: tag; ratio: 0.7" class="uk-text-muted"></span>
-                                      <%= tag %>  
-                                    <% end %>
-
-                                  <% end %>
-                                <% end %>
                             </div>
                         </div>  
                   </div>
