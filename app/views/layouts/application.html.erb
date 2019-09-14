@@ -70,13 +70,32 @@
               </li>
 
               <li><a href="#"><span uk-icon="icon: bell; ratio: 1.2"></span></a></li>
+
+        <% else %>
+          <ul class="uk-navbar-nav">
+
+              <li class="uk-active">
+                <%= link_to (new_user_registration_path) do %>
+                  <%# <span uk-icon="icon: push; ratio: 1.2"></span> %>
+                  <span>ユーザ登録</span>
+                <% end %>
+              </li>
+
+              <li class="uk-active">
+                <%= link_to (new_user_session_path) do %>
+                  <span uk-icon="icon: sign-in; ratio: 1.2"></span>
+                  <span>ログイン</span>
+                <% end %>
+              </li>
+
           </ul>
-        <% end %>
+
+        <% end %>  
+
       </div>
 
     </nav>
   
-
     <%= yield %>
   </body>
 </html>
