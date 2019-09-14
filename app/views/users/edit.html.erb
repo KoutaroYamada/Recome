@@ -1,2 +1,56 @@
-<h1>Users#edit</h1>
-<p>Find me in app/views/users/edit.html.erb</p>
+<div class="uk-container">
+  <div uk-grid>
+      <div class="uk-width-1-6">
+          <%# パスワード変更ボタン %>
+          <%= link_to edit_user_registration_path,class:"uk-button uk-button-default" do %>
+            <span>パスワード変更</span>
+          <% end %>      
+      </div>
+
+      <div class="uk-width-2-3">
+        <%= form_for(@user) do |f| %>
+        <fieldset class="uk-fieldset uk-form-horizontal">
+          <h4 class="uk-margin-remove-bottom">プロフィール編集</h4>
+          <hr>
+
+          <div class="field uk-section-xsmall uk-padding-remove-bottom">
+            <%= f.label "プロフィール画像",class:"uk-form-label uk-text-middle uk-display-inline-block" %>
+            <div class="uk-form-controls">
+              <%= attachment_image_tag @user, :profile_image, fallback: "no-user-image.png",size:'200x200', class: "uk-border-pill uk-margin-right",alt: "Border pill", id: "profileImage" %>
+              <%= f.attachment_field :profile_image,id:"selectProfileImage" %>
+            </div>
+          </div>
+
+          <div class="field uk-section-xsmall uk-padding-remove-bottom">
+            <%= f.label "ユーザ名",class:"uk-form-label" %>
+            <div class="uk-form-controls">
+              <%= f.text_field :user_name, autofocus: true, autocomplete: "user_name",class:"uk-input uk-width-xlarge" %>
+            </div>
+          </div>
+
+          <div class="field uk-section-xsmall uk-padding-remove-bottom">
+            <%= f.label :email,class:"uk-form-label" %>
+            <div class="uk-form-controls">
+              <%= f.email_field :email, autofocus: true, autocomplete: "email",class:"uk-input uk-width-xlarge" %>
+            </div>
+          </div>
+
+          <div class="field uk-section-xsmall uk-padding-remove-bottom">
+            <%= f.label "自己紹介文",class:"uk-form-label" %>
+            <div class="uk-form-controls">
+              <%= f.text_area :profile,class:"uk-textarea uk-width-xlarge font-size-12px",rows: 6 %>
+            </div>
+          </div>
+
+          <div class="actions uk-margin-top">
+            <div class="uk-form-controls">
+            <%= f.submit "登録する",class:"uk-button uk-button-primary uk-margin-large-right" %>
+            </div>
+          </div>
+
+        </fieldset>         
+        <% end %>
+      </div>
+      <div class="uk-width-1-6"></div>
+  </div>
+</div>

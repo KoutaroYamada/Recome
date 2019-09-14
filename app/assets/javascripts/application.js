@@ -77,6 +77,16 @@ $(function(){
     $('#article-tags').tagit("createTag", clicked_tag);
   });
 
+  // 選択した画像を非同期で表示
+  $('#selectProfileImage').on('change', function(element) {
+    var reader = new FileReader();
+    reader.readAsDataURL(element.target.files[0]);
+    reader.onload = function(e) {
+      $('#profileImage').attr('src', e.target.result);
+    }
+    
+  });
+
   // ↓お気に入りボタンがオンマウスになったらツールチップが一定時間後に表示される
   // 機能を実装したかったが、時間の都合上あきらめ
   　

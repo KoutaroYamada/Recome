@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   # どのコントローラでも記事の読み込みができるように、ここでopen-uriを記述
   require 'open-uri'
   before_action :configure_permitted_parameters, if: :devise_controller?
-  before_action :article_search
+  before_action :article_search, :set_params
   
   # 投稿記事検索
   def  article_search
@@ -13,6 +13,12 @@ class ApplicationController < ActionController::Base
     if params[:q] != nil
       @search_keyword = params[:q]["title_or_description_or_tags_name_cont"]
     end  
+  end
+
+  # gonを使っていないページで"gonが未定義"のエラーを避けるため
+  def set_params
+    gon.available_tags = false
+
   end
 
 

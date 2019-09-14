@@ -14,6 +14,7 @@ class User < ApplicationRecord
   #300文字以上の自己紹介文を不許可
   validates :profile, length: { maximum: 300 }
 
+  attachment :profile_image
   has_many :articles, dependent: :destroy
   has_many :favorites, dependent: :destroy
 

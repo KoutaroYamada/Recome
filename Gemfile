@@ -104,3 +104,7 @@ gem 'kaminari'
 
 #font-awesome
 gem 'font-awesome-sass'
+
+# 画像アップロード
+gem "refile", require: "refile/rails", github: 'manfe/refile'
+gem "refile-mini_magick"
