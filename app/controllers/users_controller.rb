@@ -13,11 +13,8 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = User.includes(articles: [:favorites, :tags]).find(params[:id])
     
-  end
-
-  def show
   end
 
   def update
