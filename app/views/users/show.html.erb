@@ -29,10 +29,9 @@
            
         <%# フォローボタン %>
         <% else %>
-          <%= link_to "",class:"uk-button uk-button-default uk-width-5-6 uk-margin-top" do %>
-            <span uk-icon="icon: plus; ratio: 1"></span>
-            <span>フォローする</span>
-          <% end %>
+          <span id="follow-button-<%= @user.id %>" class="follow-button uk-width-5-6 uk-margin-top uk-inline uk-display-inline-block">
+            <%= render "relationships/follow_button", user: @user  %>
+          </span>
         <% end %>  
 
     </div>

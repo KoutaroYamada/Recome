@@ -1,0 +1,6 @@
+$('#follow-button-<%= @user.id %>').html("<%= j(render partial: 'relationships/follow_button', locals: {user: @user}) %>");
+
+<%# uikit備え付けのnoticeを表示 %>
+$(function(){
+  UIkit.notification({message: '<%= @user.user_name %>　さんのフォローを解除しました。', pos: 'bottom-left',timeout: 2000}); 
+});

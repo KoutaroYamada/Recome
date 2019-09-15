@@ -17,6 +17,14 @@ Rails.application.routes.draw do
     resource :favorites, only: [:create, :destroy]
   end
 
-  resources :users
+  resources :users do
+    member do
+      get :following, :followers
+    end
+    resource :relationships, only:[:create, :destroy]
+    
+  end
+
+
 
 end
