@@ -52,4 +52,9 @@ class User < ApplicationRecord
     following.include?(other_user)
   end
 
+  # タグをお気に入り登録済みか判断するロジック
+  def tag_favorite?(tag)
+    tags.pluck(:id).include?(tag.id)
+  end
+
 end

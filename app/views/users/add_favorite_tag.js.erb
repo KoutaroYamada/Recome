@@ -1,0 +1,4 @@
+$('#favorite-tag-<%= @tag.id %>').html("<%= j(render partial: 'users/favorite_tag', locals: {tag: @tag, user:@user}) %>");
+
+<%# ユーザのタグ一覧を更新 %>
+$('#favorite-tag-index').html("<%= j(render partial: 'users/favorite_tag_index', collection: @user.tags, as: :tag) %>");

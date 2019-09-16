@@ -36,7 +36,7 @@
             <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
 
                 <button class="uk-modal-close-default" type="button" uk-close></button>
-
+                <%# タグ一覧 %>
                 <div class="register-tag">
                   <p>タグ一覧</p>
                     <div class="register-tag-index">
@@ -44,8 +44,10 @@
                       <% ActsAsTaggableOn::Tag.all.each do |tag| %>
                         <div class="flex-space-between margin-top-and-bottom-10px">
                           <span><%= tag.name %></span>
-                          <span class="favorite-tag-<%= tag.id %>"></span>
-                          <%= link_to '登録する', add_favorite_tag_user_path(user, params: { user: { tag: tag.name} }), :method => :patch, class:"uk-display-inline" %>
+                          <%# タグのお気に入り登録ボタン %>
+                          <span id="favorite-tag-<%= tag.id %>">
+                            <%= render "users/favorite_tag", tag: tag, user: user %>
+                          </span>
                         </div>  
                       <% end %>
                       
@@ -56,9 +58,9 @@
         </div>
 
         <%# お気に入りタグ一覧 %>
-        <% user.tags.each do |tag| %>
-          <span class="used_tag uk-link-muted uk-margin-small-right"><%= tag %></span>
-        <% end %>    
+        <span id="favorite-tag-index">
+          <%= render partial: 'users/favorite_tag_index', collection: user.tags, as: :tag %>
+        </span>
            
         <%# フォローボタン %>
         <% else %>

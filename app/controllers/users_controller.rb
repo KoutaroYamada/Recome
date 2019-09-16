@@ -46,15 +46,20 @@ class UsersController < ApplicationController
   end
 
   def add_favorite_tag
-    @user.tag_list.add(tag_params[:tag])
+    @user.tag_list.add(tag_params[:name])
     @user.save
-    redirect_to user_path
+    @user.reload
+    @tag = @user.tags.find(tag_params[:id])
+
+
   end
 
   def remove_favorite_tag
-    @user.tag_list.remove(tag_params[:tag])
+    @user.tag_list.remove(tag_params[:name])
     @user.save
-    redirect_to user_path
+    @user.reload
+    @tag = ActsAsTaggableOn::Tag.find(tag_params[:id])
+
   end
 
   def set_mypage_user
@@ -69,7 +74,7 @@ class UsersController < ApplicationController
   end
 
   def tag_params
-    params.require(:user).permit(:tag)
+    params.require(:user).permit(:id,:name)
   end
 
 end
