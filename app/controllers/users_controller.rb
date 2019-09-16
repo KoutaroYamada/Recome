@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_mypage_user, only: [:show, :favorites, :following, :followers]
+  before_action :set_mypage_user, only: [:show, :favorites, :following, :followers, :add_favorite_tag, :remove_favorite_tag]
 
   def index
   end
@@ -45,15 +45,31 @@ class UsersController < ApplicationController
     @articles = @user.favorite_articles
   end
 
+  def add_favorite_tag
+    @user.tag_list.add(tag_params[:tag])
+    @user.save
+    redirect_to user_path
+  end
+
+  def remove_favorite_tag
+    @user.tag_list.remove(tag_params[:tag])
+    @user.save
+    redirect_to user_path
+  end
+
   def set_mypage_user
     #マイページで開いたユーザのデータを取得
-    @user = User.includes(articles: [:favorites, :tags]).find(params[:id])
+    @user = User.includes(:tags, articles: [:favorites, :tags]).find(params[:id])
   end
 
   private
 
   def user_params
-    params.require(:user).permit(:user_name, :email, :profile, :profile_image)
+    params.require(:user).permit(:user_name, :email, :profile, :profile_image, :tag_list)
+  end
+
+  def tag_params
+    params.require(:user).permit(:tag)
   end
 
 end

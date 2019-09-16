@@ -262,7 +262,7 @@ ul {
   border-bottom:1px solid #1e87f0 !important;
 }
 
-.related-user-container{
+.flex-space-between{
   display:flex;
   justify-content: space-between;
   align-items: center;
@@ -273,10 +273,15 @@ ul {
   align-items: center;
 }
 
-.register-tag-index{
-  height:300px;
-  overflow: scroll;
-  overflow-x: hidden;
+.register-tag{
+  margin:0 auto;
+  width:400px;
+  
+  .register-tag-index{
+    height:300px;
+    overflow: scroll;
+    overflow-x: hidden;
+  }
 }
 
  .articles{

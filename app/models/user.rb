@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+  #ユーザのお気に入りタグ登録実装のため、タグ機能実装
+  acts_as_taggable
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,

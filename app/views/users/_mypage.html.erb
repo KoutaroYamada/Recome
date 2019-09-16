@@ -31,20 +31,34 @@
         <%# お気に入りタグ登録ボタン %>
         <a class="uk-display-block" href="#modal-center" uk-toggle>お気に入りタグを編集する</a>
 
-          <div id="modal-center" class="uk-flex-top" uk-modal>
-              <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
+        <%# タグ登録のモーダル %>
+        <div id="modal-center" class="uk-flex-top" uk-modal>
+            <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
 
-                  <button class="uk-modal-close-default" type="button" uk-close></button>
+                <button class="uk-modal-close-default" type="button" uk-close></button>
 
+                <div class="register-tag">
                   <p>タグ一覧</p>
-                  <div class="register-tag-index">
-                    <% ActsAsTaggableOn::Tag.all.each do |tag| %>
-                      <p><%= tag %><p>
-                    <% end %>
-                  </div>
+                    <div class="register-tag-index">
 
-              </div>
-          </div>    
+                      <% ActsAsTaggableOn::Tag.all.each do |tag| %>
+                        <div class="flex-space-between margin-top-and-bottom-10px">
+                          <span><%= tag.name %></span>
+                          <span class="favorite-tag-<%= tag.id %>"></span>
+                          <%= link_to '登録する', add_favorite_tag_user_path(user, params: { user: { tag: tag.name} }), :method => :patch, class:"uk-display-inline" %>
+                        </div>  
+                      <% end %>
+                      
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <%# お気に入りタグ一覧 %>
+        <% user.tags.each do |tag| %>
+          <span class="used_tag uk-link-muted uk-margin-small-right"><%= tag %></span>
+        <% end %>    
            
         <%# フォローボタン %>
         <% else %>
