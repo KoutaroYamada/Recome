@@ -28,6 +28,10 @@
    color: #555 !important;
   }
 
+ul {
+    list-style: none;
+  }
+
  .font-size-13px{
   font-size:13px;
 }
@@ -60,6 +64,18 @@
  .padding-top-and-bottom-5px{
   padding-top:5px;
   padding-bottom:5px;
+}
+
+.margin-5px{
+  margin:5px;
+}
+
+.margin-10px{
+  margin:10px;
+}
+
+.margin-15px{
+  margin:15px;
 }
 
  .margin-top-and-bottom-10px{
@@ -195,6 +211,10 @@
     width:30px;
   }
 
+  &.related-user-show-image-index{
+    height:50px;
+    width:50px;
+  }
 }
 
 .tab-font-size{
@@ -203,6 +223,54 @@
 
 .fontcolor-white{
   color:white;
+}
+
+// マイページのタブのCSSデザイン
+
+.mypage_tab{
+  display: flex;
+    flex-wrap: wrap;
+    padding: 0;
+    list-style: none;
+    position: relative;
+}
+
+.mypage_tab > * > a {
+  display: block;
+  margin-right:20px;
+  text-align: center;
+  padding: 5px 10px;
+  color: #999;
+  border-bottom: 1px solid transparent;
+  font-size: .875rem;
+  text-transform: uppercase;
+  transition: color .1s ease-in-out;
+}
+
+.mypage_tab::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0px;
+  right: 0;
+  border-bottom: 1px solid #e5e5e5;
+  z-index: -1;
+}
+
+.mypage_tab > .uk-active > a {
+  color: #333;
+  border-bottom:1px solid #1e87f0 !important;
+}
+
+.related-user-container{
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mini-container{
+  display:flex;
+  align-items: center;
 }
 
  .articles{

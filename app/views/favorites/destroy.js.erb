@@ -1,1 +1,6 @@
 $('#favorite-button-<%= @article.id %>').html("<%= j(render partial: 'favorites/favorite_button', locals: {article: @article}) %>");
+
+<%# uikit備え付けのnoticeを表示 %>
+$(function(){
+  UIkit.notification({message: 'お気に入り登録を解除しました。', pos: 'bottom-left',timeout: 2000}); 
+});

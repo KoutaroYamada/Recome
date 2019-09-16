@@ -1,0 +1,21 @@
+  <div class="padding-5px uk-flex related-user-container">
+  <div class="mini-container uk-margin-small-right">
+      <%= link_to user_path(related_user) do %>
+      <%= attachment_image_tag related_user, :profile_image,fallback: "no-user-image.png",size:'30x30', class: "uk-border-circle related-user-show-image-index",alt: "Border circle", id: "profileImage" %>
+      <%# ユーザ名 %>
+      <div class="uk-display-inline-block uk-margin-small-left">
+        <p class="uk-text-small uk-margin-remove"><%= related_user.user_name %></p>
+        <% end %>  
+
+        <%# プロフィール %>
+        <p class="font-size-12px margin-top-and-bottom-5px"><%= related_user.profile %></p>
+      </div>
+  </div>  
+
+      <%# フォローボタン %>
+      <span id="follow-button-<%= related_user.id %>" class="follow-button uk-width-1-6 uk-display-inline-block">
+        <%= render "relationships/follow_button", user: related_user %>
+      </span>
+
+  </div>
+  <hr class="uk-margin-remove">
