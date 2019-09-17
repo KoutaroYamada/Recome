@@ -87,6 +87,31 @@ $(function(){
     
   });
 
+  // ↓お気に入りタグを登録する際のタグ検索に、インクリメンタルサーチを実装しようとしたが
+  // 　挙動が重くなりすぎるのであきらめ
+
+  // $('#favorite-tag-search').on('keyup',function(){
+  //   const search_words = $(this).val();
+
+  //   if(search_words != ""){
+  //     $.ajax({
+  //       type:'GET',
+  //       url:'/users/tag_search',
+  //       data: {keyword: search_words},
+  //       datatype: 'json',
+  //     })
+  //     .done(function(){
+ 
+  //     })
+  //     .fail(function(data){
+  //     //  通信失敗時の処理を書く
+  //     })
+  //   } else{
+  //     // 検索フォームが空の場合は、全件表示するようにする
+  //   }
+  // });
+
+
   // ↓お気に入りボタンがオンマウスになったらツールチップが一定時間後に表示される
   // 機能を実装したかったが、時間の都合上あきらめ
   　

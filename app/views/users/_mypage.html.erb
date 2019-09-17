@@ -38,19 +38,23 @@
                 <button class="uk-modal-close-default" type="button" uk-close></button>
                 <%# タグ一覧 %>
                 <div class="register-tag">
-                  <p>タグ一覧</p>
-                    <div class="register-tag-index">
 
-                      <% ActsAsTaggableOn::Tag.all.each do |tag| %>
-                        <div class="flex-space-between margin-top-and-bottom-10px">
-                          <span><%= tag.name %></span>
-                          <%# タグのお気に入り登録ボタン %>
-                          <span id="favorite-tag-<%= tag.id %>">
-                            <%= render "users/favorite_tag", tag: tag, user: user %>
-                          </span>
-                        </div>  
-                      <% end %>
-                      
+                <%# 検索窓 %>
+                <%= form_with url: tag_search_users_path, method: :get, html: {class: "uk-search uk-search-default",style:"width:300px;"},remote: true do  %>
+                  <%= text_field_tag :keyword, nil, placeholder:"タグ名を入力", class:"uk-search-input", id:"favorite-tag-search",style:"width:300px;" %>
+                  <%= hidden_field_tag :id, user.id %>
+                  <%# 検索ボタンをuikitのアイコンにしたいがためにaタグでsubmit%>
+                  <a href='#' onclick="$('#favorite-tag-search').submit()" class="uk-search-icon-flip" uk-search-icon ></a>
+                <% end %>  
+
+                  <%# <form class="uk-search uk-search-default">
+                      <input id ="favorite-tag-search" class="uk-search-input" type="search" placeholder="検索文字を入力…" style="width:400px;">
+                  </form> %>
+
+                  <p>タグ一覧</p>
+                    <div class="register-tag-index" id="register-tag-index">
+                      <%# 登録タグ一覧 %>
+                      <%= render partial: 'users/register_tag_index',  collection: ActsAsTaggableOn::Tag.all, as: :tag, locals:{user: user}  %>
                     </div>
                 </div>
 

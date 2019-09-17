@@ -1,0 +1,8 @@
+<div class="flex-space-between margin-top-and-bottom-10px">
+  <%# タグの名前 %>
+  <span><%= tag.name %></span>
+  <%# タグのお気に入り登録ボタン %>
+  <span id="favorite-tag-<%= tag.id %>">
+    <%= render "users/favorite_tag", tag: tag, user: user %>
+  </span>
+</div>  

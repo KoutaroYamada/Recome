@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_mypage_user, only: [:show, :favorites, :following, :followers, :add_favorite_tag, :remove_favorite_tag]
+  before_action :set_mypage_user, only: [:show, :favorites, :following, :followers, :add_favorite_tag, :remove_favorite_tag, :tag_search]
 
   def index
   end
@@ -50,8 +50,6 @@ class UsersController < ApplicationController
     @user.save
     @user.reload
     @tag = @user.tags.find(tag_params[:id])
-
-
   end
 
   def remove_favorite_tag
@@ -60,6 +58,13 @@ class UsersController < ApplicationController
     @user.reload
     @tag = ActsAsTaggableOn::Tag.find(tag_params[:id])
 
+  end
+
+  def tag_search
+    # フォームに入力されたキーワードを取得
+    
+    search_words = tag_search_words_params[:keyword]
+    @searched_tags = ActsAsTaggableOn::Tag.named_like(search_words)
   end
 
   def set_mypage_user
@@ -75,6 +80,10 @@ class UsersController < ApplicationController
 
   def tag_params
     params.require(:user).permit(:id,:name)
+  end
+
+  def tag_search_words_params
+    params.permit(:keyword)
   end
 
 end

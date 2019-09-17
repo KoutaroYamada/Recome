@@ -23,6 +23,11 @@ Rails.application.routes.draw do
       patch :add_favorite_tag
       patch :remove_favorite_tag
     end
+
+    collection do
+      get :tag_search
+    end
+    
     resource :relationships, only:[:create, :destroy]
     
   end
