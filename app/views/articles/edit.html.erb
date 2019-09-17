@@ -1,2 +1,70 @@
-<h1>Articles#edit</h1>
-<p>Find me in app/views/articles/edit.html.erb</p>
+<div class="uk-container">
+  <div uk-grid>
+      <div class="uk-width-1-6">
+      </div>
+      <div class="uk-width-2-3">
+        <h3 class="uk-h3">おすすめ記事 編集</h3>
+        <%= form_for(@article) do |f| %> 
+
+        <%# フラッシュメッセージを表示 %>
+        <% flash.each do |message_type, message| %>
+        <div class="uk-alert-<%= message_type %>" uk-alert>
+          <p><%= message %></p>
+          <%# モデルに格納されたエラーメッセージを表示 %>
+          <%= render 'layouts/error_messages', model: f.object %>
+        </div>
+        <% end %>
+
+          <div uk-grid class="uk-margin-bottom">
+            <div class="uk-width-auto url-image">
+                <%# サムネイル画像 %>
+                <%= image_tag @article.thumbnail_image_url, style:"height:60px;width:80px;object-fit:cover;" %>
+            </div>
+
+            <div class="uk-width-expand">
+              <%# 記事タイトル %>
+              <p class="font-size-13px uk-text-bold uk-margin-remove-bottom"><%= @article.title.truncate(55) %></p>
+              <%# サイト名 %>
+              <p class="font-size-12px uk-margin-remove"><%= @article.site_name %></p>
+              <%# 記事概要 %>
+              <p class="uk-margin-remove font-size-12px" ><%= @article.description.truncate(60) %></p>
+            </div>
+          </div>  
+
+          <%# おすすめコメント %>
+          <div class="uk-section-xsmall uk-padding-remove-top">
+            <div class="uk-form-controls">
+            <%= f.text_area :recommend_comment, class: "uk-textarea" ,placeholder:"コメントを記入", rows: 5%> 
+            </div>
+          </div>
+
+          <%# #タグのフィールド %>
+          <div class="uk-section-xsmall uk-padding-remove-top tag-form">
+            <div class="uk-form-controls">
+              <%= f.text_field :tag_list,value: @article.tag_list.to_s, class: "uk-input",id:"article-tags",placeholder:"タグ名を入力してEnter" %> 
+            </div>
+          </div>
+
+          <%# 過去に自分が使ったタグ一覧 %>
+          <div class="uk-section-xsmall uk-padding-remove">
+            <div class="uk-form-controls">
+              <p class="uk-margin-remove-bottom">過去に使用したタグ</p>
+              <% @used_tags.each do |tag| %>
+                <a class="used_tag uk-link-muted uk-margin-small-right"><%= tag %></a>
+              <% end %>
+            </div>
+          </div>
+
+          <div class="uk-section-xsmall uk-padding-remove-bottom">
+            <%= f.submit '更新する',  class: "uk-button uk-button-primary uk-align-right"%>
+          </div>
+
+
+      </div>
+
+      <div class="uk-width-1-6">
+      </div>
+
+    <% end %>
+  </div>
+</div>  

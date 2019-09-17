@@ -30,12 +30,23 @@ class ArticlesController < ApplicationController
   end
 
   def edit
+    @article = Article.find(params[:id])
+    @used_tags = Article.where(user_id: current_user.id).tags_on(:tags).pluck(:name)
+
   end
 
   def show
   end
 
   def update
+    @article = Article.find(params[:id])
+    if @article.update(article_params)
+      # flash[:success] = "記事の編集が完了しました。"
+      redirect_to article_path
+    else
+      render :edit
+    end
+
   end
 
   def destroy
