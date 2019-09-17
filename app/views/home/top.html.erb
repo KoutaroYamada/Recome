@@ -1,64 +1,22 @@
-<h1 class='uk-heading-primary'>トップページ</h1>
-<%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+<div class="top-image-container">
+  <div class="top-image-overray">
+  <div class="uk-container uk-position-relative">
 
-      <p class='uk-text-emphasis'>emphasis-TEST</p>
-       <p class='uk-text-primary'>primary-TEST</p>
-       <p class='uk-text-success'>success-TEST</p>
-       <p class='uk-text-warning'>warning-TEST</p>
-       <p class='uk-text-danger'>danger-TEST</p>
-       <p class='uk-text-left'>left-TEST</p>
-       <p class='uk-text-right'>right-TEST</p>
-       <p class='uk-text-center'>center-TEST</p>
-       <p class='uk-text-top'>top-TEST</p>
-       <p class='uk-text-middle'>muddle-TEST</p>
-       <p class='uk-text-bottom'>bottom-TEST</p>
-       <p class='uk-text-baseline'>baseline-TEST</p>
+    <div class="key-message uk-display-inline-block">
+      <p class="uk-margin-large-bottom uk-text-bold font-size-32px">ようこそ Recome へ!</p>
 
- <form>
-    <fieldset class="uk-fieldset">
+      <p class="uk-text-bold">Recomeでは、エンジニアのあなたが見つけたおすすめweb記事を<br>日本中のエンジニアに共有することができます。</p>
+      <p class="uk-text-bold">あなたの「困った！」を解決してくれた記事や<br>「参考になるなぁ」と感心した記事に出会ったら、<br>積極的に共有してみましょう！</p>
 
-        <legend class="uk-legend">Legend</legend>
+    </div>
 
-        <div class="uk-margin">
-            <input class="uk-input" type="text" placeholder="Input">
-        </div>
+    <div class="top-page-register display-inline-block">
+      <p class="uk-display-inline-block uk-margin-small-right">初めての方は</p>
+      <%= link_to "ユーザ登録", new_user_registration_path, class:"uk-button uk-button-primary uk-display-inline-block" %><br>
 
-        <div class="uk-margin">
-            <select class="uk-select">
-                <option>Option 01</option>
-                <option>Option 02</option>
-            </select>
-        </div>
+      <p class="uk-display-inline-block uk-margin-medium-right">登録済の方は<%= link_to "こちら",new_user_session_path %>からログイン</p>
 
-        <div class="uk-margin">
-            <textarea class="uk-textarea" rows="5" placeholder="Textarea"></textarea>
-        </div>
+    </div>
 
-        <div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
-            <label><input class="uk-radio" type="radio" name="radio2" checked> A</label>
-            <label><input class="uk-radio" type="radio" name="radio2"> B</label>
-        </div>
-
-        <div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
-            <label><input class="uk-checkbox" type="checkbox" checked> A</label>
-            <label><input class="uk-checkbox" type="checkbox"> B</label>
-        </div>
-
-        <div class="uk-margin">
-            <input class="uk-range" type="range" value="2" min="0" max="10" step="0.1">
-        </div>
-
-    </fieldset>
-</form>
-
-<div class="uk-margin">
-    <input class="uk-input uk-form-danger uk-form-width-medium" type="text" placeholder="form-danger" value="form-danger">
+  </div>
 </div>
-
-<div class="uk-margin">
-    <input class="uk-input uk-form-success uk-form-width-medium" type="text" placeholder="form-success" value="form-success">
-</div>
-
-<div class="uk-margin">
-    <input class="uk-input uk-form-width-medium" type="text" placeholder="disabled" value="disabled" disabled>
-</div>      

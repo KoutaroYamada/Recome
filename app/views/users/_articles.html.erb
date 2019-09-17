@@ -1,11 +1,22 @@
   <div class="padding-5px">
-    <p class="font-size-10px margin-bottom-5px"><%=article.user.user_name %>さんが<%= article.updated_at.strftime("%Y-%m-%d %H:%M") %>に投稿しました。</p>
+    <p class="font-size-10px uk-margin-remove"><%=article.user.user_name %>さんが<%= article.updated_at.strftime("%Y-%m-%d %H:%M") %>に投稿しました。</p>
 
     <div class="margin-bottom-10px">
         <%# 記事のタイトル %>
-        <p class="uk-text-small uk-margin-remove"><%= link_to article.title, article_path(article) %></p>
+        <div>
+          <p class="uk-text-small uk-margin-remove uk-display-inline uk-margin-small-right"><%= link_to article.title, article_path(article) %></p>
+
+            <%# 記事の編集ボタン %>
+          <% if user_signed_in? && article.user.id == current_user.id %>
+            <%= link_to "編集する", edit_article_path(article), class:"uk-button uk-button-default uk-button-small font-size-12px uk-align-right uk-margin-remove" %>
+          <% end %>  
+        </div>
+
         <%# お気に入り登録ボタン %>
-        <%= render "favorites/favorite_button", article: article  %>
+        <% if article.user.id != current_user.id %>
+          <%= render "favorites/favorite_button", article: article  %>
+        <% end %>  
+
         <%# タグ %>
         <%= render "layouts/tag", article: article  %>
     </div>

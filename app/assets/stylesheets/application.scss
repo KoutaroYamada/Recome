@@ -24,13 +24,17 @@
  @import 'font-awesome';
  
  a{
-   text-decoration: none !important;
-   color: #555 !important;
+  //  text-decoration: none !important;
+  //  color: #555 !important;
   }
 
 ul {
     list-style: none;
   }
+
+.font-size-32px{
+  font-size:32px;
+}
 
  .font-size-13px{
   font-size:13px;
@@ -99,6 +103,36 @@ ul {
 
 .margin-bottom-5px{
   margin-bottom:5px;
+}
+
+.top-image-container{
+  color:white;
+  background-image: url("background-image.jpg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  height:500px;
+  background-color:rgba(255, 255, 255, 0.8);
+  background-blend-mode:lighten;
+}
+
+.top-image-overray{
+  background-color:rgba(8, 159, 219, 0.726);
+  width:100%;
+  height:100%;
+}
+
+.key-message{
+  position:absolute;
+  top:120px;
+  left:150px;
+}
+
+.top-page-register{
+  position:absolute;
+  top:230px;
+  right:170px;
 }
 
 .search-nav-bar{
@@ -283,6 +317,11 @@ ul {
     overflow-x: hidden;
   }
 }
+
+// .article-edit-button{
+//   width:80px;
+//   height:28px;
+// }
 
  .articles{
       #url_title_and_image{
