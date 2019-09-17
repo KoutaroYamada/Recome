@@ -53,20 +53,20 @@
                 <% end %>
               </li>
 
+              <%# マイページリンク %>
               <li class="uk-active">
                 <%= link_to (user_path(current_user.id)) do %>
                   <span uk-icon="icon: user; ratio: 1.2"></span>
-                  <span>マイページ</span>
+                  <span><%= current_user.user_name %></span>
                 <% end %>
+              </li>
 
-                  <%# ドロップダウンメニューは今後使うかもなので一旦コメントアウト %>
-                  <%# <div class="uk-navbar-dropdown">
-                          <ul class="uk-nav uk-navbar-dropdown-nav">
-                              <li class="uk-active"><a href="#">Active</a></li>
-                              <li><a href="#">Item</a></li>
-                              <li><a href="#">Item</a></li>
-                          </ul>
-                      </div> %>
+              <%# ログアウト %>
+              <li class="uk-active">
+                <%= link_to destroy_user_session_path, method: :delete do %>
+                  <span uk-icon="icon: sign-out; ratio: 1.2"></span>
+                  <span>ログアウト</span>
+                <% end %>
               </li>
 
               <li><a href="#"><span uk-icon="icon: bell; ratio: 1.2"></span></a></li>
