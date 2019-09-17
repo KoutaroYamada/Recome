@@ -1,10 +1,10 @@
   <%# もしユーザがタグをお気に入り登録済の場合 %>
   <% if user_signed_in? && current_user.tag_favorite?(tag) %>
-     <%= link_to '登録済', remove_favorite_tag_user_path(user, params: { user: { id: tag.id, name: tag.name}} ), :method => :patch, remote: :true,  class:"uk-display-inline" ,id:"favorite-tag-button" %>
+     <%= link_to '登録済', remove_favorite_tag_user_path(user, params: { user: { id: tag.id, name: tag.name}} ), :method => :patch, remote: :true,  class:"uk-button uk-display-inline-block" ,id:"favorite-tag-button" %>
 
   <%# ユーザがタグをお気に入り登録していない場合 %>
   <% else %>
 
-     <%= link_to '登録する', add_favorite_tag_user_path(user, params: { user: { id: tag.id, name: tag.name} }), :method => :patch, remote: :true, class:"uk-display-inline",id:"favorite-tag-button" %>
+     <%= link_to '登録する', add_favorite_tag_user_path(user, params: { user: { id: tag.id, name: tag.name} }), :method => :patch, remote: :true, class:"uk-button uk-display-inline-block",id:"favorite-tag-button" %>
 
   <% end %> 

@@ -4,7 +4,7 @@
   </div>
 
   <div uk-grid>
-    <div class="uk-width-1-4 uk-text-center">
+    <div class="uk-width-1-4 uk-text-center uk-margin-medium-right">
       <%= attachment_image_tag user, :profile_image, fallback: "no-user-image.png",size:'200x200', class: "uk-border-circle user-show-image",alt: "Border circle", id: "profileImage" %>
     </div>
 
@@ -15,7 +15,7 @@
   </div>  
 
   <div uk-grid class="uk-margin-remove-top">
-    <div class="uk-width-1-4 uk-text-center">
+    <div class="uk-width-1-4 uk-text-center uk-margin-medium-right">
         <%# ユーザ名 %>
         <span class="margin-top-and-bottom-10px uk-display-inline-block"><%= user.user_name %></span>
         <%# プロフィール %>
@@ -27,9 +27,6 @@
               <span uk-icon="icon: file-edit; ratio: 1"></span>
               <span>プロフィールを編集</span>
             <% end %>
-
-        <%# お気に入りタグ登録ボタン %>
-        <a class="uk-display-block" href="#modal-center" uk-toggle>お気に入りタグを編集する</a>
 
         <%# タグ登録のモーダル %>
         <div id="modal-center" class="uk-flex-top" uk-modal>
@@ -47,10 +44,6 @@
                   <a href='#' onclick="$('#favorite-tag-search').submit()" class="uk-search-icon-flip" uk-search-icon ></a>
                 <% end %>  
 
-                  <%# <form class="uk-search uk-search-default">
-                      <input id ="favorite-tag-search" class="uk-search-input" type="search" placeholder="検索文字を入力…" style="width:400px;">
-                  </form> %>
-
                   <p>タグ一覧</p>
                     <div class="register-tag-index" id="register-tag-index">
                       <%# 登録タグ一覧 %>
@@ -62,10 +55,15 @@
         </div>
 
         <%# お気に入りタグ一覧 %>
+        <p class="uk-margin-remove-bottom uk-text-small">お気にいりタグ一覧</p>
+        <hr class="margin-top-and-bottom-5px">
         <span id="favorite-tag-index">
           <%= render partial: 'users/favorite_tag_index', collection: user.tags, as: :tag %>
         </span>
-           
+
+        <%# お気に入りタグ登録ボタン %>
+        <a class="uk-display-block font-size-13px margin-top-and-bottom-10px" href="#modal-center" uk-toggle>お気に入りタグを編集する</a>
+
         <%# フォローボタン %>
         <% else %>
           <span id="follow-button-<%= user.id %>" class="follow-button uk-width-5-6 uk-margin-top uk-inline uk-display-inline-block">
