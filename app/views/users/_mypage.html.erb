@@ -17,7 +17,7 @@
   <div uk-grid class="uk-margin-remove-top">
     <div class="uk-width-1-4 uk-text-center uk-margin-medium-right">
         <%# ユーザ名 %>
-        <span class="margin-top-and-bottom-10px uk-display-inline-block"><%= user.user_name %></span>
+        <span class="margin-top-and-bottom-10px uk-display-inline-block"><%= user.user_name %></span><br>
         <%# プロフィール %>
         <span class="margin-10px uk-display-inline-block font-size-12px"><%= simple_format(user.profile) %></span>
 
@@ -27,6 +27,23 @@
               <span uk-icon="icon: file-edit; ratio: 1"></span>
               <span>プロフィールを編集</span>
             <% end %>
+        <%# フォローボタン %>
+        <% else %>
+          <span id="follow-button-<%= user.id %>" class="follow-button uk-width-5-6 uk-margin-top uk-inline uk-display-inline-block">
+            <%= render "relationships/follow_button", user: user %>
+          </span>
+        <% end %> 
+
+        <%# お気に入りタグ一覧 %>
+        <p class="uk-margin-remove-bottom uk-text-small">お気にいりタグ一覧</p>
+        <hr class="margin-top-and-bottom-5px">
+        <span id="favorite-tag-index">
+          <%= render partial: 'users/favorite_tag_index', collection: user.tags, as: :tag %>
+        </span>
+
+        <% if user_signed_in? && (current_user.id == user.id) %>
+        <%# お気に入りタグ登録ボタン %>
+        <a class="uk-display-block font-size-13px margin-top-and-bottom-10px" href="#modal-center" uk-toggle>お気に入りタグを編集する</a>
 
         <%# タグ登録のモーダル %>
         <div id="modal-center" class="uk-flex-top" uk-modal>
@@ -54,21 +71,6 @@
             </div>
         </div>
 
-        <%# お気に入りタグ一覧 %>
-        <p class="uk-margin-remove-bottom uk-text-small">お気にいりタグ一覧</p>
-        <hr class="margin-top-and-bottom-5px">
-        <span id="favorite-tag-index">
-          <%= render partial: 'users/favorite_tag_index', collection: user.tags, as: :tag %>
-        </span>
-
-        <%# お気に入りタグ登録ボタン %>
-        <a class="uk-display-block font-size-13px margin-top-and-bottom-10px" href="#modal-center" uk-toggle>お気に入りタグを編集する</a>
-
-        <%# フォローボタン %>
-        <% else %>
-          <span id="follow-button-<%= user.id %>" class="follow-button uk-width-5-6 uk-margin-top uk-inline uk-display-inline-block">
-            <%= render "relationships/follow_button", user: user %>
-          </span>
         <% end %>  
 
     </div>
