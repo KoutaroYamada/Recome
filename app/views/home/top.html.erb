@@ -1,3 +1,6 @@
+<%# ユーザがログインしてないときだけ、キーメッセージを表示する %>
+<% if user_signed_in? %>
+<% else %>
 <div class="top-image-container">
   <div class="top-image-overray">
     <div class="uk-container uk-position-relative">
@@ -21,8 +24,9 @@
     </div>
   </div>  
 </div>
+<% end %>
 
-<div class="uk-container uk-margin-medium-top">
+<div class="uk-container uk-margin-medium-top top-page-contents">
   <div uk-grid>
     <div class="uk-width-1-5">
 
@@ -70,10 +74,9 @@
       
     </div>
 
-    <div class="uk-width-3-5">
+    <div class="uk-width-expand">
         <span id="top-page-anchor"></span>
         <p class="uk-margin-remove-top">人気の記事</p>
-        <div uk-grid>
 
             <div class="uk-child-width uk-grid-medium uk-grid-match" uk-grid>
                 <% @articles.each do |article| %>        
@@ -82,7 +85,7 @@
 
                             <%# タイトル %>
                             <div class="uk-card-header padding-top-and-bottom-5px">
-                              <p class="margin-top-and-bottom-5px uk-display-inline-block font-size-12px">お気に入りに登録された数：〇〇</p>
+                              <p class="margin-top-and-bottom-5px uk-display-inline-block font-size-12px">お気に入りに登録された数：<span class="uk-text-small uk-text-bold"><%=article.favorites.count  %></span></p>
 
                               <%# お気に入りボタン %>
                               <%= render "favorites/favorite_button", article: article  %>
@@ -129,8 +132,6 @@
                   </div>
                 <% end %>
             </div>
-
-        </div>
 
     </div>
 

@@ -19,9 +19,16 @@ class Article < ApplicationRecord
     favorites.find_by(user_id: user.id).destroy
   end
 
-  # ランキング作成のメソッド
-  def self.create_rank()
-    find(Favorite.group(:article_id).order('count(article_id) desc').pluck(:article_id))
+  # ランキング作成のクラスメソッド
+  def self.create_rank(tag=nil)
+    if tag
+      all_sorted_article = Article.find(Favorite.group(:article_id).order('count(article_id) desc').pluck(:article_id))
+      all_sorted_article.select{ |article| article.tag_list.include?(tag) }
+
+    else
+      find(Favorite.group(:article_id).order('count(article_id) desc').pluck(:article_id))
+    end
+
   end 
 
 end

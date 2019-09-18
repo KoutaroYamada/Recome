@@ -3,9 +3,10 @@ class HomeController < ApplicationController
 
   def top
     if tag_params[:tag_name]
-      @articles  =  Article.tagged_with(tag_params[:tag_name])
+      @articles  =  Article.includes(:tags, :favorites).create_rank(tag_params[:tag_name])
     else
-      @articles = Article.all.create_rank
+      @articles = Article.includes(:tags, :favorites).create_rank()
+
     end
 
   end
