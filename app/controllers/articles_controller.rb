@@ -2,7 +2,6 @@ class ArticlesController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy, :get_url ]
 
   def index
-
   end
 
   def new

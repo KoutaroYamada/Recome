@@ -1,4 +1,11 @@
 $('#favorite-tag-<%= @tag.id %>').html("<%= j(render partial: 'users/favorite_tag', locals: {tag: @tag, user:@user}) %>");
 
-<%# ユーザのタグ一覧を更新 %>
-$('#favorite-tag-index').html("<%= j(render partial: 'users/favorite_tag_index', collection: @user.tags, as: :tag) %>");
+<% if @path[:controller] == "users" %>
+  <%# マイページのお気に入りタグ一覧を更新 %>
+  $('#favorite-tag-index').html("<%= j(render partial: 'users/favorite_tag_index', collection: current_user.tags, as: :tag) %>");
+
+<% elsif @path[:controller] == "home" %>
+  <%# トップページのお気に入りタグ一覧を更新 %>
+  $('#top-favorite-tag-index').html("<%= j(render partial: 'home/top_favorite_tag_index', collection: current_user.tags, as: :tag) %>");
+<% end %>
+

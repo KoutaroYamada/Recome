@@ -62,7 +62,6 @@ class UsersController < ApplicationController
 
   def tag_search
     # フォームに入力されたキーワードを取得
-    
     search_words = tag_search_words_params[:keyword]
     @searched_tags = ActsAsTaggableOn::Tag.named_like(search_words)
   end
@@ -70,6 +69,10 @@ class UsersController < ApplicationController
   def set_mypage_user
     #マイページで開いたユーザのデータを取得
     @user = User.includes(:tags, articles: [:favorites, :tags]).find(params[:id])
+    # 遷移元のページの情報を渡す（お気に入りタグの登録/解除をしたとき、トップページとマイページどちらの
+    # お気に入りタグ一覧を変更するかの条件分岐に使う）
+    @path = Rails.application.routes.recognize_path(request.referer)
+
   end
 
   private

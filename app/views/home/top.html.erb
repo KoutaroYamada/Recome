@@ -1,22 +1,64 @@
 <div class="top-image-container">
   <div class="top-image-overray">
-  <div class="uk-container uk-position-relative">
+    <div class="uk-container uk-position-relative">
 
-    <div class="key-message uk-display-inline-block">
-      <p class="uk-margin-large-bottom uk-text-bold font-size-32px">ようこそ Recome へ!</p>
+      <div class="key-message uk-display-inline-block">
+        <p class="uk-margin-large-bottom uk-text-bold font-size-32px">ようこそ Recome へ!</p>
 
-      <p class="uk-text-bold">Recomeでは、エンジニアのあなたが見つけたおすすめweb記事を<br>日本中のエンジニアに共有することができます。</p>
-      <p class="uk-text-bold">あなたの「困った！」を解決してくれた記事や<br>「参考になるなぁ」と感心した記事に出会ったら、<br>積極的に共有してみましょう！</p>
+        <p class="uk-text-bold">Recomeでは、エンジニアのあなたが見つけたおすすめweb記事を<br>日本中のエンジニアに共有することができます。</p>
+        <p class="uk-text-bold">あなたの「困った！」を解決してくれた記事や<br>「参考になるなぁ」と感心した記事に出会ったら、<br>積極的に共有してみましょう！</p>
+      </div>
+
+      <div class="top-page-register display-inline-block">
+        <p class="uk-display-inline-block uk-margin-small-right">初めての方は</p>
+        <%= link_to "ユーザ登録", new_user_registration_path, class:"uk-button uk-button-primary uk-display-inline-block" %><br>
+
+        <p class="uk-display-inline-block uk-margin-medium-right">登録済の方は<%= link_to "こちら",new_user_session_path %>からログイン</p>
+
+      </div>
+
 
     </div>
+  </div>  
+</div>
 
-    <div class="top-page-register display-inline-block">
-      <p class="uk-display-inline-block uk-margin-small-right">初めての方は</p>
-      <%= link_to "ユーザ登録", new_user_registration_path, class:"uk-button uk-button-primary uk-display-inline-block" %><br>
+<div class="uk-container uk-margin-medium-top">
+  <div uk-grid>
+    <div class="uk-width-1-4">
 
-      <p class="uk-display-inline-block uk-margin-medium-right">登録済の方は<%= link_to "こちら",new_user_session_path %>からログイン</p>
+      <%# 人気タグ一覧 %>
+      <p class="margin-bottom-10px">人気のタグ</p>
+      <hr class="uk-margin-remove">
+        <% @popular_tags.each do |tag| %>
+          <p class="margin-top-and-bottom-10px"><%= tag.name %></p>
+        <% end %>
 
+      <%# ユーザが登録したお気に入りタグ一覧 %>
+      <p class="margin-bottom-10px">お気に入りのタグ</p>
+      <hr class="uk-margin-remove">
+        <%# ユーザがログインしている場合、タグ一覧を表示 %>
+        <% if user_signed_in? %>
+
+          <div id="top-favorite-tag-index">
+            <%= render partial: 'home/top_favorite_tag_index', collection: current_user.tags, as: :tag %>
+          </div>
+
+        <% end %>
+
+        <%# お気に入りタグ登録ボタン %>
+        <a class="uk-display-block font-size-13px margin-top-and-bottom-10px" href="#modal-center" uk-toggle>お気に入りタグを編集する</a>
+
+        <%# タグ検索のモーダル %>
+        <%= render partial:"layouts/tag_search_modal" %>
+      
     </div>
 
-  </div>
+    <div class="uk-width-1-2">
+      <p>aaaaaa</p>
+    </div>
+
+    <div class="uk-width-1-4">
+      <p>aaaaaa</p>
+    <div>
+  </div> 
 </div>
