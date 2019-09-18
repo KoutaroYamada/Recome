@@ -9,7 +9,7 @@
   <h2>記事一覧ページ</h2>
   <p>キーワード "<%= @search_keyword %>" での検索結果：<%= @articles.total_count %>件</p>
     <div uk-grid>
-      <div class="ukwidth-expand">
+      <div class="uk-width-expand">
         <div class="uk-child-width uk-grid-medium uk-grid-match" uk-grid>
             <% @articles.each do |article| %>        
               <div>

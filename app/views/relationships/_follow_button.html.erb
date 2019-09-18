@@ -6,10 +6,21 @@
     <% end %>  
 
   <%# ユーザがフォローしていない場合 %>
-  <% else %>
-    <%= link_to user_relationships_path(user_id: user.id), method: :post, remote: true, class:"uk-button uk-button-primary uk-display-block", id:"follow-#{user.id}" do %>
+  <% elsif user_signed_in? %>
+    <%= link_to user_relationships_path(user_id: user.id), method: :post, remote: true, class:"uk-button uk-button-primary uk-display-block padding-rignt-and-left-15px", id:"follow-#{user.id}" do %>
       <span uk-icon="icon: plus; ratio: 1" class="fontcolor-white"></span>
       <span class="fontcolor-white">フォローする</span>
     <% end %>  
+
+<%# ユーザがログインしていない場合 %>
+  <% else %> 
+
+  <a class="uk-button uk-button-primary uk-display-block padding-rignt-and-left-15px">
+      <span uk-icon="icon: plus; ratio: 1" class="fontcolor-white"></span>
+      <span class="fontcolor-white">フォローする</span>  
+  </a>
+
+  <%# ログインしてくださいの吹き出し %>
+  <%= render partial:"layouts/alert_not_sign_in", locals:{subject: "ユーザをフォローする"} %>
 
   <% end %> 

@@ -57,19 +57,11 @@
         <% else %>
 
         <%# お気に入りタグ編集ボタン（押すと「ログインしてください」のポップアップが表示される） %>
-        <div class="uk-inline">
           <a class="uk-display-block font-size-13px margin-top-and-bottom-10px" href="#modal-center" uk-toggle>お気に入りタグを編集する</a>
-          <div uk-drop="mode: click">
-              <div class="uk-card uk-card-body uk-card-default">
-                <p class="uk-text-small uk-margin-remove">お気に入りタグの編集には
-                  <%= link_to "ユーザ登録", new_user_registration_path, class:"" %>
-                  か、<%= link_to "ログイン",new_user_session_path %>が必要です。
-                </p>
-              
-              </div>
-          </div>
-        </div>
 
+          <%# ログインしてくださいの吹き出し %>
+          <%= render partial:"layouts/alert_not_sign_in", locals:{subject: "お気に入りタグの編集"} %>
+          
         <% end %>
       
     </div>

@@ -13,8 +13,10 @@
         </div>
 
         <%# お気に入り登録ボタン %>
-        <% if article.user.id != current_user.id %>
+        <%# 未ログイン状態か、もしくはログイン済でかつ自分のマイページ出ない場合 %>
+        <% if !user_signed_in? || (user_signed_in? && article.user.id != current_user.id) %>
           <%= render "favorites/favorite_button", article: article  %>
+        　
         <% end %>  
 
         <%# タグ %>
