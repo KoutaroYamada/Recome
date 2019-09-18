@@ -19,8 +19,9 @@ class Article < ApplicationRecord
     favorites.find_by(user_id: user.id).destroy
   end
 
+  # ランキング作成のメソッド
   def self.create_rank()
-    # Product.includes(:artist, :favorites, :genre).find(Favorite.group(:product_id).order('count(product_id) desc').pluck(:product_id))
-
+    find(Favorite.group(:article_id).order('count(article_id) desc').pluck(:article_id))
+  end 
 
 end

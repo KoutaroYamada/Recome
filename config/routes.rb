@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
 
   root "home#top"
+
+  scope :home do
+    get "/:tag_name" => "home#top", as: :home_tag_ranking
+  end
+
   devise_for :users
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)

@@ -30,7 +30,8 @@
       <p class="margin-bottom-10px">人気のタグ</p>
       <hr class="uk-margin-remove">
         <% @popular_tags.each do |tag| %>
-          <p class="margin-top-and-bottom-10px uk-text-small"><%= tag.name %></p>
+          <%# <p class="margin-top-and-bottom-10px uk-text-small"><%= tag.name %>
+          <p class="margin-top-and-bottom-5px uk-text-small" ><%= link_to tag.name, home_tag_ranking_path(tag.name, anchor: "top-page-anchor") %></p>
         <% end %>
 
       <%# ユーザが登録したお気に入りタグ一覧 %>
@@ -43,18 +44,35 @@
             <%= render partial: 'home/top_favorite_tag_index', collection: current_user.tags, as: :tag %>
           </div>
 
-        <% end %>
-
-        <%# お気に入りタグ登録ボタン %>
+        <%# お気に入りタグ編集ボタン %>
         <a class="uk-display-block font-size-13px margin-top-and-bottom-10px" href="#modal-center" uk-toggle>お気に入りタグを編集する</a>
 
         <%# タグ検索のモーダル %>
         <%= render partial:"layouts/tag_search_modal" %>
+
+        <% else %>
+
+        <%# お気に入りタグ編集ボタン（押すと「ログインしてください」のポップアップが表示される） %>
+        <div class="uk-inline">
+          <a class="uk-display-block font-size-13px margin-top-and-bottom-10px" href="#modal-center" uk-toggle>お気に入りタグを編集する</a>
+          <div uk-drop="mode: click">
+              <div class="uk-card uk-card-body uk-card-default">
+                <p class="uk-text-small uk-margin-remove">お気に入りタグの編集には
+                  <%= link_to "ユーザ登録", new_user_registration_path, class:"" %>
+                  か、<%= link_to "ログイン",new_user_session_path %>が必要です。
+                </p>
+              
+              </div>
+          </div>
+        </div>
+
+        <% end %>
       
     </div>
 
     <div class="uk-width-3-5">
-        <p>人気の記事</p>
+        <span id="top-page-anchor"></span>
+        <p class="uk-margin-remove-top">人気の記事</p>
         <div uk-grid>
 
             <div class="uk-child-width uk-grid-medium uk-grid-match" uk-grid>
@@ -64,7 +82,7 @@
 
                             <%# タイトル %>
                             <div class="uk-card-header padding-top-and-bottom-5px">
-                              <p class="margin-top-and-bottom-5px uk-display-inline-block uk-text-small">タイトル</p>
+                              <p class="margin-top-and-bottom-5px uk-display-inline-block font-size-12px">お気に入りに登録された数：〇〇</p>
 
                               <%# お気に入りボタン %>
                               <%= render "favorites/favorite_button", article: article  %>
