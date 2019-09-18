@@ -5,6 +5,11 @@ class HomeController < ApplicationController
     # 遷移元のページの情報を渡す（お気に入りタグの登録/解除をしたとき、トップページとマイページどちらの
     # お気に入りタグ一覧を変更するかの条件分岐に使う）
     @path = Rails.application.routes.recognize_path(request.referer)
+
+    @article = Article.all
+
+
+
   end
 
 end

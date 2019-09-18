@@ -19,4 +19,8 @@ class Article < ApplicationRecord
     favorites.find_by(user_id: user.id).destroy
   end
 
+  def self.create_rank()
+    # Product.includes(:artist, :favorites, :genre).find(Favorite.group(:product_id).order('count(product_id) desc').pluck(:product_id))
+
+
 end
