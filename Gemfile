@@ -108,3 +108,8 @@ gem 'font-awesome-sass'
 # 画像アップロード
 gem "refile", require: "refile/rails", github: 'manfe/refile'
 gem "refile-mini_magick"
+
+#rails consoleを見やすくする
+gem 'hirb'
+gem 'hirb-unicode'
+gem 'pry-rails'
