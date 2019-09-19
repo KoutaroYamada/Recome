@@ -251,22 +251,22 @@ ul {
 
   &.user-edit-image{
     height:100px;
-    width:100px;
+    min-width:100px;
   }
 
   &.user-show-image{
     height:150px;
-    width:150px;
+    min-width:150px;
   }
 
   &.user-show-image-index{
     height:30px;
-    width:30px;
+    min-width:30px;
   }
 
   &.related-user-show-image-index{
     height:50px;
-    width:50px;
+    min-width:50px;
   }
 
 }

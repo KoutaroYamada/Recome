@@ -6,8 +6,9 @@ class HomeController < ApplicationController
       @articles  =  Article.includes(:tags, :favorites).create_rank(tag_params[:tag_name])
     else
       @articles = Article.includes(:tags, :favorites).create_rank()
-
     end
+
+    @users = User.create_user_rank
 
   end
 

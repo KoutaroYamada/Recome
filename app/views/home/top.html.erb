@@ -26,7 +26,7 @@
 </div>
 <% end %>
 
-<div class="uk-container uk-margin-medium-top top-page-contents">
+<div class="uk-container uk-margin-medium-top top-page-contents uk-margin-xlarge-bottom">
   <div uk-grid>
     <div class="uk-width-1-5">
 
@@ -127,8 +127,30 @@
 
     </div>
 
-    <div class="uk-width-1-5">
-      <p>aaaaaa</p>
+    <div class="uk-width-1-4">
+
+      <div class="uk-container"> 
+        <p>ユーザランキング</p>
+          <% @users.each do |user| %>
+            <div class="padding-5px flex-space-between">
+
+                  <%= link_to user_path(user) do %>
+                    <%# プロフィール画像 %>
+                    <%= attachment_image_tag user, :profile_image,fallback: "no-user-image.png",size:'30x30', class: "uk-border-circle user-show-image-index",alt: "Border circle", id: "profileImage" %>
+                    <%# ユーザ名 %>
+                      <p class="font-size-12px uk-margin-remove uk-display-inline-block"><%= user.user_name %></p>
+                    <% end %>  
+
+                    <div class="uk-display-inline-block">
+                      <p class="font-size-10px uk-margin-remove">お気に入られ総数</p>
+                      <p class="uk-margin-remove uk-text-bold"><%= user.count_all_favorites %></p>
+                    </div>
+
+            </div>
+            <hr class="uk-margin-remove">
+            <% end %>
+      </div>  
+
     <div>
   </div> 
 </div>

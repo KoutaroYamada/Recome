@@ -57,4 +57,41 @@ class User < ApplicationRecord
     tags.pluck(:id).include?(tag.id)
   end
 
+  def self.create_user_rank
+
+    # 記事IDごとのいいねの数を集計する空の配列を用意
+    article_favorite_counts_data = []
+
+    Article.includes(:favorites).all.each do |article| 
+      # 上記の空配列に、記事に紐づくユーザIDといいねの数をハッシュの形式で格納
+      article_favorite_counts_data.push({ user_id: article.user_id, favorites_count: article.favorites.count})
+    end
+
+    article_favorite_counts_data.sort_by!{|data| data[:favorites_count]}.reverse
+
+    data = article_favorite_counts_data.group_by{|elem| elem[:user_id]}
+
+    user_favorite_counts_data = []
+
+    data.each do |key,arr|
+      sum = arr.inject(0) {|memo, item| memo + item[:favorites_count]}
+      user_favorite_counts_data << {user_id: key, favorites_count: sum }
+    end  
+
+    ranked_data = user_favorite_counts_data.sort_by!{|data| data[:favorites_count]}.reverse.map{|n| n= n[:user_id]}
+
+    User.find(ranked_data)
+
+  end
+
+  def count_all_favorites
+    sum = 0
+    articles.each do |article|
+      sum += article.favorites.count
+    end
+
+    sum
+
+  end
+
 end
