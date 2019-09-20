@@ -40,7 +40,7 @@ class ArticlesController < ApplicationController
   def update
     @article = Article.find(params[:id])
     if @article.update(article_params)
-      # flash[:success] = "記事の編集が完了しました。"
+      flash[:success] = "記事の編集が完了しました。"
       redirect_to article_path
     else
       render :edit
