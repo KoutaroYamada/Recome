@@ -1,4 +1,4 @@
-<ul class="uk-position-bottom mypage_tab">
+<ul class="mypage_tab uk-margin-remove-bottom">
   <li id="link-1" class=<%="#{'uk-active' if controller.action_name == "my_collection" }" %>><%= link_to "マイコレクション", my_collection_user_path(user), class:"tab-font-size" %></li>
   <li id="link-2" class=<%="#{'uk-active' if controller.action_name == "show" }" %>><%= link_to "投稿した記事(#{user.articles.count})", user_path(user), class:"tab-font-size" %></li>
   <li id="link-3" class=<%="#{'uk-active' if controller.action_name == "favorites" }" %>><%= link_to "お気に入り記事(#{user.favorite_articles.count})", favorites_user_path(user), class:"tab-font-size" %></li>
