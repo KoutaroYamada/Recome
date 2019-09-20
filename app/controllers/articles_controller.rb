@@ -44,6 +44,7 @@ class ArticlesController < ApplicationController
       flash[:success] = "記事の編集が完了しました。"
       redirect_to user_path(current_user)
     else
+      flash[:danger] = "記事の編集に失敗しました。"
       @used_tags = Article.where(user_id: current_user.id).tags_on(:tags).pluck(:name)
       render :edit
     end
