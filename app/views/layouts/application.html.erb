@@ -26,14 +26,14 @@
                   <%# 検索ボタンをuikitのアイコンにしたいがためにaタグでsubmit%>
                   <a href='#' onclick="$('#article_search').submit()" class="uk-search-icon-flip" uk-search-icon ></a>
                 <% end %>
-
         </div>
 
           <ul class="uk-navbar-nav">    
               <li class="uk-active">
-                <%= link_to '' do %>
+                <%= link_to users_path do %>
                   <span uk-icon="icon: users; ratio: 1.2"></span>
                   <span>ユーザを探す</span>
+                  
                 <% end %>
               </li>
           </ul>
@@ -68,8 +68,6 @@
                   <span>ログアウト</span>
                 <% end %>
               </li>
-
-              <li><a href="#"><span uk-icon="icon: bell; ratio: 1.2"></span></a></li>
 
         <% else %>
           <ul class="uk-navbar-nav">

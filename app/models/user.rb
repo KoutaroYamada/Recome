@@ -57,6 +57,7 @@ class User < ApplicationRecord
     tags.pluck(:id).include?(tag.id)
   end
 
+  # ユーザが投稿した記事のお気に入りされた数合計でユーザランキングを作成するメソッド
   def self.create_user_rank
 
     # 記事IDごとのいいねの数を集計する空の配列を用意

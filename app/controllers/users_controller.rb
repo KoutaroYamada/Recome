@@ -2,12 +2,10 @@ class UsersController < ApplicationController
   before_action :set_mypage_user, only: [:show, :favorites, :following, :followers, :add_favorite_tag, :remove_favorite_tag, :tag_search]
 
   def index
-  end
+    @user_search = User.ransack(params[:q])
+    # 検索結果をインスタンスに格納　includesはN＋1問題回避のため、紐づく子モデルをまとめて読み込み
+    @users = @user_search.result(distinct: true).includes(:tags).page(params[:page]).per(20)
 
-  def new
-  end
-
-  def create
   end
 
   def edit

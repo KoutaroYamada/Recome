@@ -279,6 +279,17 @@ ul {
   color:white;
 }
 
+// ユーザ一覧のカードの高さ
+.user-index-card{
+  .card-header{
+    height:80px;
+  }
+  .card-body{
+    height:60px;
+  }
+  
+}
+
 // マイページのタブのCSSデザイン
 
 .mypage_tab{

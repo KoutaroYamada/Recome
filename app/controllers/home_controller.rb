@@ -8,7 +8,8 @@ class HomeController < ApplicationController
       @articles = Article.includes(:tags, :favorites).create_rank()
     end
 
-    @users = User.create_user_rank
+    # 投稿した記事の合計お気に入られ数に基づいてユーザランキングを作成し、上から10件取得
+    @users = User.create_user_rank.take(10)
 
   end
 

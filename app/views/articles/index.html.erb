@@ -23,7 +23,7 @@
 
                               <%# #highlightは文中の検索キーワードをハイライトするため %>
                               <%# truncateは指定した文字数以上を「…」で端折ってくれる %>
-                              <p class="uk-text-small uk-text-bold uk-margin-remove"><%= highlight(article.title.truncate(60),@search_keyword) %></p>
+                              <p class="uk-text-small uk-text-bold uk-margin-remove uk-link-text"><%=link_to highlight(article.title.truncate(60),@search_keyword),article.url %></p>
                               <p class="font-size-12px margin-top-and-bottom-5px"><%= article.site_name %></p>
                               <p class="uk-margin-remove-top font-size-12px margin-bottom-10px" ><%= highlight(article.description.truncate(120),@search_keyword) %></p>
 
@@ -41,7 +41,7 @@
             <% end %>
         </div>
         <div class= "paginate">
-          <%= paginate @articles, class: "paginate" %>
+          <%= paginate @articles, class: "paginate uk-pagination" %>
         </div>
       </div>
       <%# 空divで無理やり画面右端に1/4分の余白を作成 %>

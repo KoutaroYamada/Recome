@@ -35,7 +35,7 @@
       <hr class="uk-margin-remove">
         <% @popular_tags.each do |tag| %>
           <%# <p class="margin-top-and-bottom-10px uk-text-small"><%= tag.name %>
-          <p class="margin-top-and-bottom-5px uk-text-small" ><%= link_to tag.name, home_tag_ranking_path(tag.name, anchor: "top-page-anchor") %></p>
+          <p class="margin-top-and-bottom-5px uk-text-small uk-link-text" ><%= link_to tag.name, home_tag_ranking_path(tag.name, anchor: "top-page-anchor") %></p>
         <% end %>
 
       <%# ユーザが登録したお気に入りタグ一覧 %>
@@ -91,7 +91,7 @@
                                 </div>
                                 <div class="uk-width-expand padding-rignt-and-left-15px">
 
-                                  <p class="uk-text-small uk-text-bold uk-margin-remove"><%= article.title.truncate(60) %></p>
+                                  <p class="uk-text-small uk-text-bold uk-margin-remove uk-link-text"><%=link_to article.title.truncate(60),article.url %></p>
                                   <p class="font-size-12px margin-top-and-bottom-5px"><%= article.site_name %></p>
                                   <%# <p class="uk-margin-remove-top font-size-12px margin-bottom-10px" ><%= article.description.truncate(120) %>
 
@@ -131,15 +131,19 @@
 
       <div class="uk-container"> 
         <p>ユーザランキング</p>
-          <% @users.each do |user| %>
+          <% @users.each.with_index(1) do |user,i| %>
             <div class="padding-5px flex-space-between">
 
-                  <%= link_to user_path(user) do %>
-                    <%# プロフィール画像 %>
-                    <%= attachment_image_tag user, :profile_image,fallback: "no-user-image.png",size:'30x30', class: "uk-border-circle user-show-image-index",alt: "Border circle", id: "profileImage" %>
-                    <%# ユーザ名 %>
-                      <p class="font-size-12px uk-margin-remove uk-display-inline-block"><%= user.user_name %></p>
-                    <% end %>  
+                  <span><%= i %>位</span>
+
+                  <div>
+                    <%= link_to user_path(user) do %>
+                      <%# プロフィール画像 %>
+                      <%= attachment_image_tag user, :profile_image,fallback: "no-user-image.png",size:'30x30', class: "uk-border-circle user-show-image-index",alt: "Border circle", id: "profileImage" %>
+                      <%# ユーザ名 %>
+                        <p class="font-size-12px uk-margin-remove uk-display-inline-block"><%= user.user_name %></p>
+                    <% end %>
+                  </div>    
 
                     <div class="uk-display-inline-block">
                       <p class="font-size-10px uk-margin-remove">お気に入られ総数</p>
