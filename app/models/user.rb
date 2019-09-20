@@ -14,8 +14,8 @@ class User < ApplicationRecord
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, uniqueness: true, format: { with: VALID_EMAIL_REGEX }
 
-  #300文字以上の自己紹介文を不許可
-  validates :profile, length: { maximum: 300 }
+  #100文字以上の自己紹介文を不許可
+  validates :profile, length: { maximum: 100 }
 
   attachment :profile_image
   has_many :articles, dependent: :destroy
