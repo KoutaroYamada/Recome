@@ -56,8 +56,8 @@
           </div>
 
           <div class="uk-section-xsmall uk-padding-remove-bottom">
-            <%= link_to "削除する", article_path(@article), method: :delete, data: { confirm: '本当に削除しますか？' }%>
             <%= f.submit '更新する',  class: "uk-button uk-button-primary uk-align-right"%>
+            <%= link_to "削除する", article_path(@article), method: :delete, data: { confirm: '本当に削除しますか？' }, class:"uk-align-right uk-display-inline-block uk-margin-small-top" %>
           </div>
 
 
