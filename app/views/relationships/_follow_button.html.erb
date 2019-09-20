@@ -1,16 +1,23 @@
-  <%# もしユーザがフォロー済の場合 %>
-  <% if user_signed_in? && current_user.following?(user) %>
+  <% if user_signed_in? %>
+      <%# ユーザがログイン済で、フォロー対象のユーザが自分の場合 %>
+      <% if user.id == current_user.id %>
+        <%# 何も表示しない %>
 
-    <%= link_to user_relationships_path(user_id: user.id), method: :delete, remote: true, class:"uk-button uk-button-default uk-display-block", id:"unfollow-#{user.id}" do %>
-      <span>フォロー済</span>
-    <% end %>  
+      <%# ユーザがログイン済で、フォロー対象をフォロー済の場合 %>
+      <% elsif current_user.following?(user) %>
+        <%= link_to user_relationships_path(user_id: user.id), method: :delete, remote: true, class:"uk-button uk-button-default uk-display-block", id:"unfollow-#{user.id}" do %>
+          <span>フォロー済</span>
+        <% end %>
 
-  <%# ユーザがフォローしていない場合 %>
-  <% elsif user_signed_in? %>
-    <%= link_to user_relationships_path(user_id: user.id), method: :post, remote: true, class:"uk-button uk-button-primary uk-display-block padding-rignt-and-left-15px", id:"follow-#{user.id}" do %>
-      <span uk-icon="icon: plus; ratio: 1" class="fontcolor-white"></span>
-      <span class="fontcolor-white">フォローする</span>
-    <% end %>  
+      <%# ユーザがログイン済で、フォロー対象を未フォローの場合 %>
+      <% else %>
+        <%= link_to user_relationships_path(user_id: user.id), method: :post, remote: true, class:"uk-button uk-button-primary uk-display-block padding-rignt-and-left-15px", id:"follow-#{user.id}" do %>
+          <span uk-icon="icon: plus; ratio: 1" class="fontcolor-white"></span>
+          <span class="fontcolor-white">フォローする</span>
+        <% end %>  
+
+      <% end %>  
+
 
 <%# ユーザがログインしていない場合 %>
   <% else %> 

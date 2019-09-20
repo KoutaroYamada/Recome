@@ -1,7 +1,4 @@
-<div class="uk-container">
-
-  <div uk-grid>
-  </div>
+<div class="uk-container uk-margin-large-bottom">
 
   <div uk-grid>
     <div class="uk-width-1-4 uk-text-center uk-margin-medium-right">
@@ -16,8 +13,16 @@
 
   <div uk-grid class="uk-margin-remove-top">
     <div class="uk-width-1-4 uk-text-center uk-margin-medium-right">
+
         <%# ユーザ名 %>
         <span class="margin-top-and-bottom-10px uk-display-inline-block"><%= user.user_name %></span><br>
+
+        <%# お気に入られ総数 %>
+        <p class="font-size-11px uk-display-inline">お気に入られ総数：<span class="font-size-12px font-text-bold"><%= user.count_all_favorites %></span></p>
+
+        <%# フォロワー数 %>
+        <p class="font-size-11px uk-display-inline">フォロワー数：<span class="font-size-12px font-text-bold"><%= user.followers.count %></span></p>
+        
         <%# プロフィール %>
         <span class="margin-10px uk-display-inline-block font-size-12px"><%= simple_format(user.profile) %></span>
 
@@ -43,7 +48,7 @@
 
         <% if user_signed_in? && (current_user.id == user.id) %>
         <%# お気に入りタグ登録ボタン %>
-        <a class="uk-display-block font-size-13px margin-top-and-bottom-10px" href="#modal-center" uk-toggle>お気に入りタグを編集する</a>
+        <a class="uk-display-block font-size-13px margin-top-and-bottom-10px uk-link-text" href="#modal-center" uk-toggle>お気に入りタグを編集する</a>
 
         <%# タグ検索のモーダル %>
           <%= render partial:"layouts/tag_search_modal" %>
