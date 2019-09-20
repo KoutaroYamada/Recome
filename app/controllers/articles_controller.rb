@@ -16,10 +16,11 @@ class ArticlesController < ApplicationController
   def create
     @article = Article.new(article_params)
     @article.user_id = current_user.id
+    @used_tags = Article.where(user_id: current_user.id).tags_on(:tags).pluck(:name)
     
     if @article.save
       flash[:success] = "登録に成功しました。"
-      redirect_to articles_path
+      redirect_to user_path(current_user)
     else
       flash[:danger] = "登録に失敗しました。"
       render :new
@@ -41,7 +42,7 @@ class ArticlesController < ApplicationController
     @article = Article.find(params[:id])
     if @article.update(article_params)
       flash[:success] = "記事の編集が完了しました。"
-      redirect_to article_path
+      redirect_to user_path(current_user)
     else
       render :edit
     end
