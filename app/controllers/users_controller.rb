@@ -8,6 +8,10 @@ class UsersController < ApplicationController
 
   end
 
+  def my_collection
+
+  end
+
   def edit
     @user = User.find(current_user.id)
   end

@@ -61,16 +61,33 @@
                 <% end %>
               </li>
 
-              <%# ログアウト %>
-              <li class="uk-active">
-                <%= link_to destroy_user_session_path, method: :delete do %>
-                  <span uk-icon="icon: sign-out; ratio: 1.2"></span>
-                  <span>ログアウト</span>
-                <% end %>
-              </li>
+              <div uk-dropdown="delay-hide:100; offset:0">
+                  <ul class="uk-nav uk-dropdown-nav">
+                      <li><%= link_to "マイページ",user_path(current_user.id) %></li>
+                      <li><%= link_to "マイコレクション",user_path(current_user.id) %></li>
+                      <li>
+                        <%= link_to destroy_user_session_path, method: :delete do %>
+                          <span uk-icon="icon: sign-out; ratio: 1.2"></span>
+                          <span>ログアウト</span>
+                        <% end %>
+                      </li>                      
+                  </ul>
+               </div>   
 
         <% else %>
           <ul class="uk-navbar-nav">
+
+              <%# 「記事を投稿する」リンク %>
+              <li class="uk-active">
+                <%= link_to (new_article_path) do %>
+                  <span uk-icon="icon: push; ratio: 1.2"></span>
+                  <span>記事を投稿する</span>
+                <% end %>
+              </li>
+
+              <%# ログインしてくださいの吹き出し %>
+              <%= render partial:"layouts/alert_not_sign_in", locals:{subject: "記事の投稿"} %>
+
 
               <li class="uk-active">
                 <%= link_to (new_user_registration_path) do %>

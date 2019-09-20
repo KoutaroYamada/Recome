@@ -24,7 +24,7 @@ Rails.application.routes.draw do
 
   resources :users do
     member do
-      get :following, :followers, :favorites
+      get :following, :followers, :favorites,:my_colleciton
       patch :add_favorite_tag
       patch :remove_favorite_tag
     end
