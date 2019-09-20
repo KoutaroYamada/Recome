@@ -94,12 +94,14 @@
 
     </nav>
 
-    <%# フラッシュメッセージを表示 %>
-    <% flash.each do |message_type, message| %>
-    <div class="uk-alert-<%= message_type %> uk-margin-remove" uk-alert>
-      <p><%= message %></p>
-    </div>
-    <% end %>
+    <%# 成功の場合のフラッシュメッセージを表示（失敗メッセージは各ページ内にて別個に表示する） %>
+      <% if flash.keys.join == "success" %>
+        <% flash.each do |message_type, message| %>
+        <div class="uk-alert-<%= message_type %> uk-margin-remove" uk-alert>
+          <p><%= message %></p>
+        </div>
+        <% end %>
+      <% end %>
   
     <%= yield %>
   </body>
