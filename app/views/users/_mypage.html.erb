@@ -60,7 +60,7 @@
     <div class="uk-width-expand uk-padding-remove-left" id="ajax-partial">
 
       <%# render元のactionがshowもしくはfavoritesの場合、記事一覧を表示　%>
-      <% if controller.action_name.in?(['show','favorites']) %>
+      <% if controller.action_name.in?(['my_collection','show','favorites']) %>
         <%= render partial: 'users/articles', collection: articles, as: :article %>
 
       <%# render元のactionが上記以外（＝followers, following）の場合、ユーザ一覧を表示%>
