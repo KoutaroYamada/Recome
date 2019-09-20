@@ -1,0 +1,8 @@
+<%# フラッシュメッセージを表示 %>
+<% flash.each do |message_type, message| %>
+<div class="uk-alert-<%= message_type %>" uk-alert>
+  <p><%= message %></p>
+  <%# モデルに格納されたエラーメッセージを表示 %>
+  <%= render 'layouts/error_messages', model: f.object %>
+</div>
+<% end %>

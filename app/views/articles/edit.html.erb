@@ -7,13 +7,7 @@
         <%= form_for(@article) do |f| %> 
 
         <%# フラッシュメッセージを表示 %>
-        <% flash.each do |message_type, message| %>
-        <div class="uk-alert-<%= message_type %>" uk-alert>
-          <p><%= message %></p>
-          <%# モデルに格納されたエラーメッセージを表示 %>
-          <%= render 'layouts/error_messages', model: f.object %>
-        </div>
-        <% end %>
+        <%= render "layouts/flash_message", f: f %>
 
           <div uk-grid class="uk-margin-bottom">
             <div class="uk-width-auto url-image">
