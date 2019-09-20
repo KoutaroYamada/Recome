@@ -45,9 +45,21 @@ class UsersController < ApplicationController
 
   def add_favorite_tag
     @user.tag_list.add(tag_params[:name])
-    @user.save
-    @user.reload
-    @tag = @user.tags.find(tag_params[:id])
+
+    if @user.save
+        @user.reload
+        @tag = @user.tags.find(tag_params[:id])
+        respond_to do |format|
+          format.js 
+        end
+    else
+      @tag = ActsAsTaggableOn::Tag.find(tag_params[:id])
+      flash.now[:danger] = "タグの登録に失敗しました。"
+      respond_to do |format|
+        format.js 
+      end
+    end  
+  
   end
 
   def remove_favorite_tag

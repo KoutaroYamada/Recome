@@ -1,5 +1,8 @@
 $('#favorite-tag-<%= @tag.id %>').html("<%= j(render partial: 'users/favorite_tag', locals: {tag: @tag, user:@user}) %>");
 
+<%# タグ登録のバリデーションエラーが起きたら、フラッシュメッセージをタグ検索フォームに非同期で表示 %>
+$('#tag-error-alert').html("<%= j(render partial: 'layouts/flash_message', locals: {model: @user}) %>");
+
 <% if @path[:controller] == "users" %>
   <%# マイページのお気に入りタグ一覧を更新 %>
   $('#favorite-tag-index').html("<%= j(render partial: 'users/favorite_tag_index', collection: current_user.tags, as: :tag) %>");

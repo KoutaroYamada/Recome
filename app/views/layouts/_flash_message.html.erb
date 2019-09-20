@@ -2,7 +2,16 @@
 <% flash.each do |message_type, message| %>
 <div class="uk-alert-<%= message_type %>" uk-alert>
   <p><%= message %></p>
+
   <%# モデルに格納されたエラーメッセージを表示 %>
-  <%= render 'layouts/error_messages', model: f.object %>
+  <%# 変数fが定義されている場合 %>
+  <% if defined? (f) %>
+
+    <%= render 'layouts/error_messages', model: f.object %>
+  
+  <%# 変数fが定義されていない場合 %>
+  <% else %>
+    <%= render 'layouts/error_messages', model: model %>
+  <% end %>  
 </div>
 <% end %>

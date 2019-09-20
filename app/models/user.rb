@@ -17,6 +17,11 @@ class User < ApplicationRecord
   #100文字以上の自己紹介文を不許可
   validates :profile, length: { maximum: 100 }
 
+  # 登録タグの最大数制限
+  validates_size_of     :tag_list,
+                        maximum: 5,
+                        message: '登録タグ数は最大5です。'
+
   attachment :profile_image
   has_many :articles, dependent: :destroy
   has_many :favorites, dependent: :destroy

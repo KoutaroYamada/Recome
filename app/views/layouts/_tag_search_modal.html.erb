@@ -1,7 +1,7 @@
         <div id="modal-center" class="uk-flex-top" uk-modal>
             <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
 
-                <button class="uk-modal-close-default" type="button" uk-close></button>
+                <button class="uk-modal-close-default" id="register_tag_form_close" type="button" uk-close></button>
                 <%# タグ一覧 %>
                 <div class="register-tag">
 
@@ -11,7 +11,10 @@
                   <%= hidden_field_tag :id, current_user.id %>
                   <%# 検索ボタンをuikitのアイコンにしたいがためにaタグでsubmit%>
                   <a href='#' onclick="$('#favorite-tag-search').submit()" class="uk-search-icon-flip" uk-search-icon ></a>
-                <% end %>  
+                <% end %>
+
+                <%# タグ登録時、バリデーションエラーに引っかかったら非同期でここにフラッシュメッセージを表示 %>
+                <div id="tag-error-alert"></div>  
 
                   <p>タグ一覧</p>
                     <div class="register-tag-index" id="register-tag-index">
@@ -22,3 +25,12 @@
 
             </div>
         </div>
+
+<script>
+// モーダルの閉じるボタンが押されたらバリデーションのエラーメッセージを消す
+$("#register_tag_form_close").on("click",function(){
+  $("#tag-error-alert").html("");
+});
+
+
+</script>
