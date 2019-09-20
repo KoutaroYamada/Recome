@@ -3,7 +3,7 @@
   <% article.tags.pluck(:name).each do |tag| %>
 
     <%# タグをクリックしたら、そのタグ名で検索できるようリンクを設定 %>
-    <%= link_to articles_path(q: {"title_or_description_or_tags_name_cont"=> tag}), class: "tag font-size-11px" do %>
+    <%= link_to articles_path(q: {"title_or_description_or_tags_name_cont"=> tag}), class: "tag font-size-10px" do %>
       <span uk-icon="icon: tag; ratio: 0.7" class="uk-text-muted"></span>
       <%= tag %>  
     <% end %>
