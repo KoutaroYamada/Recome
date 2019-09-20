@@ -45,6 +45,18 @@
 		    <% if user_signed_in? %>
 
           <ul class="uk-navbar-nav">
+
+              <li class="uk-active">
+                <%= link_to my_collection_user_path(current_user.id)  do %>
+                  <span uk-icon="icon: album; ratio: 1.2"></span>
+                  <span>マイコレクション</span>
+                <% end %>
+              </li>
+
+              <div uk-dropdown="delay-hide:100; offset:0" class="uk-width-medium padding-rignt-and-left-15px" style="height:120px;">
+                <p class="uk-text-small">あなたがフォローしたユーザや、<br>お気に入り登録したタグの最新投稿一覧が表示されます。</p>
+              </div>           
+
               <%# 「記事を投稿する」リンク %>
               <li class="uk-active">
                 <%= link_to (new_article_path) do %>
@@ -64,7 +76,7 @@
               <div uk-dropdown="delay-hide:100; offset:0">
                   <ul class="uk-nav uk-dropdown-nav">
                       <li><%= link_to "マイページ",user_path(current_user.id) %></li>
-                      <li><%= link_to "マイコレクション",user_path(current_user.id) %></li>
+                      <li><%= link_to "マイコレクション", my_collection_user_path(current_user.id) %></li>
                       <li>
                         <%= link_to destroy_user_session_path, method: :delete do %>
                           <span uk-icon="icon: sign-out; ratio: 1.2"></span>
