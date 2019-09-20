@@ -1,2 +1,63 @@
-<h1>Users#index</h1>
-<p>Find me in app/views/users/index.html.erb</p>
+<div class="uk-container uk-margin-large-bottom">
+
+  <div uk-grid class="uk-margin-top">
+    <div class="uk-navbar-item uk-align-left">
+          <%= search_form_for @user_search, url: users_path, html: {class: "uk-search uk-search-default search-nav-bar"} do |f| %>
+            <%= f.search_field :user_name_or_tags_name_cont, class:"uk-search-input", placeholder:"ユーザ名・タグで検索" %>
+            <%# 検索ボタンをuikitのアイコンにしたいがためにaタグでsubmit%>
+            <a href='#' onclick="$('#user_search').submit()" class="uk-search-icon-flip" uk-search-icon ></a>
+          <% end %>
+    </div>
+  </div>
+
+  <div uk-grid class="uk-margin-remove-top uk-margin-bottom">
+    <%# 検索キーワードがあるときだけ、下の文字列を表示する %>
+    <% if params[:q] != nil %>
+      <% binding.pry %>
+      <p>キーワード "<%= @search_keyword %>" での検索結果：<%= @articles.total_count %>件</p>
+    <% end %>
+  </div>  
+
+  <div class="uk-child-width-1-4 uk-grid-small uk-text-center" uk-grid>
+    <% @users.each do |user| %>
+      <div>
+          <div class="uk-card uk-card-default user-index-card">
+              <div class="uk-card-header card-header padding-10px padding-rignt-and-left-15px">
+                    <%= link_to user_path(user) do %>
+                      <%# プロフィール画像 %>
+                      <%= attachment_image_tag user, :profile_image,fallback: "no-user-image.png",size:'30x30', class: "uk-border-circle user-show-image-index",alt: "Border circle", id: "profileImage" %>
+                      <%# ユーザ名 %>
+                      <p class="font-size-12px uk-margin-remove uk-display-inline-block"><%= user.user_name %></p>
+                    <% end %>
+                      <%# プロフィール %>
+                      <p class="font-size-11px margin-top-and-bottom-5px"><%= user.profile %></p>   
+
+                      <%# お気に入られ総数 %>
+                      <p class="font-size-11px margin-top-and-bottom-5px uk-display-inline">お気に入られ総数：<span class="font-size-12px font-text-bold"><%= user.count_all_favorites %></span></p>
+
+                      <%# フォロワー数 %>
+                      <p class="font-size-11px margin-top-and-bottom-5px uk-display-inline">フォロワー数：<span class="font-size-12px font-text-bold"><%= user.followers.count %></span></p>
+
+              </div>
+              <div class="uk-card-body card-body padding-10px padding-rignt-and-left-15px">
+               <p class="uk-margin-remove font-size-12px">お気に入りタグ</p>
+                <%# お気に入りタグ %>
+                <div class="user-index-favorite-tag-index">
+                  <% user.tags.each do |tag|%>
+                    <p class="font-size-10px uk-display-inline uk-margin-remove"><%= tag %>,</p>
+                  <% end %>
+                </div>
+
+                <%# フォローボタン %>
+                <span id="follow-button-<%= user.id %>" class="follow-button uk-width-2-3 uk-display-inline-block uk-position-bottom-center">
+                  <%= render "relationships/follow_button", user: user %>
+                </span>
+
+              </div>
+          </div>
+      </div>
+    <% end %>
+  </div>
+
+
+</div>
