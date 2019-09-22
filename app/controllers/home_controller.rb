@@ -3,7 +3,8 @@ class HomeController < ApplicationController
 
   def top
     if tag_params[:tag_name]
-      @articles  =  Article.includes(:tags, :favorites).create_rank(tag_params[:tag_name]).page(params[:page]).per(10)
+      # タグに紐付いた記事をお気に入り順に並び替え、10記事ごとに表示
+      @articles  =  Kaminari.paginate_array(Article.includes(:tags, :favorites).create_rank(tag_params[:tag_name])).page(params[:page]).per(10)
     else
       # 全記事をお気に入り順に並び替え、10記事ごとに表示
       @articles = Kaminari.paginate_array(Article.includes(:tags, :favorites).create_rank()).page(params[:page]).per(10)
