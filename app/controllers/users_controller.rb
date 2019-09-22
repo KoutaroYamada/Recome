@@ -13,7 +13,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @articles = @user.articles.page(params[:page]).per(10)
+    @articles = @user.articles.page(params[:page]).per(15)
   end
 
   def update
@@ -39,22 +39,22 @@ class UsersController < ApplicationController
                   .where(user_id: following_user_id)
                   .or(Article.where(id: tag_article_ids).where.not(user_id: @user.id))
                   .order("created_at DESC")
-                  .page(params[:page]).per(10)
+                  .page(params[:page]).per(15)
 
   end
 
   def following
-    @following = @user.following.page(params[:page]).per(10)
+    @following = @user.following.page(params[:page]).per(15)
 
   end
 
   def followers
-    @followers = @user.followers.page(params[:page]).per(10)
+    @followers = @user.followers.page(params[:page]).per(15)
 
   end
 
   def favorites
-    @articles = @user.favorite_articles.page(params[:page]).per(10)
+    @articles = @user.favorite_articles.page(params[:page]).per(15)
   end
 
   def add_favorite_tag

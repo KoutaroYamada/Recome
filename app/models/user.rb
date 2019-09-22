@@ -19,8 +19,8 @@ class User < ApplicationRecord
 
   # 登録タグの最大数制限
   validates_size_of     :tag_list,
-                        maximum: 5,
-                        message: '登録タグ数は最大5です。'
+                        maximum: 10,
+                        message: 'お気に入り登録できるタグは10までです。'
 
   attachment :profile_image
   has_many :articles, dependent: :destroy
