@@ -22,6 +22,7 @@ class UsersController < ApplicationController
       flash[:success] = "プロフィールの編集が完了しました。"
       redirect_to user_path
     else
+      flash.now[:danger] = "プロフィールの更新に失敗しました。"
       render :edit
     end
 

@@ -1,4 +1,4 @@
-<div class="uk-container">
+<div class="uk-container uk-margin-large-bottom">
   <div uk-grid>
       <div class="uk-width-1-6"></div>
       <div class="uk-width-2-3">
@@ -9,7 +9,7 @@
       </div>
   </div>
 
-  <div uk-grid>
+  <div uk-grid class="uk-margin-top">
       <div class="uk-width-1-6">
           <%# パスワード変更ボタン %>
           <%= link_to edit_user_registration_path,class:"uk-button uk-button-default" do %>
@@ -19,8 +19,11 @@
 
       <div class="uk-width-2-3">
         <%= form_for(@user) do |f| %>
-        <fieldset class="uk-fieldset uk-form-horizontal">
 
+        <%# フラッシュメッセージを表示 %>
+        <%= render "layouts/flash_message", f: f %>
+
+        <fieldset class="uk-fieldset uk-form-horizontal">
 
           <div class="field uk-section-xsmall uk-padding-remove-bottom">
             <%= f.label "プロフィール画像",class:"uk-form-label uk-text-middle uk-display-inline-block" %>
@@ -33,21 +36,21 @@
           <div class="field uk-section-xsmall uk-padding-remove-bottom">
             <%= f.label "ユーザ名",class:"uk-form-label" %>
             <div class="uk-form-controls">
-              <%= f.text_field :user_name, autofocus: true, autocomplete: "user_name",class:"uk-input uk-width-xlarge" %>
+              <%= f.text_field :user_name, autofocus: true, autocomplete: "user_name",class:"uk-input uk-width-expand" %>
             </div>
           </div>
 
           <div class="field uk-section-xsmall uk-padding-remove-bottom">
             <%= f.label :email,class:"uk-form-label" %>
             <div class="uk-form-controls">
-              <%= f.email_field :email, autofocus: true, autocomplete: "email",class:"uk-input uk-width-xlarge" %>
+              <%= f.email_field :email, autofocus: true, autocomplete: "email",class:"uk-input uk-width-expand" %>
             </div>
           </div>
 
           <div class="field uk-section-xsmall uk-padding-remove-bottom">
             <%= f.label "自己紹介文",class:"uk-form-label" %>
             <div class="uk-form-controls">
-              <%= f.text_area :profile,class:"uk-textarea uk-width-xlarge font-size-12px",rows: 6 %>
+              <%= f.text_area :profile,class:"uk-textarea uk-width-expand font-size-12px",rows: 6 %>
             </div>
           </div>
 
