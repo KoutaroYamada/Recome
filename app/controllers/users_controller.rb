@@ -31,7 +31,11 @@ class UsersController < ApplicationController
   end
 
   def my_collection
-    @articles = Article.includes(:tags, :favorites).all
+    following_user_id = @user.following.pluck("id")
+    tag_article_ids = Article.tagged_with(@user.tags.pluck("name"), any: true).pluck(:id)
+
+    @articles = Article.where(user_id: following_user_id).or(Article.where(id: tag_article_ids)).order("created_at DESC")
+
   end
 
   def following
