@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
-  before_action :set_mypage_user, only: [:my_collection, :show, :favorites, :following, :followers, :add_favorite_tag, :remove_favorite_tag, :tag_search]
+  before_action :authenticate_user!, only: [:edit, :update, :add_favorite_tag, :remove_favorite_tag, :tag_search ]
+  before_action :set_mypage_user, except: [:index]
+  before_action :correct_user, only: [:edit, :update]
 
   def index
     @user_search = User.ransack(params[:q])
@@ -26,9 +28,6 @@ class UsersController < ApplicationController
       render :edit
     end
 
-  end
-
-  def destroy
   end
 
   def my_collection
@@ -111,6 +110,11 @@ class UsersController < ApplicationController
 
   def tag_search_words_params
     params.permit(:keyword)
+  end
+
+  # 正しいユーザか確認
+  def correct_user
+    redirect_to(root_url) unless @user == current_user
   end
 
 end

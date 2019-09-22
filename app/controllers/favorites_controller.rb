@@ -1,5 +1,6 @@
 class FavoritesController < ApplicationController
   before_action :set_variables
+  before_action :authenticate_user!
 
   def create
     # お気に入り登録 favoriteはarticleのインスタンスメソッド

@@ -1,5 +1,6 @@
 class ArticlesController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy, :get_url ]
+  before_action :correct_user, only: [:edit, :update]
 
   def index
   end
@@ -97,6 +98,13 @@ class ArticlesController < ApplicationController
 
   def url_params
     params.permit(:keyword)
+  end
+
+  # 正しいユーザか確認
+  def correct_user
+    article = Article.find(params[:id])
+    user = User.find(article.user.id)
+    redirect_to(root_url) unless user == current_user
   end
 
 end

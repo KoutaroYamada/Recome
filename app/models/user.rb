@@ -65,20 +65,21 @@ class User < ApplicationRecord
   # ユーザが投稿した記事のお気に入りされた数合計でユーザランキングを作成するメソッド
   def self.create_user_rank
 
-    # 記事IDごとのいいねの数を集計する空の配列を用意
+    # 記事IDごとのお気に入りの数を集計する空の配列を用意
     article_favorite_counts_data = []
 
     Article.includes(:favorites).all.each do |article| 
-      # 上記の空配列に、記事に紐づくユーザIDといいねの数をハッシュの形式で格納
+      # 上記の空配列に、記事に紐づくユーザIDとお気に入りの数をハッシュの形式で格納
       article_favorite_counts_data.push({ user_id: article.user_id, favorites_count: article.favorites.count})
     end
 
-    article_favorite_counts_data.sort_by!{|data| data[:favorites_count]}.reverse
-
+    # 記事IDごとのユーザIDとお気に入り数を格納した配列を、ユーザIDでグルーピング
     data = article_favorite_counts_data.group_by{|elem| elem[:user_id]}
 
+    # ユーザIDと、各ユーザの投稿記事がお気に入りされた数合計を格納する配列を用意
     user_favorite_counts_data = []
 
+    # keyはユーザID、arrはユーザが投稿した記事ごとのお気に入り数合計が格納された配列
     data.each do |key,arr|
       sum = arr.inject(0) {|memo, item| memo + item[:favorites_count]}
       user_favorite_counts_data << {user_id: key, favorites_count: sum }
