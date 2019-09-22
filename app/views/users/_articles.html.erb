@@ -1,7 +1,7 @@
   <div class="padding-5px">
     <p class="font-size-10px uk-margin-remove"><%=article.user.user_name %>さんが<%= article.updated_at.strftime("%Y-%m-%d %H:%M") %>に投稿しました。</p>
 
-    <div class="margin-bottom-10px">
+    <div class="margin-bottom-5px">
         <%# 記事のタイトル %>
         <div>
           <p class="uk-text-small uk-margin-remove uk-display-inline uk-margin-small-right uk-link-text"><%=link_to article.title, article.url %></p>
@@ -35,7 +35,7 @@
           <p class="font-size-12px uk-margin-remove"><%= article.user.user_name %></p>
         <% end %>  
 
-          <p class="uk-text-small uk-margin-remove"><%= article.recommend_comment %></p>
+          <p class="font-size-12px uk-margin-remove"><%= article.recommend_comment %></p>
         </div>  
       </div>  
 

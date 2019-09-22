@@ -1,6 +1,7 @@
-<ul class="uk-position-bottom mypage_tab">
-  <li id="link-1" class=<%="#{'uk-active' if controller.action_name == "show" }" %>><%= link_to "投稿した記事(#{user.articles.count})", user_path(user), class:"tab-font-size" %></li>
-  <li id="link-2" class=<%="#{'uk-active' if controller.action_name == "favorites" }" %>><%= link_to "お気に入り記事(#{user.favorite_articles.count})", favorites_user_path(user), class:"tab-font-size" %></li>
-  <li id="link-3" class=<%="#{'uk-active' if controller.action_name == "following" }" %>><%= link_to "フォロー中(#{user.following.count})", following_user_path(user),class:"tab-font-size" %></li>
-  <li id="link-4" class=<%="#{'uk-active' if controller.action_name == "followers" }" %>><%= link_to "フォロワー(#{user.followers.count})", followers_user_path(user),class:"tab-font-size" %></li>
+<ul class="mypage_tab uk-margin-remove-bottom" uk-sticky="offset: 50px;">
+  <li id="link-1" class=<%="#{'uk-active' if controller.action_name == "my_collection" }" %>><%= link_to "マイコレクション", my_collection_user_path(user), class:"tab-font-size" %></li>
+  <li id="link-2" class=<%="#{'uk-active' if controller.action_name == "show" }" %>><%= link_to "投稿した記事(#{user.articles.count})", user_path(user), class:"tab-font-size" %></li>
+  <li id="link-3" class=<%="#{'uk-active' if controller.action_name == "favorites" }" %>><%= link_to "お気に入り記事(#{user.favorite_articles.count})", favorites_user_path(user), class:"tab-font-size" %></li>
+  <li id="link-4" class=<%="#{'uk-active' if controller.action_name == "following" }" %>><%= link_to "フォロー中(#{user.following.count})", following_user_path(user),class:"tab-font-size" %></li>
+  <li id="link-5" class=<%="#{'uk-active' if controller.action_name == "followers" }" %>><%= link_to "フォロワー(#{user.followers.count})", followers_user_path(user),class:"tab-font-size" %></li>
 </ul>

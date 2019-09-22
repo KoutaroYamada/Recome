@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_mypage_user, only: [:show, :favorites, :following, :followers, :add_favorite_tag, :remove_favorite_tag, :tag_search]
+  before_action :set_mypage_user, only: [:my_collection, :show, :favorites, :following, :followers, :add_favorite_tag, :remove_favorite_tag, :tag_search]
 
   def index
     @user_search = User.ransack(params[:q])
@@ -29,6 +29,14 @@ class UsersController < ApplicationController
   end
 
   def destroy
+  end
+
+  def my_collection
+    following_user_id = @user.following.pluck("id")
+    tag_article_ids = Article.tagged_with(@user.tags.pluck("name"), any: true).pluck(:id)
+
+    @articles = Article.where(user_id: following_user_id).or(Article.where(id: tag_article_ids).where.not(user_id: @user.id)).order("created_at DESC")
+
   end
 
   def following

@@ -1,66 +1,59 @@
-<div class="uk-container uk-margin-large-bottom">
-
-  <div uk-grid>
-    <div class="uk-width-1-4 uk-text-center uk-margin-medium-right">
-      <%= attachment_image_tag user, :profile_image, fallback: "no-user-image.png",size:'200x200', class: "uk-border-circle user-show-image",alt: "Border circle", id: "profileImage" %>
-    </div>
-
-    <div class="uk-width-expand uk-position-relative">
-      <%# タブ %>
-      <%= render "users/tab", user: user %>
-    </div>
-  </div>  
+<div class="uk-container uk-margin-large-bottom uk-margin-medium-top">
 
   <div uk-grid class="uk-margin-remove-top">
     <div class="uk-width-1-4 uk-text-center uk-margin-medium-right">
+      <%= attachment_image_tag user, :profile_image, fallback: "no-user-image.png",size:'200x200', class: "uk-border-circle user-show-image",alt: "Border circle", id: "profileImage" %>
 
-        <%# ユーザ名 %>
-        <span class="margin-top-and-bottom-10px uk-display-inline-block"><%= user.user_name %></span><br>
+      <%# ユーザ名 %>
+      <span class="margin-top-and-bottom-10px uk-display-inline-block"><%= user.user_name %></span><br>
 
-        <%# お気に入られ総数 %>
-        <p class="font-size-11px uk-display-inline">お気に入られ総数：<span class="font-size-12px font-text-bold"><%= user.count_all_favorites %></span></p>
+      <%# お気に入られ総数 %>
+      <p class="font-size-11px uk-display-inline">お気に入られ総数：<span class="font-size-12px font-text-bold"><%= user.count_all_favorites %></span></p>
 
-        <%# フォロワー数 %>
-        <p class="font-size-11px uk-display-inline">フォロワー数：<span class="font-size-12px font-text-bold"><%= user.followers.count %></span></p>
-        
-        <%# プロフィール %>
-        <span class="margin-10px uk-display-inline-block font-size-12px"><%= simple_format(user.profile) %></span>
+      <%# フォロワー数 %>
+      <p class="font-size-11px uk-display-inline">フォロワー数：<span class="font-size-12px font-text-bold"><%= user.followers.count %></span></p>
+      
+      <%# プロフィール %>
+      <span class="margin-10px uk-display-inline-block font-size-12px"><%= simple_format(user.profile) %></span>
 
-        <%# プロフィール編集ボタン %>
-        <% if user_signed_in? && (current_user.id == user.id) %>
-            <%= link_to (edit_user_path),class:"uk-button uk-button-default uk-width-5-6" do %>
-              <span uk-icon="icon: file-edit; ratio: 1"></span>
-              <span>プロフィールを編集</span>
-            <% end %>
-        <%# フォローボタン %>
-        <% else %>
-          <span id="follow-button-<%= user.id %>" class="follow-button uk-width-5-6 uk-margin-top uk-inline uk-display-inline-block">
-            <%= render "relationships/follow_button", user: user %>
-          </span>
-        <% end %> 
-
-        <%# お気に入りタグ一覧 %>
-        <p class="uk-margin-remove-bottom uk-text-small">お気にいりタグ一覧</p>
-        <hr class="margin-top-and-bottom-5px">
-        <span id="favorite-tag-index">
-          <%= render partial: 'users/favorite_tag_index', collection: user.tags, as: :tag %>
+      <%# プロフィール編集ボタン %>
+      <% if user_signed_in? && (current_user.id == user.id) %>
+          <%= link_to (edit_user_path),class:"uk-button uk-button-default uk-width-5-6" do %>
+            <span uk-icon="icon: file-edit; ratio: 1"></span>
+            <span>プロフィールを編集</span>
+          <% end %>
+      <%# フォローボタン %>
+      <% else %>
+        <span id="follow-button-<%= user.id %>" class="follow-button uk-width-5-6 uk-margin-top uk-inline uk-display-inline-block">
+          <%= render "relationships/follow_button", user: user %>
         </span>
+      <% end %> 
 
-        <% if user_signed_in? && (current_user.id == user.id) %>
-        <%# お気に入りタグ登録ボタン %>
-        <a class="uk-display-block font-size-13px margin-top-and-bottom-10px uk-link-text" href="#modal-center" uk-toggle>お気に入りタグを編集する</a>
+      <%# お気に入りタグ一覧 %>
+      <p class="uk-margin-remove-bottom uk-text-small">お気にいりタグ一覧</p>
+      <hr class="margin-top-and-bottom-5px">
+      <span id="favorite-tag-index">
+        <%= render partial: 'users/favorite_tag_index', collection: user.tags, as: :tag %>
+      </span>
 
-        <%# タグ検索のモーダル %>
-          <%= render partial:"layouts/tag_search_modal" %>
+      <% if user_signed_in? && (current_user.id == user.id) %>
+      <%# お気に入りタグ登録ボタン %>
+      <a class="uk-display-block font-size-13px margin-top-and-bottom-10px uk-link-text" href="#modal-center" uk-toggle>お気に入りタグを編集する</a>
 
-        <% end %>  
+      <%# タグ検索のモーダル %>
+        <%= render partial:"layouts/tag_search_modal" %>
 
-    </div>
+      <% end %>  
+    </div>  
 
-    <div class="uk-width-expand uk-padding-remove-left" id="ajax-partial">
+
+    <div class="uk-width-expand uk-padding-remove-left">
+
+      <%# タブ %>
+      <%= render "users/tab", user: user %>
 
       <%# render元のactionがshowもしくはfavoritesの場合、記事一覧を表示　%>
-      <% if controller.action_name.in?(['show','favorites']) %>
+      <% if controller.action_name.in?(['my_collection','show','favorites']) %>
         <%= render partial: 'users/articles', collection: articles, as: :article %>
 
       <%# render元のactionが上記以外（＝followers, following）の場合、ユーザ一覧を表示%>
