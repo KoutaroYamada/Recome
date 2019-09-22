@@ -21,7 +21,7 @@
     <% @users.each do |user| %>
       <div>
           <div class="uk-card uk-card-default user-index-card">
-              <div class="uk-card-header card-header padding-10px padding-rignt-and-left-15px">
+              <div class="uk-card-header card-header padding-10px padding-rignt-and-left-20px">
                     <%= link_to user_path(user),class:"uk-link-text" do %>
                       <%# プロフィール画像 %>
                       <%= attachment_image_tag user, :profile_image,fallback: "no-user-image.png",size:'30x30', class: "uk-border-circle user-show-image-index",alt: "Border circle", id: "profileImage" %>
