@@ -1,16 +1,17 @@
-<div class="uk-container">
+<div class="uk-container uk-margin-top">
   <div uk-grid>
       <div class="uk-width-1-6">
       </div>
       <div class="uk-width-2-3">
         <h3 class="uk-h3">おすすめ記事を投稿する</h3>
+        <hr class="uk-margin-remove">
         <%= form_for(@article) do |f| %> 
 
         <%# フラッシュメッセージを表示 %>
         <%= render "layouts/flash_message", f: f %>
 
         <%#　入力したURLのタイトルと画像を表示(非同期)　URLが既に投稿済だったらエラーを表示 %>
-        <div id="url_title_and_image" class="uk-margin"></div>
+        <div id="url_title_and_image"></div>
 
         <%# form_forで記事のサムネイル画像URL・タイトル・概要を送信する用 %>
         <%# ajax通信が完了したら、記事の情報を受け取っている %>
@@ -19,7 +20,7 @@
         <%= f.hidden_field :site_name,id:"hidden_article_site_name" %>
         <%= f.hidden_field :description,id:"hidden_article_description" %>
 
-          <p class="uk-margin-small-bottom">投稿する記事のURLを入力</p>
+          <p class="uk-margin-small-bottom uk-margin-small-top">投稿する記事のURLを入力</p>
 
           <div class="uk-section-xsmall uk-padding-remove-top">
             <div class="uk-form-controls">
