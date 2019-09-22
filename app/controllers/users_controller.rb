@@ -7,6 +7,9 @@ class UsersController < ApplicationController
     @user_search = User.ransack(params[:q])
     # 検索結果をインスタンスに格納　includesはN＋1問題回避のため、紐づく子モデルをまとめて読み込み
     @users = @user_search.result(distinct: true).includes(:tags).page(params[:page]).per(20)
+    if params[:q] != nil
+      @search_keyword = params[:q]["user_name_or_tags_name_cont"]
+    end  
 
   end
 
