@@ -125,6 +125,11 @@
                 <% end %>
             </div>
 
+        <%# ページネーション %>
+        <div class= "paginate uk-text-center uk-margin-medium-top">
+          <%= paginate @articles, class: "paginate uk-pagination" %>
+        </div>
+
     </div>
 
     <div class="uk-width-1-4">

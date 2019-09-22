@@ -8,7 +8,7 @@
       <span class="margin-top-and-bottom-10px uk-display-inline-block"><%= user.user_name %></span><br>
 
       <%# お気に入られ総数 %>
-      <p class="font-size-11px uk-display-inline">お気に入られ総数：<span class="font-size-12px font-text-bold"><%= user.count_all_favorites %></span></p>
+      <p class="font-size-11px uk-display-inline">お気に入りされた数：<span class="font-size-12px font-text-bold"><%= user.count_all_favorites %></span></p>
 
       <%# フォロワー数 %>
       <p class="font-size-11px uk-display-inline">フォロワー数：<span class="font-size-12px font-text-bold"><%= user.followers.count %></span></p>
@@ -56,10 +56,23 @@
       <% if controller.action_name.in?(['my_collection','show','favorites']) %>
         <%= render partial: 'users/articles', collection: articles, as: :article %>
 
+        <%# ページネーション %>
+        <div class= "paginate uk-text-center uk-margin-medium-top">
+          <%= paginate articles, class: "paginate uk-pagination" %>
+        </div>
+
       <%# render元のactionが上記以外（＝followers, following）の場合、ユーザ一覧を表示%>
       <% else %>
         <%= render partial: 'users/related_users', collection: related_users, as: :related_user %>
+
+        <%# ページネーション %>
+        <div class= "paginate uk-text-center uk-margin-medium-top">
+          <%= paginate related_users, class: "paginate uk-pagination" %>
+        </div>
+        
       <% end %>  
+
+      
     </div>
 
   </div>

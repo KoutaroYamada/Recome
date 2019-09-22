@@ -1,4 +1,4 @@
-<div class="uk-container">
+<div class="uk-container uk-margin-large-bottom">
   <h2>記事一覧ページ</h2>
   <p>キーワード "<%= @search_keyword %>" での検索結果：<%= @articles.total_count %>件</p>
 
@@ -34,9 +34,12 @@
               </div>
             <% end %>
         </div>
-        <div class= "paginate">
+
+        <%# ページネーション %>
+        <div class= "paginate uk-text-center uk-margin-medium-top">
           <%= paginate @articles, class: "paginate uk-pagination" %>
         </div>
+
       </div>
       <%# 空divで無理やり画面右端に1/4分の余白を作成 %>
       <div class="uk-width-1-4"></div>

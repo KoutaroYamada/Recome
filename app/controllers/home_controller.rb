@@ -3,9 +3,10 @@ class HomeController < ApplicationController
 
   def top
     if tag_params[:tag_name]
-      @articles  =  Article.includes(:tags, :favorites).create_rank(tag_params[:tag_name])
+      @articles  =  Article.includes(:tags, :favorites).create_rank(tag_params[:tag_name]).page(params[:page]).per(10)
     else
-      @articles = Article.includes(:tags, :favorites).create_rank()
+      # 全記事をお気に入り順に並び替え、10記事ごとに表示
+      @articles = Kaminari.paginate_array(Article.includes(:tags, :favorites).create_rank()).page(params[:page]).per(5)
     end
 
     # 投稿した記事の合計お気に入られ数に基づいてユーザランキングを作成し、上から10件取得
