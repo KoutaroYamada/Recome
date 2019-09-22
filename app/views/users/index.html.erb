@@ -22,6 +22,7 @@
       <div>
           <div class="uk-card uk-card-default user-index-card">
               <div class="uk-card-header card-header padding-10px padding-rignt-and-left-20px">
+                    <div style="height:80%;">
                     <%= link_to user_path(user),class:"uk-link-text" do %>
                       <%# プロフィール画像 %>
                       <%= attachment_image_tag user, :profile_image,fallback: "no-user-image.png",size:'30x30', class: "uk-border-circle user-show-image-index",alt: "Border circle", id: "profileImage" %>
@@ -31,12 +32,15 @@
 
                       <%# プロフィール %>
                       <p class="font-size-12px margin-top-and-bottom-5px"><%= user.profile.nil? ? "" : "#{user.profile.truncate(60)}" %></p>
+                    </div>  
 
+                    <div style="height:20%;">
                       <%# お気に入られ総数 %>
-                      <p class="font-size-11px margin-top-and-bottom-5px uk-display-inline">お気に入られ総数：<span class="font-size-12px font-text-bold"><%= user.count_all_favorites %></span></p>
+                      <p class="font-size-11px margin-top-and-bottom-5px uk-display-inline">お気に入りされた数：<span class="font-size-12px font-text-bold"><%= user.count_all_favorites %></span></p>
 
                       <%# フォロワー数 %>
                       <p class="font-size-11px margin-top-and-bottom-5px uk-display-inline">フォロワー数：<span class="font-size-12px font-text-bold"><%= user.followers.count %></span></p>
+                    </div>
 
               </div>
               <div class="uk-card-body card-body padding-10px padding-rignt-and-left-15px">
