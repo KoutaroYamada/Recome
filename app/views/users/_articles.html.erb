@@ -1,9 +1,12 @@
-  <div class="padding-5px">
+  <div class="padding-5px margin-top-and-bottom-5px">
     <p class="font-size-10px uk-margin-remove"><%=article.user.user_name %>さんが<%= article.updated_at.strftime("%Y-%m-%d %H:%M") %>に投稿しました。</p>
 
     <div class="margin-bottom-5px">
         <%# 記事のタイトル %>
-        <div>
+        <div class="margin-bottom-5px">
+
+          <%# サムネイル画像 %>
+          <%= image_tag article.thumbnail_image_url, style:"height:25px;width:35px;object-fit:cover;" %>
           <p class="uk-text-small uk-margin-remove uk-display-inline uk-margin-small-right uk-link-text"><%=link_to article.title, article.url %></p>
 
             <%# 記事の編集ボタン %>
