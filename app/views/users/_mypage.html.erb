@@ -2,7 +2,7 @@
 
   <div uk-grid class="uk-margin-remove-top">
     <div class="uk-width-1-4 uk-text-center uk-margin-medium-right">
-      <%= attachment_image_tag user, :profile_image, fallback: "no-user-image.png",size:'200x200', class: "uk-border-circle user-show-image",alt: "Border circle", id: "profileImage" %>
+      <%= attachment_image_tag user, :profile_image, fallback: "no-user-image.png",size:'150x150', class: "uk-border-circle user-show-image",alt: "Border circle", id: "profileImage" %><br>
 
       <%# ユーザ名 %>
       <span class="margin-top-and-bottom-10px uk-display-inline-block"><%= user.user_name %></span><br>
