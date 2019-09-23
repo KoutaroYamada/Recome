@@ -32,15 +32,30 @@
 
       <%# 人気タグ一覧 %>
       <p class="margin-bottom-10px">人気のタグ</p>
-      <hr class="uk-margin-remove">
+      <hr class="uk-margin-remove-top uk-margin-small-bottom">
         <% @popular_tags.each do |tag| %>
-          <%# <p class="margin-top-and-bottom-10px uk-text-small"><%= tag.name %>
-          <p class="margin-top-and-bottom-5px uk-text-small uk-link-text" ><%= link_to tag.name, home_tag_ranking_path(tag.name, anchor: "top-page-anchor") %></p>
+          <div class="uk-flex uk-flex-between uk-flex-middle margin-bottom-5px">
+              <span class="margin-top-and-bottom-5px uk-text-small uk-link-text" ><%= link_to tag.name, home_tag_ranking_path(tag.name, anchor: "top-page-anchor") %></span>
+
+              <div class="uk-width-1-2 uk-child-width-1-2" uk-grid>
+                <div class="uk-display-inline-block uk-padding-remove">
+                  <p class="font-size-10px uk-margin-remove uk-text-center uk-text-muted">お気に入り</p>
+                  <p class="uk-margin-remove uk-text-bold uk-text-center"><%= tag.taggings.where(taggable_type: "User").count %></p>
+                </div>
+                
+                <div class="uk-display-inline-block uk-padding-remove">
+                  <p class="font-size-10px uk-margin-remove uk-text-center uk-text-muted">投稿</p>
+                  <p class="uk-margin-remove uk-text-bold uk-text-center"><%= tag.taggings.where(taggable_type: "Article").count %></p>
+                </div>
+              </div>  
+
+          </div>
+
         <% end %>
 
       <%# ユーザが登録したお気に入りタグ一覧 %>
       <p class="margin-bottom-10px">お気に入りのタグ</p>
-      <hr class="uk-margin-remove">
+      <hr class="uk-margin-remove-top uk-margin-small-bottom">
         <%# ユーザがログインしている場合、タグ一覧を表示 %>
         <% if user_signed_in? %>
 
@@ -49,7 +64,7 @@
           </div>
 
         <%# お気に入りタグ編集ボタン %>
-        <a class="uk-display-block font-size-13px margin-top-and-bottom-10px uk-link-text" href="#modal-center" uk-toggle>お気に入りタグを編集する</a>
+        <a class="uk-display-block font-size-13px margin-top-and-bottom-10px uk-link-text uk-text-muted" href="#modal-center" uk-toggle>お気に入りタグを編集する</a>
 
         <%# タグ検索のモーダル %>
         <%= render partial:"layouts/tag_search_modal" %>
@@ -151,7 +166,7 @@
                   </div>    
 
                     <div class="uk-display-inline-block">
-                      <p class="font-size-10px uk-margin-remove">お気に入りされた数</p>
+                      <p class="font-size-10px uk-margin-remove">記事お気に入り合計</p>
                       <p class="uk-margin-remove uk-text-bold uk-text-center"><%= user.count_all_favorites %></p>
                     </div>
 

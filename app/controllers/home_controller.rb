@@ -10,15 +10,14 @@ class HomeController < ApplicationController
       @articles = Kaminari.paginate_array(Article.includes(:tags, :favorites).create_rank()).page(params[:page]).per(10)
     end
 
-    # 投稿した記事の合計お気に入られ数に基づいてユーザランキングを作成し、上から10件取得
+    # 投稿した記事がお気に入りされた数の合計に基づいてユーザランキングを作成し、上位10人取得
     @users = User.create_user_rank.take(10)
 
   end
 
   def set_variables
-    @popular_tags = ActsAsTaggableOn::Tag.most_used(5)
-    # 遷移元のページの情報を渡す（お気に入りタグの登録/解除をしたとき、トップページとマイページどちらの
-    # お気に入りタグ一覧を変更するかの条件分岐に使う）
+    @popular_tags = ActsAsTaggableOn::Tag.includes(:taggings).most_used(5)
+    # 遷移元のページの情報を渡す（お気に入りタグの登録/解除をしたとき、トップページとマイページどちらのお気に入りタグ一覧を変更するかの条件分岐に使う）
     @path = Rails.application.routes.recognize_path(request.referer)
 
     if user_signed_in?

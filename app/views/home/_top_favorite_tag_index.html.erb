@@ -1,1 +1,16 @@
-<p class="margin-top-and-bottom-5px uk-text-small uk-link-text"><%= link_to tag.name, home_tag_ranking_path(tag.name, anchor: "top-page-anchor") %></p>
+<div class="uk-flex uk-flex-between uk-flex-middle margin-bottom-5px">
+    <span class="margin-top-and-bottom-5px uk-text-small uk-link-text uk-text-break" ><%= link_to tag.name, home_tag_ranking_path(tag.name, anchor: "top-page-anchor") %></span>
+
+    <div class="uk-width-1-2 uk-child-width-1-2" uk-grid>
+      <div class="uk-display-inline-block uk-padding-remove">
+        <p class="font-size-10px uk-margin-remove uk-text-center uk-text-muted">お気に入り</p>
+        <p class="uk-margin-remove uk-text-bold uk-text-center"><%= tag.taggings.where(taggable_type: "User").count %></p>
+      </div>
+      
+      <div class="uk-display-inline-block uk-padding-remove">
+        <p class="font-size-10px uk-margin-remove uk-text-center uk-text-muted">投稿</p>
+        <p class="uk-margin-remove uk-text-bold uk-text-center"><%= tag.taggings.where(taggable_type: "Article").count %></p>
+      </div>
+    </div>  
+
+</div>
