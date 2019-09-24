@@ -125,7 +125,7 @@
                             <div class="padding-5px flex-space-between uk-background-muted">
                               <div class="mini-container uk-margin-small-right">
                                   <%= link_to user_path(article.user),class:"uk-link-text" do %>
-                                  <%= attachment_image_tag article.user, :profile_image,fallback: "no-user-image.png",size:'30x30', class: "uk-border-circle user-show-image-index",alt: "Border circle", id: "profileImage" %>
+                                  <%= attachment_image_tag article.user, :profile_image,fallback: "/images/no-user-image.png",size:'30x30', class: "uk-border-circle user-show-image-index",alt: "Border circle", id: "profileImage" %>
                                   <%# ユーザ名 %>
                                   <div class="uk-display-inline-block uk-margin-small-left">
                                     <p class="font-size-11px uk-margin-remove"><%= article.user.user_name %></p>
@@ -163,7 +163,7 @@
                   <div class="uk-width-expand uk-margin-small-left">
                     <%= link_to user_path(user),class:"uk-link-text" do %>
                       <%# プロフィール画像 %>
-                      <%= attachment_image_tag user, :profile_image,fallback: "no-user-image.png",size:'30x30', class: "uk-border-circle user-show-image-index",alt: "Border circle", id: "profileImage" %>
+                      <%= attachment_image_tag user, :profile_image,fallback: "/images/no-user-image.png",size:'30x30', class: "uk-border-circle user-show-image-index",alt: "Border circle", id: "profileImage" %>
                       <%# ユーザ名 %>
                         <p class="font-size-12px uk-margin-remove uk-display-inline-block"><%= user.user_name %></p>
                     <% end %>
