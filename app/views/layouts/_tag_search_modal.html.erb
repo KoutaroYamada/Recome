@@ -6,7 +6,7 @@
                 <div class="register-tag">
 
                 <%# 検索窓 %>
-                <%= form_with url: tag_search_users_path, method: :get, html: {class: "uk-search uk-search-default",style:"width:300px;"},remote: true do  %>
+                <%= form_with url: tag_search_users_path, method: :get, html: {class: "uk-search uk-search-default",style:"width:300px;"}  do  %>
                   <%= text_field_tag :keyword, nil, placeholder:"タグ名を入力", class:"uk-search-input", id:"favorite-tag-search",style:"width:300px;" %>
                   <%= hidden_field_tag :id, current_user.id %>
                   <%# 検索ボタンをuikitのアイコンにしたいがためにaタグでsubmit%>
