@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!, only: [:edit, :update, :add_favorite_tag, :remove_favorite_tag, :tag_search ]
-  before_action :set_mypage_user, except: [:index]
+  before_action :set_mypage_user, except: [:index, :tag_search]
   before_action :correct_user, only: [:edit, :update]
 
   def index
@@ -90,6 +90,7 @@ class UsersController < ApplicationController
     # フォームに入力されたキーワードを取得
     search_words = tag_search_words_params[:keyword]
     @searched_tags = ActsAsTaggableOn::Tag.named_like(search_words)
+    @user = current_user
   end
 
   def set_mypage_user
