@@ -37,7 +37,7 @@
                 <% end %>
               </li>
 
-              <div uk-dropdown="delay-hide:100; offset:0" class="padding-rignt-and-left-15px" style="height:80px;width:240px;z-index:20;">
+              <div uk-dropdown="delay-show:100; delay-hide:100; offset:0" class="padding-rignt-and-left-15px" style="height:80px;width:240px;z-index:20;">
                 <p class="font-size-12px">あなたと興味関心が近いユーザを<br>探すことが出来ます。</p>
               </div>     
           </ul>
@@ -57,7 +57,7 @@
                 <% end %>
               </li>
 
-              <div uk-dropdown="delay-hide:100; offset:0" class="padding-rignt-and-left-15px" style="height:100px;width:260px;z-index:20;">
+              <div uk-dropdown="delay-show:100; delay-hide:100; offset:0" class="padding-rignt-and-left-15px" style="height:85px;width:260px;z-index:20;">
                 <p class="font-size-12px">あなたがフォローしたユーザや、<br>お気に入り登録したタグの最新投稿一覧が<br>表示されます。</p>
               </div>           
 
@@ -69,7 +69,7 @@
                 <% end %>
               </li>
 
-              <div uk-dropdown="delay-hide:100; offset:0" class="padding-rignt-and-left-15px" style="height:80px;width:240px;z-index:20;">
+              <div uk-dropdown="delay-show:100; delay-hide:100; offset:0" class="padding-rignt-and-left-15px" style="height:70px;width:240px;z-index:20;">
                 <p class="font-size-12px">あなたが見つけたおすすめ記事を<br>投稿して共有することが出来ます。</p>
               </div>      
 
@@ -81,7 +81,7 @@
                 <% end %>
               </li>
 
-              <div uk-dropdown="delay-hide:100; offset:0">
+              <div uk-dropdown="delay-show:100; delay-hide:100; offset:0">
                   <ul class="uk-nav uk-dropdown-nav">
                       <li><%= link_to "マイページ",user_path(current_user.id) %></li>
                       <li><%= link_to "マイコレクション", my_collection_user_path(current_user.id) %></li>
