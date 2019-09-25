@@ -28,7 +28,7 @@
           <div class="field uk-section-xsmall uk-padding-remove-bottom">
             <%= f.label "プロフィール画像",class:"uk-form-label uk-text-middle uk-display-inline-block" %>
             <div class="uk-form-controls">
-              <%= attachment_image_tag @user, :profile_image, fallback: "no-user-image.png",size:'200x200', class: "uk-border-circle user-edit-image uk-margin-right",alt: "Border circle", id: "profileImage" %>
+              <%= attachment_image_tag @user, :profile_image, fallback: "/images/no-user-image.png",size:'200x200', class: "uk-border-circle user-edit-image uk-margin-right",alt: "Border circle", id: "profileImage" %>
               <%= f.attachment_field :profile_image,id:"selectProfileImage" %>
             </div>
           </div>

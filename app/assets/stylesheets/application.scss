@@ -135,7 +135,7 @@ ul {
 
 .top-image-container{
   color:white;
-  background-image: url("background-image.jpg");
+  background-image: url("/images/background-image.jpg");
   background-position: center center;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -180,7 +180,7 @@ ul {
  }
 
  .uk-logo{
-   background-image:url("recome-logo.png");
+   background-image:url("/images/recome-logo.png");
    background-size:contain;
    background-repeat: no-repeat;
    background-position: center center;
@@ -374,7 +374,7 @@ ul {
       }
 
       .loading{
-        background-image: url("gif-load.gif");
+        background-image: url("/images/gif-load.gif");
         background-repeat: no-repeat;
         background-position: center center;
         background-size: 50px 50px;
