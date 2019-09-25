@@ -8,7 +8,7 @@
           <% end %>  
 
           <%# プロフィール %>
-          <p class="font-size-12px margin-top-and-bottom-5px"><%= related_user.profile.truncate(60) %></p>
+          <p class="font-size-12px margin-top-and-bottom-5px"><%= related_user.profile.nil? ? "" : "#{related_user.profile.truncate(60)}" %></p>
         </div>
     </div>  
 
