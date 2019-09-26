@@ -87,11 +87,10 @@ $(function(){
     
   });
 
-
+// お気に入りタグ検索のインクリメンタルサーチ
   $('#favorite-tag-search').on('keyup',function(){
     const search_words = $(this).val();
 
-    if(search_words != ""){
       $.ajax({
         type:'GET',
         url:'/users/tag_search',
@@ -99,16 +98,8 @@ $(function(){
         datatype: 'json',
       })
       .fail(function(data){
-      //  通信失敗時の処理を書く
+        alert('非同期通信に失敗しました。');
       })
-    } else{
-      $.ajax({
-        type:'GET',
-        url:'/users/tag_search',
-        data: {keyword: ""},
-        datatype: 'json',
-      })
-    }
   });
 
 

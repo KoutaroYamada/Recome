@@ -27,11 +27,13 @@ class Article < ApplicationRecord
   # ランキング作成のクラスメソッド
   def self.create_rank(tag=nil)
     if tag
-      all_sorted_article = Article.find(Favorite.group(:article_id).order('count(article_id) desc').pluck(:article_id))
-      all_sorted_article.select{ |article| article.tag_list.include?(tag) }
+      #タグを含むArticleモデルを抽出して、お気に入りの数でソートをかける
+      all.select{ |article| article.tag_list.include?(tag) }.sort_by{|article| article.favorites.count}.reverse
 
     else
-      find(Favorite.group(:article_id).order('count(article_id) desc').pluck(:article_id))
+    #  　記事全全件をお気に入りの数でソートをかける
+      all.sort_by{|article| article.favorites.count}.reverse
+
     end
 
   end 
