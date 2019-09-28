@@ -43,9 +43,9 @@ class UsersController < ApplicationController
     # フォロー中のユーザが投稿した記事か、お気に入りタグが紐付けされた記事を取得
     my_collection_articles = Article
                               .where(user_id: following_user_id) #フォロー中のユーザが投稿した記事
-                              .or(Article.where(id: tag_article_ids)　#もしくは、フォロー中のユーザが投稿した記事
-                              .where.not(user_id: @user.id))　#ただし、自分が投稿した記事は除く
-                              .order("created_at DESC")　#投稿された順に並び替え
+                              .or(Article.where(id: tag_article_ids) #もしくは、フォロー中のユーザが投稿した記事
+                              .where.not(user_id: @user.id)) #ただし、自分が投稿した記事は除く
+                              .order("created_at DESC") #投稿された順に並び替え
 
     # マイコレクションの数（無限スクロールを行うかの分岐に使う）
     @contents_number = my_collection_articles.count
