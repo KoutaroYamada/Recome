@@ -113,3 +113,8 @@ gem "refile-mini_magick"
 gem 'hirb'
 gem 'hirb-unicode'
 gem 'pry-rails'
+
+# デプロイのため
+group :production do
+  gem 'mysql2'
+end
