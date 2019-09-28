@@ -112,24 +112,22 @@ $(function(){
     status: '.page-load-status'
   });
 
-  // マイページの記事一覧　無限スクロール
-  $("#mypage-contents").infiniteScroll({
+  // マイページのマイコレクション一覧　無限スクロール
+  $("#mypage-articles").infiniteScroll({
     path: "nav.pagination a[rel=next]",
     append: ".mypage-article",
     history: false,
     prefill: false,
     status: '.page-load-status',
-    checkLastPage: true
   });
 
-  // マイページのフォロー中ユーザ/フォロワー一覧　無限スクロール
-  $("#mypage-contents").infiniteScroll({
+  // // マイページのフォロー中ユーザ/フォロワー一覧　無限スクロール
+  $("#mypage-related-users").infiniteScroll({
     path: "nav.pagination a[rel=next]",
     append: ".mypage-related-user",
     history: false,
     prefill: false,
     status: '.page-load-status',
-    checkLastPage: true
   });
 
 

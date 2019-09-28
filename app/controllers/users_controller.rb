@@ -19,7 +19,7 @@ class UsersController < ApplicationController
 
   def show
     @contents_number = @user.articles.count
-    @articles = @user.articles.page(params[:page]).per(3)
+    @articles = @user.articles.page(params[:page]).per(10)
   end
 
   def update
@@ -35,37 +35,47 @@ class UsersController < ApplicationController
   end
 
   def my_collection
+    # フォロー中のユーザのID
     following_user_id = @user.following.pluck("id")
+    # お気に入り登録したタグが紐付けされている記事のID
     tag_article_ids = Article.tagged_with(@user.tags.pluck("name"), any: true).pluck(:id)
 
     # フォロー中のユーザが投稿した記事か、お気に入りタグが紐付けされた記事を取得
     my_collection_articles = Article
-                              .where(user_id: following_user_id)
-                              .or(Article.where(id: tag_article_ids).where.not(user_id: @user.id))
-                              .order("created_at DESC")
+                              .where(user_id: following_user_id) #フォロー中のユーザが投稿した記事
+                              .or(Article.where(id: tag_article_ids)　#もしくは、フォロー中のユーザが投稿した記事
+                              .where.not(user_id: @user.id))　#ただし、自分が投稿した記事は除く
+                              .order("created_at DESC")　#投稿された順に並び替え
 
+    # マイコレクションの数（無限スクロールを行うかの分岐に使う）
     @contents_number = my_collection_articles.count
 
     # マイコレクション記事を15記事ごとに表示
-    @articles = my_collection_articles.page(params[:page]).per(3)
+    @articles = my_collection_articles.page(params[:page]).per(10)
 
   end
 
   def following
+    # フォロー中のユーザの数（無限スクロールを行うかの分岐に使う）
     @contents_number = @user.following.count
-    @following = @user.following.page(params[:page]).per(3)
+    # フォロー中のユーザ
+    @following = @user.following.page(params[:page]).per(15)
 
   end
 
   def followers
+    # フォロワー数（無限スクロールを行うかの分岐に使う）
     @contents_number = @user.followers.count
-    @followers = @user.followers.page(params[:page]).per(3)
+    # フォロワー
+    @followers = @user.followers.page(params[:page]).per(15)
 
   end
 
   def favorites
+    # お気に入りの記事数（無限スクロールを行うかの分岐に使う）
     @contents_number = @user.favorite_articles.count
-    @articles = @user.favorite_articles.page(params[:page]).per(3)
+    # お気に入り記事
+    @articles = @user.favorite_articles.page(params[:page]).per(10)
   end
 
   def add_favorite_tag
