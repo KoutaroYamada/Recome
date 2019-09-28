@@ -18,6 +18,7 @@
 //= require jquery_ujs
 //= require jquery-ui
 //= require tag-it
+//= require infinite-scroll.pkgd.min
 //= require_tree .
 
 // urlが入力されると非同期でurl先のタイトルとサムネイル画像を表示
@@ -100,6 +101,35 @@ $(function(){
       .fail(function(data){
         alert('非同期通信に失敗しました。');
       })
+  });
+
+  // トップページ　無限スクロール
+  $('#top-page-articles').infiniteScroll({
+    path: "nav.pagination a[rel=next]",
+    append: ".top-page-article",
+    history: false,
+    prefill: false,
+    status: '.page-load-status'
+  });
+
+  // マイページの記事一覧　無限スクロール
+  $("#mypage-contents").infiniteScroll({
+    path: "nav.pagination a[rel=next]",
+    append: ".mypage-article",
+    history: false,
+    prefill: false,
+    status: '.page-load-status',
+    checkLastPage: true
+  });
+
+  // マイページのフォロー中ユーザ/フォロワー一覧　無限スクロール
+  $("#mypage-contents").infiniteScroll({
+    path: "nav.pagination a[rel=next]",
+    append: ".mypage-related-user",
+    history: false,
+    prefill: false,
+    status: '.page-load-status',
+    checkLastPage: true
   });
 
 

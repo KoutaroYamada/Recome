@@ -54,25 +54,44 @@
 
       <%# render元のactionがshowもしくはfavoritesの場合、記事一覧を表示　%>
       <% if controller.action_name.in?(['my_collection','show','favorites']) %>
-        <%= render partial: 'users/articles', collection: articles, as: :article %>
+        <div id="mypage-contents">
+          <%= render partial: 'users/articles', collection: articles, as: :article %>
 
-        <%# ページネーション %>
-        <div class= "paginate uk-text-center uk-margin-medium-top">
-          <%= paginate articles, class: "paginate uk-pagination" %>
-        </div>
+          <%# ページネーション %>
+          <%# <div class= "paginate uk-text-center uk-margin-medium-top">
+            <%= paginate articles, class: "paginate uk-pagination" %>
+          <%# </div> %>
 
       <%# render元のactionが上記以外（＝followers, following）の場合、ユーザ一覧を表示%>
       <% else %>
-        <%= render partial: 'users/related_users', collection: related_users, as: :related_user %>
+          <%= render partial: 'users/related_users', collection: related_users, as: :related_user %>
 
-        <%# ページネーション %>
+        <%# ページネーション
         <div class= "paginate uk-text-center uk-margin-medium-top">
           <%= paginate related_users, class: "paginate uk-pagination" %>
-        </div>
+        <%# </div>  %>
         
       <% end %>  
+        </div>
 
-      
+      <% if @contents_number > 3 %>
+        
+        <%# 次の記事読み込み中のアニメーション %>
+        <div class="page-load-status uk-text-center">
+
+          <div class="infinite-scroll-request uk-margin-medium-top">
+            <span uk-spinner="ratio: 2"></span>
+          </div>
+
+        </div>
+
+        <%# ページネーション (無限スクロールに必要なので記述しているが画面では非表示) %>
+        <div class= "uk-invisible">
+          <%= paginate @articles %>
+        </div>
+
+      <% end %>
+
     </div>
 
   </div>

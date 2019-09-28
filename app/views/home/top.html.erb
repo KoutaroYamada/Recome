@@ -89,67 +89,30 @@
           <p class="uk-margin-remove-top">タグ 「<span class="uk-text-bold"><%= @tag %></span>」 の人気記事</p>
         <% end %>  
 
-            <div class="uk-child-width uk-grid-medium uk-grid-match" uk-grid>
-                <% @articles.each do |article| %>        
-                  <div>
-                      <div class="uk-card uk-card-default uk-card-small uk-card-hover uk-box-shadow-small">
-
-                            <%# タイトル %>
-                            <div class="uk-card-header padding-top-and-bottom-5px">
-                              <p class="margin-top-and-bottom-5px uk-display-inline-block font-size-12px">お気に入りに登録された数：<span class="uk-text-small uk-text-bold"><%=article.favorites.count  %></span></p>
-
-                              <%# お気に入りボタン %>
-                              <%= render "favorites/favorite_button", article: article  %>
-
-                            </div>
-
-                            <div class="uk-card-body-small padding-top-and-bottom-10px" uk-grid>
-                                <div class="uk-width-auto url-image padding-left-55px">
-                                    <%# サムネイル画像 %>
-                                    <%= image_tag article.thumbnail_image_url, style:"height:60px;width:80px;object-fit:cover;" %>
-                                </div>
-                                <div class="uk-width-expand padding-rignt-and-left-15px">
-                                  <%# 記事タイトル %>
-                                  <p class="uk-text-small uk-text-bold uk-margin-remove uk-link-text"><%=link_to article.title.truncate(60),article.url %></p>
-                                  <p class="font-size-12px margin-top-and-bottom-5px"><%= article.site_name %></p>
-                                  <%# <p class="uk-margin-remove-top font-size-12px margin-bottom-10px" ><%= article.description.truncate(120) %>
-
-                                  <%# タグの表示 %>
-                                  <%= render "layouts/tag", article: article  %>
-
-                                </div>
-                            </div>
-
-                            <%# おすすめコメント %>
-
-                            <div class="padding-5px flex-space-between uk-background-muted">
-                              <div class="mini-container uk-margin-small-right">
-                                  <%= link_to user_path(article.user),class:"uk-link-text" do %>
-                                  <%= attachment_image_tag article.user, :profile_image,fallback: "no-user-image.png",size:'30x30', class: "uk-border-circle user-show-image-index",alt: "Border circle", id: "profileImage" %>
-                                  <%# ユーザ名 %>
-                                  <div class="uk-display-inline-block uk-margin-small-left">
-                                    <p class="font-size-11px uk-margin-remove"><%= article.user.user_name %></p>
-                                    <% end %>  
-
-                                    <%# おすすめ文 %>
-                                    <p class="font-size-12px margin-top-and-bottom-5px"><%= article.recommend_comment %></p> 
-                                  </div>
-                              </div>  
-
-                            </div>
-
-
-                      </div>
-                  </div>
-                <% end %>
+            <div class="uk-child-width uk-grid-medium uk-grid-match top-page-articles" id="top-page-articles" uk-grid>
+              <%= render partial: 'home/top_page_article', collection: @articles, as: :article %>
             </div>
 
-        <%# ページネーション %>
-        <div class= "paginate uk-text-center uk-margin-medium-top">
-          <%= paginate @articles, class: "paginate uk-pagination" %>
-        </div>
+        <% if @articles_number >10 %>
+
+          <%# 次の記事読み込み中のアニメーション %>
+          <div class="page-load-status uk-text-center">
+
+            <div class="infinite-scroll-request uk-margin-medium-top">
+              <span uk-spinner="ratio: 2"></span>
+            </div>
+
+          </div>
+
+          <%# ページネーション (無限スクロールに必要なので記述しているが画面では非表示) %>
+          <div class= "uk-invisible">
+            <%= paginate @articles %>
+          </div>
+
+        <% end %>
 
     </div>
+
 
     <div class="uk-width-1-4">
 

@@ -18,7 +18,8 @@ class UsersController < ApplicationController
   end
 
   def show
-    @articles = @user.articles.page(params[:page]).per(15)
+    @contents_number = @user.articles.count
+    @articles = @user.articles.page(params[:page]).per(3)
   end
 
   def update
@@ -37,26 +38,34 @@ class UsersController < ApplicationController
     following_user_id = @user.following.pluck("id")
     tag_article_ids = Article.tagged_with(@user.tags.pluck("name"), any: true).pluck(:id)
 
-    @articles = Article
-                  .where(user_id: following_user_id)
-                  .or(Article.where(id: tag_article_ids).where.not(user_id: @user.id))
-                  .order("created_at DESC")
-                  .page(params[:page]).per(15)
+    # フォロー中のユーザが投稿した記事か、お気に入りタグが紐付けされた記事を取得
+    my_collection_articles = Article
+                              .where(user_id: following_user_id)
+                              .or(Article.where(id: tag_article_ids).where.not(user_id: @user.id))
+                              .order("created_at DESC")
+
+    @contents_number = my_collection_articles.count
+
+    # マイコレクション記事を15記事ごとに表示
+    @articles = my_collection_articles.page(params[:page]).per(3)
 
   end
 
   def following
-    @following = @user.following.page(params[:page]).per(15)
+    @contents_number = @user.following.count
+    @following = @user.following.page(params[:page]).per(3)
 
   end
 
   def followers
-    @followers = @user.followers.page(params[:page]).per(15)
+    @contents_number = @user.followers.count
+    @followers = @user.followers.page(params[:page]).per(3)
 
   end
 
   def favorites
-    @articles = @user.favorite_articles.page(params[:page]).per(15)
+    @contents_number = @user.favorite_articles.count
+    @articles = @user.favorite_articles.page(params[:page]).per(3)
   end
 
   def add_favorite_tag
@@ -96,8 +105,7 @@ class UsersController < ApplicationController
   def set_mypage_user
     #マイページで開いたユーザのデータを取得
     @user = User.includes(:tags, articles: [:favorites, :tags]).find(params[:id])
-    # 遷移元のページの情報を渡す（お気に入りタグの登録/解除をしたとき、トップページとマイページどちらの
-    # お気に入りタグ一覧を変更するかの条件分岐に使う）
+    # 遷移元のページの情報を渡す（お気に入りタグの登録/解除をしたとき、トップページとマイページどちらのお気に入りタグ一覧を変更するかの条件分岐に使う）
     @path = Rails.application.routes.recognize_path(request.referer)
 
   end
