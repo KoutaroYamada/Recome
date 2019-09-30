@@ -1,17 +1,25 @@
 <span id="favorite-button-<%= article.id %>" class="favorite-button">
-  <%# もしユーザがお気に入り登録済の場合 %>
-  <% if user_signed_in? && current_user.favorite?(article) %>
 
-    <%= link_to article_favorites_path(article_id: article.id), method: :delete, remote: true, class:"font-size-11px " do %>
-      <%# <span uk-icon="icon: star; ratio: 1" class="uk-text-muted"></span> %>
-      <i class="fas fa-star fa-border"></i>
-    <% end %>  
+  <% if user_signed_in? %>
 
-  <%# ユーザがお気に入り登録していない場合 %>
-  <% elsif user_signed_in? %>
-    <%= link_to article_favorites_path(article_id: article.id), method: :post, remote: true, class:"font-size-11px" do %>
-      <%# <span uk-icon="icon: star; ratio: 1" class="uk-text-muted favorited"></span> %>
-      <i class="far fa-star fa-border"></i>
+    <%# ユーザがログイン済で、対象の記事が自分の投稿した記事の場合 %>
+    <% if article.user.id == current_user.id %>
+      <%# 何も表示しない %>
+
+    <%# ユーザがログイン済で、お気に入り登録済の場合 %>
+    <% elsif current_user.favorite?(article) %>
+      <%= link_to article_favorites_path(article_id: article.id), method: :delete, remote: true, class:"font-size-11px " do %>
+        <%# <span uk-icon="icon: star; ratio: 1" class="uk-text-muted"></span> %>
+        <i class="fas fa-star fa-border"></i>
+      <% end %>  
+
+    <%# ユーザがログイン済で、お気に入り登録していない場合 %>
+    <% else %>
+      <%= link_to article_favorites_path(article_id: article.id), method: :post, remote: true, class:"font-size-11px" do %>
+        <%# <span uk-icon="icon: star; ratio: 1" class="uk-text-muted favorited"></span> %>
+        <i class="far fa-star fa-border"></i>
+      <% end %>  
+
     <% end %>  
 
   <%# ユーザがログインしていない場合 %>
