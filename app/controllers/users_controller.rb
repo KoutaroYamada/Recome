@@ -19,7 +19,7 @@ class UsersController < ApplicationController
 
   def show
     @contents_number = @user.articles.count
-    @articles = @user.articles.page(params[:page]).per(10)
+    @articles = @user.articles.page(params[:page]).order("created_at DESC").per(10)
   end
 
   def update
