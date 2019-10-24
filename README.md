@@ -1,24 +1,30 @@
-# README
+# 1. アプリケーション概要
+  URL: http://13.112.11.141/
+- このアプリケーションはエンジニア向けweb記事共有サイトです。
+- エンジニアのあなたが見つけた参考になるweb記事を、日本中のエンジニアに「おすすめ記事」として共有することができます。
+- 他ユーザをフォローしたりタグをお気に入り登録することで、あなたと関心が近い他ユーザの投稿を自動で収集することができます。
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# 2. 機能一覧
+- ログイン機能
+- おすすめweb記事投稿機能
+- タグ紐付け機能
+- 過去使用タグ一覧表示機能
+- ユーザフォロー機能
+- お気に入りタグ登録機能
+- マイコレクション機能（フォローしたユーザとお気に入り登録したタグに紐づく他ユーザの投稿を一覧表示する）
+- ユーザ検索機能（ユーザ名、自己紹介文、タグ）
+- 記事検索機能（キーワード、タグ）
+- ページネーション機能
+- 無限スクロール機能
+- 投稿記事ランキング機能
 
-Things you may want to cover:
+# 3.使用している技術一覧
+- ruby 2.5.5
+- jquery 1.12.4
+- ruby on rails 5.2.3
+- Amazon EC2
+- Amazon RDS
+- nginx 1.14.1
+- puma 3.12.1
+- mysql2  0.5.2
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
