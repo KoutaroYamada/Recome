@@ -10,10 +10,14 @@
           <fieldset class="uk-fieldset uk-form-horizontal">
             <h4 class="">ログイン</h4>
             <hr>
-            
+
             <% if alert %>
               <p class="uk-alert-danger uk-text-small uk-padding-small"><%= alert %></p>
             <% end %>
+
+            <p class="uk-text-small">テストユーザ<br>
+               メールアドレス: test@gmail.com 　パスワード: password</p>
+
 
             <div class="field uk-section-xsmall uk-padding-remove-bottom">
               <%= f.label :email,class:"uk-form-label" %>
